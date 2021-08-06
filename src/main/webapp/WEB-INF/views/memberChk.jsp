@@ -73,7 +73,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="singlebutton"> </label>
   <div class="col-md-4">
-    <button id="singlebutton" name="singlebutton" class="btn btn-primary" onclick="location.href='/memberPassFind'">비밀번호 변경하기</button>
+    <button id="singlebutton" name="singlebutton" class="btn btn-primary" onclick="location.href='/memberPassChange'">비밀번호 변경하기</button>
      <div id="register-link" class="text-right">
                                 <a href="mainPage" class="text-info">취소</a>
                             </div>

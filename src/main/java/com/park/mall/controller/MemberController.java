@@ -40,12 +40,7 @@ public class MemberController {
 		return "memberChk";
 	}
 	
-	@RequestMapping(value = "/memberPassFind", method = RequestMethod.GET)
-	public String memberChkView() {
-	
-		return "memberPassFind";
-	}
-	//로그인1
+	//로그인
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(MemberVO memberVo,HttpServletRequest req, HttpServletResponse response,HttpSession session) throws Exception {
 		
@@ -98,5 +93,22 @@ public class MemberController {
 		memberService.idchk(memberVo);
 		int result = memberService.idchk(memberVo);
 		return result;
+	}
+	@RequestMapping(value = "/memberPassChange", method = RequestMethod.GET)
+	public String memberPassChange() {
+	
+		return "memberPassChange";
+	}
+	
+	
+	@RequestMapping(value="/memberPassChange",method= RequestMethod.POST)
+	public String memberPassChange(MemberVO memberVo,HttpSession session) throws Exception{
+		MemberVO dbpass = (MemberVO)session.getAttribute("member");
+		if(dbpass.getPw().equals(memberVo.getPw())) {
+			return "member";
+			
+		}
+		return "mainPage";
+		
 	}
 }
