@@ -104,7 +104,10 @@ public class MemberController {
 	@RequestMapping(value="/memberPassChange",method= RequestMethod.POST)
 	public String memberPassChange(MemberVO memberVo,HttpSession session) throws Exception{
 		MemberVO dbpass = (MemberVO)session.getAttribute("member");
-		if(dbpass.getPw().equals(memberVo.getPw())) {
+		if(dbpass.getPw().equals(memberVo.getPw()) && memberVo.getEmail().equals(memberVo.getPhone())) {
+			memberVo.setId(dbpass.getId());
+			 memberVo.setPw(memberVo.getEmail());
+			memberService.UpdatePass(memberVo);
 			return "member";
 			
 		}

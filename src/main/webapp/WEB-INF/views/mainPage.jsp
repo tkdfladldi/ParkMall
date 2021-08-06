@@ -38,8 +38,12 @@
                         <li class="nav-item"><a class="nav-link" href="#team">모델팀</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                    </c:if>        
-              		<c:if test="${member != null}">
-              	<li class="nav-item"><a class="nav-link" href="memberChk">${member.id}님    반갑습니다.</a></li>
+              		  <c:if test="${member != null}">
+                            <button style="background-color:transparent; border-color:transparent; color:white" onclick="location.href='/memberChk'" class="btn btn-outline-dark">
+                            <i class="bi-cart-fill me-1"></i>
+                            ${member.id}님 반갑습니다.
+                            <span class="badge bg-dark text-white ms-1 rounded-pill">0 </span>
+                            </button>                       
                  		<li class="nav-item"><a class="nav-link" href="logout">로그아웃</a></li>
                         <li class="nav-item"><a class="nav-link" href="#about">상품소개</a></li>
                         <li class="nav-item"><a class="nav-link" href="#team">모델팀</a></li>

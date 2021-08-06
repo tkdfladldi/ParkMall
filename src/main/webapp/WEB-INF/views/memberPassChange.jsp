@@ -31,14 +31,14 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="textinput">새 비밀번호</label>  
   <div class="col-md-4">
-  <input id="textinput" name=""  placeholder="패스워드" class="form-control input-md" required="" type="password">
+  <input id="textinput" name="phone"  placeholder="패스워드" class="form-control input-md" required="" type="password">
   <span class="help-block"> </span>  
   </div>
 </div>
 <div class="form-group">
   <label class="col-md-4 control-label" for="textinput">새 비밀번호 확인</label>  
   <div class="col-md-4">
-  <input id="textinput" name=""  placeholder="패스워드" class="form-control input-md" required="" type="password">
+  <input id="textinput" name="email"  placeholder="패스워드" class="form-control input-md" required="" type="password">
   <span class="help-block"> </span>  
   </div>
 </div>

@@ -29,4 +29,9 @@ public class MemberDAOImpl implements MemberDAO{
 		return sqlSession.selectOne("com.park.mall.member.selectLogin", memberVo);
 	}
 
+	@Override
+	public int UpdatePass(MemberVO memberVo) throws Exception {
+		return sqlSession.update("com.park.mall.member.memberPassUpdate", memberVo);
+	}
+
 }

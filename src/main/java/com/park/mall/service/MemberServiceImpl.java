@@ -28,4 +28,9 @@ public class MemberServiceImpl implements MemberService{
 		return memberDAO.login(memberVo);
 	}
 
+	@Override
+	public int UpdatePass(MemberVO memberVo) throws Exception {
+		return memberDAO.UpdatePass(memberVo);
+	}
+
 }

@@ -28,6 +28,10 @@
 			SELECT ID, PW ,NAME,PHONE, EMAIL FROM memberuser WHERE ID = #{id} AND PW = #{pw}
 		</select>
 		
+		<update id="memberPassUpdate" parameterType="com.park.mall.model.MemberVO">
+			UPDATE memberuser SET pw = #{pw} WHERE id = #{id}
+		</update>
+		
 		
 		
 </mapper>

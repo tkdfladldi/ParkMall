@@ -9,4 +9,6 @@ public interface MemberService {
 	public int idchk(MemberVO memberVo) throws Exception;
 	
 	public MemberVO login(MemberVO memberVo) throws Exception;
+	
+	public int UpdatePass(MemberVO memberVo) throws Exception;
 }
