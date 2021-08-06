@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+
+    PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">    
+
+<mapper namespace="com.park.mall.member">
+			<!-- 회원가입 -->
+		<insert id="insertMember" parameterType="com.park.mall.model.MemberVO">
+			INSERT INTO memberuser(ID,PW,NAME,PHONE,EMAIL,INDATE)
+			VALUES(
+				  #{id}
+				, #{pw}
+				, #{name}
+				, #{phone}
+				, #{email}
+				, now()
+			)
+		</insert>	
+			<!-- 아이디 중복 체크 -->
+		<select id="selectMember" resultType="int">		
+			SELECT COUNT(*)FROM memberuser WHERE ID = #{id}		
+		</select>
+		
+			<!-- 로그인 -->
+		<select id="selectLogin" resultType="com.park.mall.model.MemberVO">
+			SELECT ID, PW FROM memberuser WHERE ID = #{id} AND PW = #{pw}
+		</select>
+		
+		
+		
+</mapper>
