@@ -34,6 +34,17 @@ public class MemberController {
 	
 		return "login";
 	}
+	@RequestMapping(value = "/memberChk", method = RequestMethod.GET)
+	public String memberChk() {
+	
+		return "memberChk";
+	}
+	
+	@RequestMapping(value = "/memberPassFind", method = RequestMethod.GET)
+	public String memberChkView() {
+	
+		return "memberPassFind";
+	}
 	//로그인1
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(MemberVO memberVo,HttpServletRequest req, HttpServletResponse response,HttpSession session) throws Exception {

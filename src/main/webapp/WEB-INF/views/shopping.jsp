@@ -37,18 +37,25 @@
                             </ul>
                         </li>
                     </ul>
-                    <form class="d-flex">
-                        <button class="btn btn-outline-dark" type="submit">
+                  
+                       
+                            
+                       <c:if test="${member == null}">
+                             <button class="btn btn-outline-dark">
                             <i class="bi-cart-fill me-1"></i>
-                            <c:if test="${member == null}">ㄴㅁㄴㅇ
+                        	    비회원
+                              </button>
                             <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                            </c:if>
-                            <c:if test="${member != null}">
+                       </c:if>
+                       <c:if test="${member != null}">
+                            <button onclick="location.href='/memberChk'" class="btn btn-outline-dark">
+                            <i class="bi-cart-fill me-1"></i>
                             ${member.id}님 반갑습니다.
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                            </c:if>
-                        </button>
-                    </form>
+                            <span class="badge bg-dark text-white ms-1 rounded-pill">0 </span>
+                            </button>
+                       </c:if>
+                     
+                   
                 </div>
             </div>
         </nav>
