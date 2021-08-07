@@ -17,7 +17,11 @@
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css2/styles.css">
         
     </head>
+  
     <body>
+    <!-- order.address == 참조변수 호출을 하면 오버라이딩한 toString메서드가 호출된다.
+    없다면 '주소값만 출력'하게 될것이고, 있다면 toString메서드 양식대로 호출된다. -->
+    
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">
@@ -42,8 +46,7 @@
                             
                        <c:if test="${member == null}">
                              <button class="btn btn-outline-dark">
-                            <i class="bi-cart-fill me-1"></i>
-                        	    비회원
+                            <i class="bi-cart-fill me-1">비회원</i>
                               </button>
                             <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
                        </c:if>
@@ -75,14 +78,14 @@
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Product name-->
-                                    <h5 class="fw-bolder">Fancy Product</h5>
+                                    <h5 class="fw-bolder"></h5>
                                     <!-- Product price-->
                                     $40.00 - $80.00
                                 </div>
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">구매하러 가기</a></div>
                             </div>
                         </div>
                     </div>
@@ -112,7 +115,7 @@
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="nike_shoes">구매하러 가기</a></div>
                             </div>
                         </div>
                     </div>
@@ -134,7 +137,7 @@
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">구매하러 가기</a></div>
                             </div>
                         </div>
                     </div>
@@ -161,7 +164,7 @@
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">구매하러 가기</a></div>
                             </div>
                         </div>
                     </div>
@@ -183,7 +186,7 @@
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">구매하러 가기</a></div>
                             </div>
                         </div>
                     </div>
@@ -202,7 +205,7 @@
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">구매하러 가기	</a></div>
                             </div>
                         </div>
                     </div>
@@ -232,7 +235,7 @@
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">구매하러 가기</a></div>
                             </div>
                         </div>
                     </div>
@@ -259,7 +262,7 @@
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">구매하러 가기</a></div>
                             </div>
                         </div>
                     </div>
