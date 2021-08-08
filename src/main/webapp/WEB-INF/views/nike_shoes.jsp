@@ -25,12 +25,12 @@
                 ${row.product_id}
             </td>
             <td>
-                <a href="${path}/detail/${row.product_id}">
-                    <img src="${path}resources/assets/img/portfolio/${row.product_url}" width="120ox" height="110px">
+                <a href="${path}/nike_shoesChk/${row.product_id}">
+                    <img src="../resources/assets/img/portfolio/${row.product_url}" width="120ox" height="110px">
                 </a>
             </td>
-            <td>
-                <a href="${path}/detail/${row.product_id}">${row.product_name}</a>
+             <td>
+                <a href="${pageContext.request.contextPath}/nike_shoesChk/${row.product_id}">${row.product_name}</a>
             </td>
             <td>
                 <fmt:formatNumber value="${row.product_price}" pattern="###,###,###"/>

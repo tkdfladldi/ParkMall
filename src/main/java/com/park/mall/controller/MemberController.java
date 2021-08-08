@@ -102,12 +102,16 @@ public class MemberController {
 	
 	
 	@RequestMapping(value="/memberPassChange",method= RequestMethod.POST)
-	public String memberPassChange(MemberVO memberVo,HttpSession session) throws Exception{
+	public String memberPassChange(MemberVO memberVo,HttpSession session,HttpServletResponse response) throws Exception{
 		MemberVO dbpass = (MemberVO)session.getAttribute("member");
 		if(dbpass.getPw().equals(memberVo.getPw()) && memberVo.getEmail().equals(memberVo.getPhone())) {
 			memberVo.setId(dbpass.getId());
 			 memberVo.setPw(memberVo.getEmail());
 			memberService.UpdatePass(memberVo);
+			response.setContentType("text/html; charset=UTF-8");			 
+			PrintWriter out = response.getWriter();	
+			out.println("<script>alert('비밀번호 변경 완료');</script>");
+			out.flush();
 			return "member";
 			
 		}

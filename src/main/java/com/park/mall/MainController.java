@@ -10,9 +10,11 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.park.mall.model.MemberVO;
@@ -41,6 +43,16 @@ public class MainController {
 		mav.setViewName("/nike_shoes");
 		mav.addObject("list", tbl_ProductService.listTbl_Product());
 		return  mav;
+	}
+	
+	@RequestMapping(value = "/nike_shoesChk/{product_id}", method =RequestMethod.GET)
+	public ModelAndView nike_shoesChk(@PathVariable("product_id") int product_id,ModelAndView mav ) throws Exception {
+		mav.setViewName("nike_shoesChk");
+		mav.addObject("vo",  tbl_ProductService.Tbl_ProductIdCall(product_id));
+		
+		return mav;
+		
+		
 	}
 	
 }

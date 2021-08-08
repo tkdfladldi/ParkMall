@@ -8,15 +8,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>상품 상세정보</title>
-
+<head profile="http://www.w3.org/2005/10/profile">
+<link rel="icon" type="image/png" href="http://example.com/myicon.png"> 
 </head>
 <body>
     <h2>상품 상세정보</h2>
     <table border="1">
-  	
         <tr>
             <td>
-           <img src="${path}resources/assets/img/portfolio/${vo.product_url}" width="120ox" height="110px">
+            <td> 
+				<img src="../resources/assets/img/portfolio/${vo.product_url}" width="120ox" height="110px">
             </td>
             <td>
                 <table border="1" style="height: 300px; width: 400px;">
@@ -43,7 +44,7 @@
                                 </select>&nbsp;개
                                 <input type="submit" value="장바구니에 담기">
                             </form>
-                            <a href="${path}/shop/product/list.do">상품목록</a>
+                            <a href="${pageContext.request.contextPath}/shop/product/list.do">상품목록</a>
                         </td>
                     </tr>
                 </table>

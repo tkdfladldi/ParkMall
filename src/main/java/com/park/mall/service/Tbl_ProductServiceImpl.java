@@ -19,4 +19,9 @@ public class Tbl_ProductServiceImpl implements Tbl_ProductService{
 		return tbl_ProductDAO.listTbl_Product();
 	}
 
+	@Override
+	public Tbl_ProductVO Tbl_ProductIdCall(int product_id) throws Exception {
+		return tbl_ProductDAO.Tbl_ProductIdCall(product_id);
+	}
+
 }

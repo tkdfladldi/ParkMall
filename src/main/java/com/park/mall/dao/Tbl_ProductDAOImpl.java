@@ -21,4 +21,10 @@ public class Tbl_ProductDAOImpl implements Tbl_ProductDAO{
 		return sqlSession.selectList("com.park.mall.tbl_Product.selectTbl_Product");
 	}
 
+	@Override
+	public Tbl_ProductVO Tbl_ProductIdCall(int product_id) throws Exception {
+		return sqlSession.selectOne("com.park.mall.tbl_Product.selectTbl_ProductIdCall",product_id);
+				
+	}
+
 }
