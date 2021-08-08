@@ -34,7 +34,7 @@
                    <c:if test="${member == null}">
                         <li class="nav-item"><a class="nav-link" href="/login">로그인</a></li>         
                         <li class="nav-item"><a class="nav-link" href="/member">회원가입</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#about">상품소개</a></li>
+                        <li class="nav-item"><a class="nav-link" href="borad">자유게시판</a></li>
                         <li class="nav-item"><a class="nav-link" href="#team">모델팀</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                    </c:if>        
