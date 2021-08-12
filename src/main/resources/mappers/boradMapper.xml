@@ -8,11 +8,18 @@
 <mapper namespace="com.park.mall.boradMapper">
 
 			<!-- 로그인 -->
-		<select id="selectBorad" resultType="com.park.mall.model.BoradVO">
+		<!-- <select id="selectBorad" resultType="com.park.mall.model.BoradVO">
 			SELECT 
 				*
 			FROM 
 				borad 
-		</select>
+		</select> -->
 		
+		<select id="selectBoradlimit" resultType="com.park.mall.model.BoradVO">
+			select 
+ 			borad_id, borad_title, borad_name, borad_time
+			from borad
+			order by borad_id desc
+			limit #{index_no},5 ;
+		</select>
 </mapper>

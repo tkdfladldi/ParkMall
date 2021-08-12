@@ -48,7 +48,7 @@ public class MemberController {
 		MemberVO loginVo = memberService.login(memberVo);
 		if(loginVo == null) {
 			session.setAttribute("member", null);
-			response.setContentType("text/html; charset=UTF-8");			 
+//			response.setContentType("text/html; charset=UTF-8");			 
 			PrintWriter out = response.getWriter();			 
 			out.println("<script>alert('아이디 비밀번호가 맞지 않습니다.');</script>");	 
 			out.flush();
@@ -60,7 +60,7 @@ public class MemberController {
 		}
 	}
 	@RequestMapping(value = "logout", method = RequestMethod.GET)
-	public String logout(HttpSession session) throws Exception {
+	public String logout(HttpSession session, HttpServletRequest request) throws Exception {
 			session.invalidate();
 		return "mainPage"; 
 		
@@ -70,7 +70,7 @@ public class MemberController {
 	public String memberPost(MemberVO memberVo,HttpServletResponse response) throws Exception {		
 		int result = memberService.idchk(memberVo);
 		if(result == 1) {
-			response.setContentType("text/html; charset=UTF-8");			 
+//			response.setContentType("text/html; charset=UTF-8");			 
 			PrintWriter out = response.getWriter();			 
 			out.println("<script>alert('아이디 중복 다시 입력해주세요.'); location.href='member';</script>");			 
 			out.flush();
@@ -78,7 +78,7 @@ public class MemberController {
 			
 		}else if(result == 0) {
 		memberService.insertMember(memberVo);
-		response.setContentType("text/html; charset=UTF-8");			 
+//		response.setContentType("text/html; charset=UTF-8");			 
 		PrintWriter out = response.getWriter();	
 		out.println("<script>alert('회원가입 완료');</script>");
 		out.flush();
@@ -108,7 +108,7 @@ public class MemberController {
 			memberVo.setId(dbpass.getId());
 			 memberVo.setPw(memberVo.getEmail());
 			memberService.UpdatePass(memberVo);
-			response.setContentType("text/html; charset=UTF-8");			 
+//	필터있어서 가능		response.setContentType("text/html; charset=UTF-8");			 
 			PrintWriter out = response.getWriter();	
 			out.println("<script>alert('비밀번호 변경 완료');</script>");
 			out.flush();

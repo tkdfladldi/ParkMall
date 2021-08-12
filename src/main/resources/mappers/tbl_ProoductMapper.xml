@@ -7,7 +7,6 @@
 
 <mapper namespace="com.park.mall.tbl_Product">
 
-			<!-- 로그인 -->
 		<select id="selectTbl_Product" resultType="com.park.mall.model.Tbl_ProductVO">
 			SELECT 
 				*

@@ -13,10 +13,16 @@ import com.park.mall.model.BoradVO;
 public class BoradServiceImpl implements BoradService{
 	@Inject private BoradDAO boradDAO;
 	
+//	@Override
+//	public List<BoradVO> BoradList() throws Exception {
+//		
+//		return boradDAO.BoradList();
+//	}
+
+
 	@Override
-	public List<BoradVO> BoradList() throws Exception {
-		
-		return boradDAO.BoradList();
+	public List<BoradVO> selectBoradlimit(int index_no) throws Exception {
+		return boradDAO.selectBoradlimit(index_no);
 	}
 
 }

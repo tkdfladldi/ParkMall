@@ -30,7 +30,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="mainPage">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/borad?p=1&">자유게시판</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -45,7 +45,7 @@
                        
                             
                        <c:if test="${member == null}">
-                             <button class="btn btn-outline-dark">
+                             <button class="btn btn-outline-dark" onclick="location.href='/login'">
                             <i class="bi-cart-fill me-1">비회원</i>
                             <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
                               </button>
