@@ -27,4 +27,10 @@ public class BoradDAOImpl implements BoradDAO{
 		return sqlSession.selectList("com.park.mall.boradMapper.selectBoradlimit",index_no);
 	}
 
+	@Override
+	public void insertBorad(BoradVO vo) throws Exception {
+		 sqlSession.insert("com.park.mall.boradMapper.insertBorad",vo);
+		
+	}
+
 }

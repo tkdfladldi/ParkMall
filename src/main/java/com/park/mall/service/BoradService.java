@@ -11,5 +11,7 @@ public interface BoradService {
 
 	public List<BoradVO> selectBoradlimit(int index_no) throws Exception;
 	
+	public void insertBorad(BoradVO vo) throws Exception;
+	
 
 }

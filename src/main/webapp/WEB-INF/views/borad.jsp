@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +30,7 @@ top: 270px;
 <body>
 
 <h2>게시글 목록</h2>
-<button type="button" id="btnWrite">글쓰기</button>
+<button type="button" id="btnWrite" onclick="location.href='/boradForm'">글쓰기</button>
 <table border="1" width="600px">
     <tr>
         <th>번호</th>
@@ -43,7 +45,7 @@ top: 270px;
         <td>${borad_list.borad_name}</td>
        <td>
             <!-- 원하는 날짜형식으로 출력하기 위해 fmt태그 사용 -->
-          ${borad_list.borad_time}
+            <fmt:formatDate pattern="yyyy년MM월dd일  hh시mm분ss초" value="${borad_list.borad_time}"/>
         </td>
        	
        

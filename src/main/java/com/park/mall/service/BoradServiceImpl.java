@@ -25,4 +25,9 @@ public class BoradServiceImpl implements BoradService{
 		return boradDAO.selectBoradlimit(index_no);
 	}
 
+	@Override
+	public void insertBorad(BoradVO vo) throws Exception {
+		boradDAO.insertBorad(vo);
+	}
+
 }

@@ -17,9 +17,21 @@
 		
 		<select id="selectBoradlimit" resultType="com.park.mall.model.BoradVO">
 			select 
- 			borad_id, borad_title, borad_name, borad_time
+ 			borad_id, borad_title,borad_contents, borad_name, borad_time
 			from borad
 			order by borad_id desc
 			limit #{index_no},5 ;
 		</select>
+		
+		<insert id="insertBorad">
+		INSERT INTO borad(borad_id, borad_title,borad_contents, borad_name, borad_time)
+			VALUES(
+				   #{borad_id, jdbcType=NUMERIC}
+				 , #{borad_title}
+				 , #{borad_contents}
+				 , #{borad_name}
+				 , now()
+			);
+		
+		</insert>
 </mapper>
