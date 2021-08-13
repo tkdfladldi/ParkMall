@@ -13,5 +13,7 @@ public interface BoradService {
 	
 	public void insertBorad(BoradVO vo) throws Exception;
 	
+	public BoradVO boradContent(int borad_id) throws Exception;
+	
 
 }

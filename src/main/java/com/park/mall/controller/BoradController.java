@@ -44,4 +44,11 @@ public class BoradController {
 		}
 		return "redirect:/borad?p=1&";
 	}
+	@RequestMapping(value = "/boradContent/{borad_list.borad_id}", method= RequestMethod.GET)
+	public String boradContent(@PathVariable("borad_list.borad_id") int borad_id,Model model, BoradVO vo)throws Exception{
+		 vo = boardService.boradContent(borad_id);
+		 model.addAttribute("boradContent",vo );
+	
+		return "boradContent";
+	}
 }

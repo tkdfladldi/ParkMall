@@ -30,4 +30,9 @@ public class BoradServiceImpl implements BoradService{
 		boradDAO.insertBorad(vo);
 	}
 
+	@Override
+	public BoradVO boradContent(int borad_id) throws Exception {
+		return boradDAO.boradContent(borad_id);
+	}
+
 }

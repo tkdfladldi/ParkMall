@@ -11,4 +11,7 @@ public interface BoradDAO {
 	public List<BoradVO> selectBoradlimit(int index_no) throws Exception;
 	
 	public void insertBorad(BoradVO vo) throws Exception;
+	
+	public BoradVO boradContent(int borad_id) throws Exception;
+	
 }

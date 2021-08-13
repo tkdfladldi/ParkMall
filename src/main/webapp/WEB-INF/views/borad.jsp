@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>게시글 목록</title>
+<title>자유게시판</title>
 <script>
 </script>
 <style type="text/css">
@@ -29,7 +29,7 @@ top: 270px;
 </head>
 <body>
 
-<h2>게시글 목록</h2>
+<h2>자유게시판</h2>
 <button type="button" id="btnWrite" onclick="location.href='/boradForm'">글쓰기</button>
 <table border="1" width="600px">
     <tr>
@@ -41,7 +41,7 @@ top: 270px;
     <c:forEach var="borad_list" items="${borad_list}">
     <tr>
         <td>${borad_list.borad_id}</td>
-        <td><a href="${path}/board/view.do?bno=${borad_list.borad_title}">${borad_list.borad_title}</a></td>
+        <td><a href="${path}/boradContent/${borad_list.borad_id}">${borad_list.borad_title}</a></td>
         <td>${borad_list.borad_name}</td>
        <td>
             <!-- 원하는 날짜형식으로 출력하기 위해 fmt태그 사용 -->

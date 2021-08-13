@@ -37,16 +37,10 @@
 </script>
 
 <style>
-
 body {
-
-  padding-top: 70px;
-
-  padding-bottom: 30px;
-
+	padding-top: 70px;
+	padding-bottom: 30px;
 }
-
-
 
 </style>
 
@@ -58,7 +52,7 @@ body {
 
 		<div class="container" role="main">
 
-			<h2>자유게시판</h2>
+			<h2>글쓰기</h2>
 
 			<form name="form" id="form" role="form" method="post" action="boradForm">
 

@@ -22,6 +22,10 @@
 			order by borad_id desc
 			limit #{index_no},5 ;
 		</select>
+		<select id="selectboradContent" resultType="com.park.mall.model.BoradVO"> 
+				SELECT *FROM borad
+				WHERE borad_id = #{borad_id}
+		</select>
 		
 		<insert id="insertBorad">
 		INSERT INTO borad(borad_id, borad_title,borad_contents, borad_name, borad_time)

@@ -33,4 +33,9 @@ public class BoradDAOImpl implements BoradDAO{
 		
 	}
 
+	@Override
+	public BoradVO boradContent(int borad_id) throws Exception {
+		return sqlSession.selectOne("com.park.mall.boradMapper.selectboradContent", borad_id);
+	}
+
 }
