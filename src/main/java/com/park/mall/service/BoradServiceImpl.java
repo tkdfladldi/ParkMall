@@ -35,4 +35,14 @@ public class BoradServiceImpl implements BoradService{
 		return boradDAO.boradContent(borad_id);
 	}
 
+	@Override
+	public void boradDelete(int borad_id) throws Exception {
+		boradDAO.boradDelete(borad_id);
+	}
+
+	@Override
+	public void boradUpdate(BoradVO vo) throws Exception {
+		boradDAO.boradUpdate(vo);
+	}
+
 }

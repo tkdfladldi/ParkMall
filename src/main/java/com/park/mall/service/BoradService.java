@@ -15,5 +15,7 @@ public interface BoradService {
 	
 	public BoradVO boradContent(int borad_id) throws Exception;
 	
-
+	public void boradDelete(int borad_id) throws Exception;
+	
+	public void boradUpdate(BoradVO vo) throws Exception;
 }

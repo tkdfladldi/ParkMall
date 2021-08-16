@@ -38,4 +38,15 @@ public class BoradDAOImpl implements BoradDAO{
 		return sqlSession.selectOne("com.park.mall.boradMapper.selectboradContent", borad_id);
 	}
 
+	@Override
+	public void boradDelete(int borad_id) throws Exception {
+		sqlSession.delete("com.park.mall.boradMapper.boradDelete",borad_id);
+	}
+
+	@Override
+	public void boradUpdate(BoradVO vo) throws Exception {
+		sqlSession.update("com.park.mall.boradMapper.boradUpdate", vo);
+		
+	}
+
 }

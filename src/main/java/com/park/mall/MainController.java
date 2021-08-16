@@ -44,7 +44,7 @@ public class MainController {
 		mav.addObject("list", tbl_ProductService.listTbl_Product());
 		return  mav;
 	}
-	
+	// 상품 상세 목록 조회
 	@RequestMapping(value = "/nike_shoesChk/{product_id}", method =RequestMethod.GET)
 	public ModelAndView nike_shoesChk(@PathVariable("product_id") int product_id,ModelAndView mav ) throws Exception {
 		mav.setViewName("nike_shoesChk");

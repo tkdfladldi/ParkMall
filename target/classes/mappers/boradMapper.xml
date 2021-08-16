@@ -36,6 +36,15 @@
 				 , #{borad_name}
 				 , now()
 			);
-		
 		</insert>
+		<delete id="boradDelete">
+		DELETE FROM borad WHERE borad_id = #{borad_id};
+		</delete>
+		<update id="boradUpdate">
+			UPDATE borad SET 
+			borad_title = #{borad_title}
+		   ,borad_contents = #{borad_contents} 
+			WHERE 
+			borad_id = #{borad_id};
+		</update>
 </mapper>

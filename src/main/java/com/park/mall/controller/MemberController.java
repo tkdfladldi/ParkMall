@@ -100,7 +100,7 @@ public class MemberController {
 		return "memberPassChange";
 	}
 	
-	
+	// 비밀번호 변경 
 	@RequestMapping(value="/memberPassChange",method= RequestMethod.POST)
 	public String memberPassChange(MemberVO memberVo,HttpSession session,HttpServletResponse response) throws Exception{
 		MemberVO dbpass = (MemberVO)session.getAttribute("member");

@@ -4,6 +4,8 @@
 
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 
 <html>
@@ -68,22 +70,27 @@ body {
 			<h2>글 상세 페이지</h2>
 			<div class="bg-white rounded shadow-sm">
 
-				<div class="board_title"><c:out value="${boradContent.borad_title}"/></div>
+				<div class="board_title"><c:out value="제목 :${boradContent.borad_title}"/></div>
+				
+            <fmt:formatDate pattern="yyyy년MM월dd일  hh시mm분ss초" value="${boradContent.borad_time}"/>
 
 				<div class="board_info_box">
 
-					<span class="board_author"><c:out value="${boradContent.borad_name}"/>,</span><span class="board_date"><c:out value="${boradContent.borad_name}"/></span>
+					<span class="board_author">작성자 :</span><span class="board_date"><c:out value="${boradContent.borad_name}"/></span>
 
 				</div>
 
-				<div class="board_content">${boradContent.borad_contents}</div>
+				<div class="board_content">내용 :${boradContent.borad_contents}</div>
+				 
+          
 
 			</div>
+			
 			<div style="margin-top : 20px">
 
-				<button type="button" class="btn btn-sm btn-primary" id="btnUpdate">수정</button>
+				<button type="button" class="btn btn-sm btn-primary" id="btnUpdate" onclick="location.href='/boradUpdate/${boradContent.borad_id}'">수정</button>
 
-				<button type="button" class="btn btn-sm btn-primary" id="btnDelete">삭제</button>
+				<button type="button" class="btn btn-sm btn-primary" id="btnDelete" onclick="location.href='/boradDelete/${boradContent.borad_id}'">삭제</button>
 
 				<button type="button" class="btn btn-sm btn-primary" id="btnList" onclick="location.href='/borad?p=1&'">목록</button>
 

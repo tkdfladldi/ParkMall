@@ -27,14 +27,15 @@ body {
 
 		<div class="container" role="main">
 			<h2>글쓰기</h2>
-			<form name="form" id="form" role="form" method="post" action="boradForm">
+			<form name="form" id="form" role="form" method="post" action="/boradUpdate">			
+				<input type="hidden" name="borad_id" value="${boradContent.borad_id}"/>
 				<div class="mb-3">
 					<label for="title">제목</label>
-					<input type="text" class="form-control" name="borad_title" id="title" placeholder="제목을 입력해 주세요">
+					<input type="text" class="form-control" name="borad_title" id="title" value="${boradContent.borad_title}">
 				</div>
 				<div class="mb-3">
 					<label for="content">내용</label>
-					<textarea class="form-control" rows="5" name="borad_contents" id="content" placeholder="내용을 입력해 주세요" ></textarea>
+					<textarea class="form-control" rows="5" name="borad_contents" id="content">${boradContent.borad_contents}</textarea>
 				</div>
 				<div class="mb-3">
 					<label for="reg_id">작성자</label>
