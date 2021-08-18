@@ -9,6 +9,7 @@ public class Tbl_ProductVO {
 	private String product_desc;
 	private String product_url; //상품이미지 경로
 	private MultipartFile productPhoto;
+	private int product_amount;
 	
 	public int getProduct_id() {
 		return product_id;
@@ -46,12 +47,20 @@ public class Tbl_ProductVO {
 	public void setProductPhoto(MultipartFile productPhoto) {
 		this.productPhoto = productPhoto;
 	}
+	
+	public int getProduct_amount() {
+		return product_amount;
+	}
+	public void setProduct_amount(int product_amount) {
+		this.product_amount = product_amount;
+	}
 	@Override
 	public String toString() {
 		return "Tbl_ProductVO [product_id=" + product_id + ", product_name=" + product_name + ", product_price="
 				+ product_price + ", product_desc=" + product_desc + ", product_url=" + product_url + ", productPhoto="
-				+ productPhoto + "]";
+				+ productPhoto + ", product_amount=" + product_amount + "]";
 	}
+	
 	
 
 }

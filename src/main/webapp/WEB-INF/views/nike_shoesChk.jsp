@@ -38,13 +38,13 @@
                             <form name="form1" method="post" action="${path}/cart">
                                 <input type="hidden" name="product_id" value="${vo.product_id}">
                                 <select name="amount">
-                                    <c:forEach begin="1" end="10" var="i">
+                                    <c:forEach begin="1" end="100" var="i">
                                         <option value="${i}">${i}</option>
                                     </c:forEach>
                                 </select>&nbsp;개
                                 <input type="submit" value="장바구니에 담기">
                             </form>
-                            <a href="${pageContext.request.contextPath}/shopping">상품목록</a>
+                            <a href="${pageContext.request.contextPath}/nike_shoes">상품목록</a>
                         </td>
                     </tr>
                 </table>

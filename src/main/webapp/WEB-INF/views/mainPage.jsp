@@ -35,7 +35,7 @@
                         <li class="nav-item"><a class="nav-link" href="/login">로그인</a></li>         
                         <li class="nav-item"><a class="nav-link" href="/member">회원가입</a></li>
                         <li class="nav-item"><a class="nav-link" href="/borad?p=1&">자유게시판</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#team">모델팀</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/cart">장바구니</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                    </c:if>        
               		  <c:if test="${member != null}">
@@ -46,7 +46,7 @@
                             </button>                       
                  		<li class="nav-item"><a class="nav-link" href="logout">로그아웃</a></li>
                         <li class="nav-item"><a class="nav-link" href="/borad?p=1&">자유게시판</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#team">모델팀</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/cart">장바구니</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
           	        </c:if>
                   
