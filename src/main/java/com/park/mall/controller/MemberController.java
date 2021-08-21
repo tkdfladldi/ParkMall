@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +21,8 @@ import com.park.mall.service.MemberService;
 
 @Controller
 public class MemberController {
-	
+	@Inject
+	BCryptPasswordEncoder pwdEncoder;
 	@Inject
 	MemberService memberService;
 	
@@ -53,11 +55,17 @@ public class MemberController {
 			out.println("<script>alert('아이디 비밀번호가 맞지 않습니다.');</script>");	 
 			out.flush();
 			return "login";
-		}else {
+		}else if(loginVo != null &&  pwdEncoder.matches(memberVo.getPw(), loginVo.getPw())){
 			
 			session.setAttribute("member", loginVo);
 			return "redirect:/mainPage";
+		}else {
+			PrintWriter out = response.getWriter();	
+			out.println("<script>alert('아이디 비밀번호가 맞지 않습니다.');</script>");	 
+			out.flush();
+			return "login";
 		}
+		
 	}
 	@RequestMapping(value = "logout", method = RequestMethod.GET)
 	public String logout(HttpSession session, HttpServletRequest request) throws Exception {
@@ -77,6 +85,10 @@ public class MemberController {
 			return "member";
 			
 		}else if(result == 0) {
+			// 비밀번호 시크릿
+			String inputPass = memberVo.getPw();
+			String pwd = pwdEncoder.encode(inputPass);
+			memberVo.setPw(pwd);
 		memberService.insertMember(memberVo);
 //		response.setContentType("text/html; charset=UTF-8");			 
 		PrintWriter out = response.getWriter();	
