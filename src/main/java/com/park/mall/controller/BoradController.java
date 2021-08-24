@@ -1,6 +1,7 @@
 package com.park.mall.controller;
 import java.io.PrintWriter;
 
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -11,14 +12,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.mysql.cj.Session;
 import com.park.mall.model.BoradVO;
 import com.park.mall.model.MemberVO;
+import com.park.mall.model.ReplyVO;
 import com.park.mall.service.BoradService;
+import com.park.mall.service.ReplyService;
 
 @Controller
 public class BoradController {
 	@Inject BoradService boardService;
-	
+	@Inject ReplyService replyService;
 	
 //	자유게시판 목록 조회
 	@RequestMapping(value = "/borad", method = RequestMethod.GET)
@@ -104,8 +108,20 @@ public class BoradController {
 				out.println("<script>alert('수정완료');window.location.href='http://localhost:8080/borad?p=1&';</script>");	
 				out.flush();
 				 return "";
-				
+			// 댓글 작성 기능
+				 
 			}
-			
+			@RequestMapping(value="/boradContent/replyInsert", method= RequestMethod.POST)
+			public String replyInsert(ReplyVO replyVo, HttpSession session)throws Exception{
+				MemberVO memberVo = (MemberVO) session.getAttribute("member");
+				if(memberVo != null) {
+					replyVo.setReg_name(memberVo.getId());
+					replyService.insertReply(replyVo);
+				return "";
+				}
+				else {
+				return "";
+				}
+			}
 	}
 

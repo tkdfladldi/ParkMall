@@ -49,8 +49,7 @@ public class MemberController {
 		session = req.getSession();
 		MemberVO loginVo = memberService.login(memberVo);
 		if(loginVo == null) {
-			session.setAttribute("member", null);
-//			response.setContentType("text/html; charset=UTF-8");			 
+			session.setAttribute("member", null); 
 			PrintWriter out = response.getWriter();			 
 			out.println("<script>alert('아이디 비밀번호가 맞지 않습니다.');</script>");	 
 			out.flush();
@@ -77,8 +76,7 @@ public class MemberController {
 	@RequestMapping(value = "/insertMember", method = RequestMethod.POST)
 	public String memberPost(MemberVO memberVo,HttpServletResponse response) throws Exception {		
 		int result = memberService.idchk(memberVo);
-		if(result == 1) {
-//			response.setContentType("text/html; charset=UTF-8");			 
+		if(result == 1) {		 
 			PrintWriter out = response.getWriter();			 
 			out.println("<script>alert('아이디 중복 다시 입력해주세요.'); location.href='member';</script>");			 
 			out.flush();
@@ -89,8 +87,7 @@ public class MemberController {
 			String inputPass = memberVo.getPw();
 			String pwd = pwdEncoder.encode(inputPass);
 			memberVo.setPw(pwd);
-		memberService.insertMember(memberVo);
-//		response.setContentType("text/html; charset=UTF-8");			 
+		memberService.insertMember(memberVo);		 
 		PrintWriter out = response.getWriter();	
 		out.println("<script>alert('회원가입 완료');</script>");
 		out.flush();

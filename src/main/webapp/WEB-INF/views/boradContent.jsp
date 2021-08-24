@@ -13,8 +13,7 @@
 
 <head>
 <!-- jQuery -->
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
@@ -62,6 +61,7 @@ body {
 
 <title>자유게시판</title>
 </head>
+
 <body>
 	<article>
 
@@ -98,7 +98,34 @@ body {
 
 		</div>
 	</article>
-
+			<form id="form" method="post">
+			  <div>
+			  
+			   <input type="hidden"  name="borad_id" value="${boradContent.borad_id}"/>
+			    <label for="content">댓글</label><input type="text" id="content" name="reg_content" />
+			  </div>
+			  <div>
+			 	 <button type="button" id="submit" class="replyWriteBtn">작성</button>
+			  </div>
+			</form>
+	
 </body>
+<script>
 
+$(function(){
+    $('#submit').on("click",function () {
+        var form1 = $("#form").serialize();
+	$.ajax({
+		type: "post",
+		url : "/boradContent/replyInsert",
+		data : form1,
+		dataType: 'json',
+		success : function(data) {
+  
+         }
+	})
+	}
+)});
+
+</script>
 </html>
