@@ -17,7 +17,13 @@
 				#{borad_id}
 				);
 		</insert>
-
-
+		<select id="selReply"  resultType="com.park.mall.model.ReplyVO">
+				SELECT *
+		    FROM reply
+		    WHERE borad_id= #{borad_id};
+		</select>
+		<delete id="deleteReply">
+		DELETE FROM reply WHERE reg_id = #{reg_id};
+		</delete>
 
 </mapper>

@@ -49,7 +49,16 @@ body {
 	font-size : 12pt;
 	margin : 10pt;
 }
+.replyDelet{
+	padding: .25rem .5rem;
+    font-size: .875rem;
+    line-height: 1.5;
+    border-radius: .2rem;
+	color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
 
+}
 .board_tag {
 	font-size : 11pt;
 	margin : 10pt;
@@ -98,17 +107,37 @@ body {
 
 		</div>
 	</article>
-			<form id="form" method="post">
+			<form style="width: 1100px; height: 70px; background-color: lightpink; margin-left: 200px; top: 350px;position: absolute; " 
+			id="form" method="post">
 			  <div>
 			  
 			   <input type="hidden"  name="borad_id" value="${boradContent.borad_id}"/>
-			    <label for="content">댓글</label><input type="text" id="content" name="reg_content" />
+			    <label for="content">댓글 : </label><input style= "width : 800px;height : 35px;" type="text" id="content" name="reg_content" />
 			  </div>
 			  <div>
 			 	 <button type="button" id="submit" class="replyWriteBtn">작성</button>
 			  </div>
 			</form>
-	
+			
+			
+			
+	<c:forEach var="replyList" items="${replyList}">
+			<div class="add" style="margin-top : 100px;margin-left: 200px;background-color: lightblue; width: 1100px; height: 70px;">
+			
+				
+			        <p>
+			        작성자 : ${replyList.reg_name}<br />
+			        </p>
+
+      				  <p>내용 : ${replyList.reg_content}</p>
+   		 	  
+				
+				<button type="button"  onclick="editReply()">수정</button>
+					
+				<button type="button" class="replyDelet" data-value="${replyList.reg_id}" data-value2="${replyList.reg_name}">삭제</button>
+				
+			</div>
+	</c:forEach>
 </body>
 <script>
 
@@ -120,12 +149,36 @@ $(function(){
 		url : "/boradContent/replyInsert",
 		data : form1,
 		dataType: 'json',
-		success : function(data) {
-  
+		success : function(n) {
+			if(n==0){
+				location.reload();
+				 alert("댓글 저장 완료.")
+			}else if(n==1){
+				alert("로그인이 필요합니다.")
+			}
          }
 	})
 	}
 )});
-
+$(function(){
+    $('.replyDelet').on("click",function () {
+    	var value = $(this).attr('data-value');
+    	var value2 = $(this).attr('data-value2');
+	$.ajax({
+		type: "post",
+		url : "/boradContent/replyDelete",
+		data : {"reg_id" : value ,"reg_name":value2},
+		dataType: 'json',
+		success : function(n) {
+			if(n==1){
+				alert("본인이 작성한 댓글만 삭제 할 수 있습니다.")
+			}else if(n==2){
+				location.reload();
+				alert("댓글 삭제 완료")
+			}
+		}
+	})
+	}
+)});
 </script>
 </html>

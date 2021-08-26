@@ -1,5 +1,8 @@
 package com.park.mall.dao;
 
+import java.util.List;
+
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -16,6 +19,17 @@ public class ReplyDAOImpl implements ReplyDAO{
 	public void insertReply(ReplyVO replyVo) throws Exception {
 
 		sqlSession.insert("com.park.mall.reply.insertReply", replyVo);
+	}
+
+	@Override
+	public List<ReplyVO> selReply(int borad_id) throws Exception {
+		return sqlSession.selectList("com.park.mall.reply.selReply", borad_id);
+	}
+
+	@Override
+	public void deleteReply(int reg_id) throws Exception {
+		sqlSession.delete("com.park.mall.reply.deleteReply",reg_id);
+		
 	}
 
 }

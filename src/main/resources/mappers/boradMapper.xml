@@ -35,7 +35,7 @@
 				 , #{borad_contents}
 				 , #{borad_name}
 				 , now()
-			);
+		);
 		</insert>
 		<delete id="boradDelete">
 		DELETE FROM borad WHERE borad_id = #{borad_id};

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mysql.cj.Session;
 import com.park.mall.model.BoradVO;
@@ -60,7 +61,7 @@ public class BoradController {
 	public String boradContent(@PathVariable("borad_list.borad_id") int borad_id,Model model, BoradVO vo)throws Exception{
 		 vo = boardService.boradContent(borad_id);
 		 model.addAttribute("boradContent",vo );
-	
+		 model.addAttribute("replyList", replyService.selReply(borad_id));
 		return "boradContent";
 	}
 //	게시글 삭제 버튼 기능
@@ -108,20 +109,40 @@ public class BoradController {
 				out.println("<script>alert('수정완료');window.location.href='http://localhost:8080/borad?p=1&';</script>");	
 				out.flush();
 				 return "";
-			// 댓글 작성 기능
-				 
 			}
+			// 댓글 작성 기능
+			// ResponseBody 리턴되는 값은 View 를 통해서 출력되지 않고 HTTP Response Body 에 직접 쓰여지게 됨. 
+			@ResponseBody
 			@RequestMapping(value="/boradContent/replyInsert", method= RequestMethod.POST)
-			public String replyInsert(ReplyVO replyVo, HttpSession session)throws Exception{
+			public int replyInsert(ReplyVO replyVo, HttpSession session)throws Exception{
 				MemberVO memberVo = (MemberVO) session.getAttribute("member");
 				if(memberVo != null) {
+					int n =0;
 					replyVo.setReg_name(memberVo.getId());
 					replyService.insertReply(replyVo);
-				return "";
+				return n;
 				}
 				else {
-				return "";
+					int n =1;
+				return n;
 				}
+			}
+			// 댓글 삭제
+			@ResponseBody
+			@RequestMapping(value="/boradContent/replyDelete", method= RequestMethod.POST)
+				public int replyDelete(int reg_id,String reg_name,HttpSession session) throws Exception{
+				MemberVO login = (MemberVO) session.getAttribute("member");
+					if(login == null) {
+						int n= 1;
+						return n;
+					}	
+					else if(login.getId().equals(reg_name)) {
+						replyService.deleteReply(reg_id);
+						int n= 2;
+						return n;
+					}
+					int n= 1;
+					return n;
 			}
 	}
 
