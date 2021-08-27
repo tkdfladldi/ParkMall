@@ -49,6 +49,16 @@ body {
 	font-size : 12pt;
 	margin : 10pt;
 }
+.replyUpdate{
+	padding: .25rem .5rem;
+    font-size: .875rem;
+    line-height: 1.5;
+    border-radius: .2rem;
+	color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+
+}
 .replyDelet{
 	padding: .25rem .5rem;
     font-size: .875rem;
@@ -70,6 +80,28 @@ body {
 
 <title>자유게시판</title>
 </head>
+<script>
+
+function editReply(reg_id,borad_id,reg_content,id,name){
+	if(id==name){
+	$('.content'+reg_id).html(
+			"<textarea id ='edit_content"+reg_id+"'>"+reg_content+"</textarea>"
+	+"<style>#edit_content"+reg_id+"{width:740px; resize:none;}</style>"		
+	);
+	$('#idReplyUpdate'+reg_id).html(
+			"<a onclick='insertEditSave("+reg_id+")' id='btnEdit'>완료</a>"
+	);
+	}
+}
+	function insertEditSave(reg_id){
+		var acontent = $("#edit_content"+reg_id).val();
+		location.href='replyUpdate?reg_id='+reg_id+"&reg_content="+acontent;
+		
+	}
+
+
+
+</script>
 
 <body>
 	<article>
@@ -122,20 +154,21 @@ body {
 			
 			
 	<c:forEach var="replyList" items="${replyList}">
-			<div class="add" style="margin-top : 100px;margin-left: 200px;background-color: lightblue; width: 1100px; height: 70px;">
+			<div style="margin-top : 100px;margin-left: 200px;background-color: lightblue; width: 1100px; height: 70px;">
 			
 				
 			        <p>
-			        작성자 : ${replyList.reg_name}<br />
+			     	   작성자 : ${replyList.reg_name}<br/>
 			        </p>
-
+			        
+				<div class="content${replyList.reg_id}">
       				  <p>내용 : ${replyList.reg_content}</p>
-   		 	  
+				</div>
 				
-				<button type="button"  onclick="editReply()">수정</button>
-					
-				<button type="button" class="replyDelet" data-value="${replyList.reg_id}" data-value2="${replyList.reg_name}">삭제</button>
+				<button type="button" class="replyUpdate" id="idReplyUpdate${replyList.reg_id}" onclick="editReply(${replyList.reg_id},${boradContent.borad_id},'${replyList.reg_content}','${member.id}','${replyList.reg_name}')">수정</button>
 				
+				<button type="button" class="replyDelet" id="idReplyDelet${replyList.reg_id}"data-value="${replyList.reg_id}" data-value2="${replyList.reg_name}">삭제</button>
+			
 			</div>
 	</c:forEach>
 </body>

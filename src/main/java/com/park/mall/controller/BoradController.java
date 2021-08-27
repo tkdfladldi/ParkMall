@@ -144,5 +144,14 @@ public class BoradController {
 					int n= 1;
 					return n;
 			}
+			//댓글 수정
+			@ResponseBody
+			@RequestMapping(value="/boradContent/replyUpdate", method= RequestMethod.POST)
+				public int replyUpdate(String reg_id,int reg_name,HttpSession session) throws Exception{
+				
+					return reg_name;
+			}
+			
+			
 	}
 
