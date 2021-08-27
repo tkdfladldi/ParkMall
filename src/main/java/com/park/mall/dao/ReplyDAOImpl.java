@@ -1,5 +1,6 @@
 package com.park.mall.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -29,6 +30,16 @@ public class ReplyDAOImpl implements ReplyDAO{
 	@Override
 	public void deleteReply(int reg_id) throws Exception {
 		sqlSession.delete("com.park.mall.reply.deleteReply",reg_id);
+		
+	}
+
+	@Override
+	public void updateReply(int reg_id, String reg_content) throws Exception {
+		HashMap<String, Object> map = new HashMap<>();
+	    map.put("reg_id", reg_id);
+	    map.put("reg_content", reg_content);
+		
+		sqlSession.update("com.park.mall.reply.updateReply", map);
 		
 	}
 

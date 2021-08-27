@@ -10,6 +10,13 @@
 <meta charset="UTF-8">
 <title>박사장몰</title>
 </head>
+<script type="text/javascript">
+
+   function back(){
+      window.history.back();
+   }
+
+</script>
 <style>
 body {
   margin: 0;
@@ -53,7 +60,7 @@ body {
                                 <input type="submit" name="submit" class="btn btn-info btn-md" value="완료">
                             </div>
                             <div id="register-link" class="text-right">
-                                <a href="mainPage" class="text-info">취소</a>
+                                <a href="#" onclick="back();" class="text-info">취소</a>
                             </div>
                         </form>
                     </div>

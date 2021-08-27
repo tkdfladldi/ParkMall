@@ -82,20 +82,22 @@ body {
 </head>
 <script>
 
-function editReply(reg_id,borad_id,reg_content,id,name){
-	if(id==name){
+function editReply(reg_id,borad_id,reg_content,memberId,replyName){
+	if(memberId==replyName){
 	$('.content'+reg_id).html(
 			"<textarea id ='edit_content"+reg_id+"'>"+reg_content+"</textarea>"
 	+"<style>#edit_content"+reg_id+"{width:740px; resize:none;}</style>"		
 	);
 	$('#idReplyUpdate'+reg_id).html(
-			"<a onclick='insertEditSave("+reg_id+")' id='btnEdit'>완료</a>"
+			"<a onclick='insertEditSave("+reg_id+','+borad_id+")' id='btnEdit'>완료</a>"
 	);
+	}else if(memberId != replyName){
+		alert("댓글 작성자만 삭제 할 수 있습니다.")
 	}
 }
-	function insertEditSave(reg_id){
-		var acontent = $("#edit_content"+reg_id).val();
-		location.href='replyUpdate?reg_id='+reg_id+"&reg_content="+acontent;
+	function insertEditSave(reg_id,borad_id){
+		var acontent = $("#edit_content"+reg_id).val();	
+	  location.href='/boradContent/replyUpdate?reg_id='+reg_id+"&borad_id="+borad_id+"&reg_content="+acontent; 
 		
 	}
 

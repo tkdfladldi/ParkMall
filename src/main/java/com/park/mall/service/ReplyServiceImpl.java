@@ -31,4 +31,10 @@ public class ReplyServiceImpl implements ReplyService{
 		
 	}
 
+	@Override
+	public void updateReply(int reg_id, String reg_content) throws Exception {
+		replyDAO.updateReply(reg_id, reg_content);
+		
+	}
+
 }

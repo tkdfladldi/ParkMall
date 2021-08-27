@@ -25,5 +25,12 @@
 		<delete id="deleteReply">
 		DELETE FROM reply WHERE reg_id = #{reg_id};
 		</delete>
+		
+		<update id="updateReply">
+		 UPDATE reply SET 
+					  reg_content = #{reg_content}
+		 WHERE 
+					  reg_id = #{reg_id};
+		</update>
 
 </mapper>

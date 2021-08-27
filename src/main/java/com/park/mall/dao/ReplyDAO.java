@@ -11,4 +11,6 @@ public interface ReplyDAO {
 	public List<ReplyVO> selReply(int borad_id) throws Exception;
 	
 	public void deleteReply(int reg_id) throws Exception;
+	
+	public void updateReply(int reg_id, String reg_content) throws Exception;
 }

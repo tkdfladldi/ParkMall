@@ -145,11 +145,12 @@ public class BoradController {
 					return n;
 			}
 			//댓글 수정
-			@ResponseBody
-			@RequestMapping(value="/boradContent/replyUpdate", method= RequestMethod.POST)
-				public int replyUpdate(String reg_id,int reg_name,HttpSession session) throws Exception{
+			@RequestMapping(value="/boradContent/replyUpdate", method= RequestMethod.GET)
+				public String replyUpdate(@RequestParam int reg_id,@RequestParam int borad_id,@RequestParam String reg_content) throws Exception{
 				
-					return reg_name;
+				replyService.updateReply(reg_id, reg_content);
+				
+					return "redirect:/boradContent/"+borad_id;
 			}
 			
 			
