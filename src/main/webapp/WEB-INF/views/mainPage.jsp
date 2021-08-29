@@ -36,7 +36,7 @@
                         <li class="nav-item"><a class="nav-link" href="/member">회원가입</a></li>
                         <li class="nav-item"><a class="nav-link" href="/borad?p=1&">자유게시판</a></li>
                         <li class="nav-item"><a class="nav-link" href="/cart">장바구니</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/echo/chat">채팅방</a></li>
                    </c:if>        
               		  <c:if test="${member != null}">
                             <button style="background-color:transparent; border-color:transparent; color:white" onclick="location.href='/memberChk'" class="btn btn-outline-dark">
@@ -47,7 +47,7 @@
                  		<li class="nav-item"><a class="nav-link" href="logout">로그아웃</a></li>
                         <li class="nav-item"><a class="nav-link" href="/borad?p=1&">자유게시판</a></li>
                         <li class="nav-item"><a class="nav-link" href="/cart">장바구니</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/echo/chat">채팅방</a></li>
           	        </c:if>
                   
                     
