@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,16 +26,22 @@ public class EchoHandler extends TextWebSocketHandler{
     private static Logger logger = LoggerFactory.getLogger(EchoHandler.class);
     
     @RequestMapping(value = "/chat", method = RequestMethod.GET)
-	public String member() {
-	
+	public String chat() {
+    	
 		return "chat";
 	}
 
     //클라이언트가 연결 되었을 때 실행
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-        sessionList.add(session);
-        logger.info("{} 연결됨", session.getId()); 
+    	sessionList.add(session);
+        logger.info("{} 연결됨", session.getId());
+        Map<String, Object> map;
+		map = session.getAttributes();
+		MemberVO memberVo = (MemberVO) map.get("member");
+        for(WebSocketSession sess : sessionList){
+        	sess.sendMessage(new TextMessage(memberVo.getId()+" 님이 입장하셨습니다."));
+        }
     }
 
     //클라이언트가 웹소켓 서버로 메시지를 전송했을 때 실행
@@ -48,15 +53,22 @@ public class EchoHandler extends TextWebSocketHandler{
         logger.info("{}로 부터 {} 받음", session.getId(), message.getPayload());
         //모든 유저에게 메세지 출력
         for(WebSocketSession sess : sessionList){
-            sess.sendMessage(new TextMessage(message.getPayload()+"<style>.name{color: blue; font-size: 20px;}</style> <ui class=name>작성자 :"+memberVo.getId()+"</ui>"));
-            
+            sess.sendMessage(new TextMessage(message.getPayload()+"<style>.name{color: blue; font-size: 20px;}a{text-decoration:none;}</style> <ui class=name> 작성자 :<a href=#>"+memberVo.getId()+"</a></ui>"));
         	}
         }
     
     //클라이언트 연결을 끊었을 때 실행
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
+    	Map<String, Object> map;
+		map = session.getAttributes();
+		MemberVO memberVo = (MemberVO) map.get("member");
         sessionList.remove(session);
         logger.info("{} 연결 끊김.", session.getId());
+        
+        for(WebSocketSession sess : sessionList){
+        	sess.sendMessage(new TextMessage(memberVo.getId()+" 님이 퇴장하셨습니다."));
+        }
+        
     }
 }

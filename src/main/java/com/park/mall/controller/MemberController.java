@@ -113,9 +113,13 @@ public class MemberController {
 	@RequestMapping(value="/memberPassChange",method= RequestMethod.POST)
 	public String memberPassChange(MemberVO memberVo,HttpSession session,HttpServletResponse response) throws Exception{
 		MemberVO dbpass = (MemberVO)session.getAttribute("member");
-		if(dbpass.getPw().equals(memberVo.getPw()) && memberVo.getEmail().equals(memberVo.getPhone())) {
+		 boolean incoding = pwdEncoder.matches(memberVo.getPw(), dbpass.getPw());
+		if(incoding == true && memberVo.getEmail().equals(memberVo.getPhone())) {
 			memberVo.setId(dbpass.getId());
-			 memberVo.setPw(memberVo.getEmail());
+				// 비밀번호 시크릿
+				String inputPass = memberVo.getEmail();
+				String pwd = pwdEncoder.encode(inputPass);
+				memberVo.setPw(pwd);
 			memberService.UpdatePass(memberVo);
 //	필터있어서 가능		response.setContentType("text/html; charset=UTF-8");			 
 			PrintWriter out = response.getWriter();	
@@ -123,8 +127,12 @@ public class MemberController {
 			out.flush();
 			return "member";
 			
+		}else {
+			PrintWriter out = response.getWriter();	
+			out.println("<script>alert('비밀번호가 맞지 않습니다.');</script>");
+			out.flush();
+			return "mainPage";
 		}
-		return "mainPage";
 		
 	}
 }

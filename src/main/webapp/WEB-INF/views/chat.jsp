@@ -30,7 +30,7 @@
     	div
 {
 width: 400px;
-height: 1150px;
+height: 15000px;
 padding: 10px;
 margin: 10px;
 
@@ -44,6 +44,13 @@ color: red;
 width: 260px;
 height: 50px;
 }
+#messageArea {
+  white-space: pre; 
+  width:900px;
+  height:630px;
+  border:1px solid black;
+  overflow:scroll;     //스크롤바 생성
+}
 body {color: blue;}
     </style>
    	 
@@ -52,23 +59,20 @@ body {color: blue;}
         <a class="menu-toggle rounded" href="#"><i class="fas fa-bars"></i></a>
         <nav id="sidebar-wrapper">
             <ul class="sidebar-nav">
-                <li class="sidebar-brand"><a href="#page-top">Start Bootstrap</a></li>
-                <li class="sidebar-nav-item"><a href="#page-top">Home</a></li>
-                <li class="sidebar-nav-item"><a href="#about">About</a></li>
-                <li class="sidebar-nav-item"><a href="#services">Services</a></li>
+                <li class="sidebar-brand"><a href="#page-top">박사장몰</a></li>
+                <li class="sidebar-nav-item"><a href="/mainPage">Home</a></li>
+                <li class="sidebar-nav-item"><a href="/borad?p=1&">자유게시판</a></li>
+                <li class="sidebar-nav-item"><a href="/shopping">쇼핑하기</a></li>
                 <li class="sidebar-nav-item"><a href="#portfolio">Portfolio</a></li>
                 <li class="sidebar-nav-item"><a href="#contact">Contact</a></li>
             </ul>
         </nav>
 		        <h2> 채팅방 </h2>
 		        <c:if test="${member != null}">
-			<input class="button" type="text" id="message"/>
-			<input class="button" onkeyup="enterkey()" type="button" id="sendBtn" value="입력"/>
+			<input class="button" type="text" id="message" />
+			<input class="button" type="button" id="sendBtn" value="입력" />
 			<div id="messageArea">	
 			</div>
-				</c:if>	
-				<c:if test="${member == null}">
-				<h1>로그인이 필요합니다</h1>
 				</c:if>	
         <img class="img-fluid" src="/resources/chatImg/img/bg-callout.jpg" alt="..." />
        
@@ -80,6 +84,7 @@ body {color: blue;}
         <script src="/resources/chatJs/scripts.js"></script>
     </body>
     <script type="text/javascript">
+    
 	$("#sendBtn").click(function() {
 		sendMessage();
 		$('#message').val('')
@@ -88,6 +93,7 @@ body {color: blue;}
 	let sock = new SockJS("http://localhost:8080/echo");
 	sock.onmessage = onMessage;
 	sock.onclose = onClose;
+	sock.onopen = onOpen;
 	// 메시지 전송
 	function sendMessage() {
 		sock.send($("#message").val());
@@ -95,13 +101,16 @@ body {color: blue;}
 	// 서버로부터 메시지를 받았을 때
 	function onMessage(msg) {
 		var data = msg.data;
-		$("#messageArea").append(data + "<br/>");
+		$("#messageArea").append(data + " <br/>");
+		// 자동 스크롤 내려가게 하기 
+		$("#messageArea").scrollTop($("#messageArea")[0].scrollHeight);
 		/*  $("#messageArea").append(data + "<style>.name{color: blue; font-size: 20px;}a{text-decoration:none;}</style> <ui class=name><a href=#about>작성자 :${member.id}</a></ui> <br/>");*/
+	}
+	//서버와 연결 했을때
+	function onOpen(evt){
 	}
 	// 서버와 연결을 끊었을 때
 	function onClose(evt) {
-		$("#messageArea").append("연결 끊김");
-
 	}
 	
 </script>
