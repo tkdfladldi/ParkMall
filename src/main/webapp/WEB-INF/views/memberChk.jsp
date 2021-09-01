@@ -75,6 +75,9 @@
   <div class="col-md-4">
     <button id="singlebutton" name="singlebutton" class="btn btn-primary" onclick="location.href='/memberPassChange'">비밀번호 변경하기</button>
      <div id="register-link" class="text-right">
+     <c:if test="${member.id eq 'tkdfladldi'}">
+     <a href="/admin">관리자 페이지 이동</a>
+     </c:if>
                                 <button style=" background-color: white; font-size: 15; " class="text-info" onclick="history.back()">취소</button>
                             </div>
   </div>

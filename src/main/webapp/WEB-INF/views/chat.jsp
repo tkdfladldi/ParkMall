@@ -67,13 +67,17 @@ body {color: blue;}
                 <li class="sidebar-nav-item"><a href="#contact">Contact</a></li>
             </ul>
         </nav>
-		        <h2> 채팅방 </h2>
+		        <h2> 채팅방</h2>
 		        <c:if test="${member != null}">
 			<input class="button" type="text" id="message" />
 			<input class="button" type="button" id="sendBtn" value="입력" />
 			<div id="messageArea">	
 			</div>
 				</c:if>	
+				
+				 <c:if test="${member == null}">
+				 		<h1>로그인이 필요한 서비스 입니다.</h1>
+				 </c:if>
         <img class="img-fluid" src="/resources/chatImg/img/bg-callout.jpg" alt="..." />
        
         <!-- Scroll to Top Button-->
@@ -111,6 +115,14 @@ body {color: blue;}
 	}
 	// 서버와 연결을 끊었을 때
 	function onClose(evt) {
+	}
+	//채팅 작성자 클릭 신고 페이지
+	function report(chatMember_id) {
+		var win = window.open("", "Win", "width=500,height=600");
+		win.document.write("<h2>신고하기</h2><form method=post action=/echo/chat/report><label>아이디 :</label><input type=text  name=member_id value="+chatMember_id+"><br><label>신고 내용 입력란 </label><br><textarea name=report_contents placeholder=신고내용></textarea>"
+		);
+		win.document.write("<br><label>신고자 :</label><input type=text name=reporter_Id value=${member.id} readonly>");
+		win.document.write("<button type=submit id=btnSave>전송</button></from>");
 	}
 	
 </script>

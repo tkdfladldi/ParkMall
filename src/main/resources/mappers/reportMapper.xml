@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+
+    PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">    
+
+<mapper namespace="com.park.mall.report">
+	<insert id="insertreport">
+			INSERT INTO report(member_id,report_contents,report_date,reporter_Id)
+			VALUES(
+				  #{member_id}
+				, #{report_contents}
+				, now()
+				, #{reporter_Id}
+			);
+	</insert>
+	<select id="selReportList" resultType="com.park.mall.model.ReportVO">
+		SELECT * FROM report
+	</select>
+	
+	<select id="reportiIdChk" resultType="int">
+		SELECT COUNT(member_id)
+			FROM report
+		where member_id= #{reportiIdChk}
+	</select>
+	
+	
+</mapper>

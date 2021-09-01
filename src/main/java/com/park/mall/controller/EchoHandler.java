@@ -4,21 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import com.park.mall.model.MemberVO;
+import com.park.mall.model.ReportVO;
+import com.park.mall.service.ReportService;
 
 @RequestMapping("/echo")
 public class EchoHandler extends TextWebSocketHandler{
-	
+	@Inject ReportService reportService;
 
 	 //세션 리스트
     private List<WebSocketSession> sessionList = new ArrayList<WebSocketSession>();
@@ -27,9 +32,16 @@ public class EchoHandler extends TextWebSocketHandler{
     
     @RequestMapping(value = "/chat", method = RequestMethod.GET)
 	public String chat() {
-    	
 		return "chat";
 	}
+    // 채팅방 유저 신고 
+    @ResponseBody
+    @RequestMapping(value = "/chat/report", method = RequestMethod.POST)
+   	public String chatReportPost(ReportVO reportVo) throws Exception {
+    	reportService.insertReport(reportVo);
+		return "completion";
+    	
+   	}
 
     //클라이언트가 연결 되었을 때 실행
     @Override
@@ -53,9 +65,18 @@ public class EchoHandler extends TextWebSocketHandler{
         logger.info("{}로 부터 {} 받음", session.getId(), message.getPayload());
         //모든 유저에게 메세지 출력
         for(WebSocketSession sess : sessionList){
-            sess.sendMessage(new TextMessage(message.getPayload()+"<style>.name{color: blue; font-size: 20px;}a{text-decoration:none;}</style> <ui class=name> 작성자 :<a href=#>"+memberVo.getId()+"</a></ui>"));
+	        	String msgString = message.getPayload() + 
+	        			"<style>.name{color: blue; font-size: 20px;}a{text-decoration:none;}" +
+	        			"</style> <ui class=name> 작성자 :<a href=# " + 
+	        			"onclick='report(\"" +
+	        			memberVo.getId() + 
+	        			"\")'>"+ 
+	        			memberVo.getId() +
+	        			"</a></ui>";
+	        	
+	            sess.sendMessage(new TextMessage(msgString));
         	}
-        }
+    }
     
     //클라이언트 연결을 끊었을 때 실행
     @Override
