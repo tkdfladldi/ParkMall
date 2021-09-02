@@ -6,14 +6,6 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">    
 
 <mapper namespace="com.park.mall.boradMapper">
-
-			<!-- 로그인 -->
-		<!-- <select id="selectBorad" resultType="com.park.mall.model.BoradVO">
-			SELECT 
-				*
-			FROM 
-				borad 
-		</select> -->
 		
 		<select id="selectBoradlimit" resultType="com.park.mall.model.BoradVO">
 			select 
@@ -22,6 +14,20 @@
 			order by borad_id desc
 			limit #{index_no},5 ;
 		</select>
+		
+		<select id="searchList" resultType="com.park.mall.model.BoradVO">
+			 SELECT  * FROM borad
+			 	 <include refid="search"></include>	
+		</select>
+		
+		<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">WHERE borad_title LIKE CONCAT('%', #{keyword}, '%') limit #{index_no},5;</if>
+			<if test="searchType == 'c'.toString()">WHERE borad_contents LIKE CONCAT('%', #{keyword}, '%') limit #{index_no},5;</if>
+			<if test="searchType == 'w'.toString()">WHERE borad_name LIKE CONCAT('%', #{keyword}, '%') limit #{index_no},5;</if>
+			<if test="searchType == 'tc'.toString()">WHERE borad_title LIKE CONCAT('%', #{keyword}, '%') OR borad_contents LIKE CONCAT('%', #{keyword}, '%') limit #{index_no},5;</if>
+		</if>
+	</sql>
 		<select id="selectboradContent" resultType="com.park.mall.model.BoradVO"> 
 				SELECT *FROM borad
 				WHERE borad_id = #{borad_id}

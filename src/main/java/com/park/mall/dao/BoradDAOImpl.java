@@ -1,5 +1,6 @@
 package com.park.mall.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -16,11 +17,6 @@ public class BoradDAOImpl implements BoradDAO{
 	
 	
 	@Inject private SqlSession sqlSession;
-	
-//	@Override
-//	public List<BoradVO> BoradList() throws Exception {
-//		return sqlSession.selectList("com.park.mall.boradMapper.selectBorad");
-//	}
 
 	@Override
 	public List<BoradVO> selectBoradlimit(int index_no) throws Exception {
@@ -47,6 +43,16 @@ public class BoradDAOImpl implements BoradDAO{
 	public void boradUpdate(BoradVO vo) throws Exception {
 		sqlSession.update("com.park.mall.boradMapper.boradUpdate", vo);
 		
+	}
+
+	@Override
+	public List<BoradVO> searchList(String searchType, String keyword ,int index_no) throws Exception {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("searchType", searchType);
+		map.put("keyword", keyword);
+		map.put("index_no",index_no);
+		
+		return sqlSession.selectList("com.park.mall.boradMapper.searchList",map);
 	}
 
 }

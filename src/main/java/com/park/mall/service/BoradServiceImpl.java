@@ -12,13 +12,6 @@ import com.park.mall.model.BoradVO;
 @Service
 public class BoradServiceImpl implements BoradService{
 	@Inject private BoradDAO boradDAO;
-	
-//	@Override
-//	public List<BoradVO> BoradList() throws Exception {
-//		
-//		return boradDAO.BoradList();
-//	}
-
 
 	@Override
 	public List<BoradVO> selectBoradlimit(int index_no) throws Exception {
@@ -43,6 +36,11 @@ public class BoradServiceImpl implements BoradService{
 	@Override
 	public void boradUpdate(BoradVO vo) throws Exception {
 		boradDAO.boradUpdate(vo);
+	}
+
+	@Override
+	public List<BoradVO> searchList(String searchType, String keyword, int index_no) throws Exception {
+		return boradDAO.searchList(searchType, keyword,index_no);
 	}
 
 }

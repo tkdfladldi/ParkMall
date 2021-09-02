@@ -1,7 +1,6 @@
 package com.park.mall.controller;
 import java.io.PrintWriter;
 
-
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -13,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.mysql.cj.Session;
 import com.park.mall.model.BoradVO;
 import com.park.mall.model.MemberVO;
 import com.park.mall.model.ReplyVO;
+import com.park.mall.model.SearchCriteria;
 import com.park.mall.service.BoradService;
 import com.park.mall.service.ReplyService;
 
@@ -27,9 +26,19 @@ public class BoradController {
 	
 //	자유게시판 목록 조회
 	@RequestMapping(value = "/borad", method = RequestMethod.GET)
-	public String borad(@RequestParam Long p,Model model) throws Exception {
+	public String borad(@RequestParam Long p,Model model,String searchType ,String keyword,SearchCriteria searchCriteria) throws Exception {
+		// 서칭 값이 들어 갈경우 서칭값 조회
+		if(keyword != null &&searchType != null &&searchType.length() != 0 && keyword.length() != 0) {
+			searchCriteria.setKeyword(keyword);
+			searchCriteria.setSearchType(searchType);
+			model.addAttribute("searchCriteria",searchCriteria);
+			
+			int index_no = (int) ((p-1)*5) ;
+			model.addAttribute("searchList",boardService.searchList(searchType, keyword,index_no));
+			return "borad";
+		}
+		//서칭값이 들어가지않는 모든 자유게시판 목록 리스트 조회
 		//1 = 0 / 2 = 5 -/ 3 = 10
-		
 		int index_no = (int) ((p-1)*5) ;
 		
 		model.addAttribute("borad_list",boardService.selectBoradlimit(index_no));
