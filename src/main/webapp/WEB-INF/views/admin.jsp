@@ -17,25 +17,27 @@ text-decoration:none;
 <body>
 	<c:if test="${member.id eq 'tkdfladldi'}">
    <h1> 관리자 페이지</h1>
-   <table border="1" width="600px">
-    <tr>
-        <th>신고 대상자</th>
-        <th>신고 내용</th>
-        <th>신고 날짜</th>
-        <th>신고자</th>
-    </tr>
-    <c:forEach var="ReportList" items="${ReportList}">
-    <tr>
-        <td><a class="reportiIdChk" data-value="${ReportList.member_id}" href="#">${ReportList.member_id}</a></td>
-        <td>${ReportList.report_contents}</td>
-        <td>
-     	    <!-- 원하는 날짜형식으로 출력하기 위해 fmt태그 사용 -->
-            <fmt:formatDate pattern="yyyy년MM월dd일  hh시mm분ss초" value="${ReportList.report_date}"/>
-        </td>
-        <td>${ReportList.reporter_Id}</td>
-    </tr>    
-    </c:forEach> 
-   </table>
+   <div style="width:40%; height:200px; overflow:auto">
+    <table border="1">
+	    <tr>
+	        <th>신고 대상자</th>
+	        <th>신고 내용</th>
+	        <th>신고 날짜</th>
+	        <th>신고자</th>
+	    </tr>
+	   <c:forEach var="ReportList" items="${ReportList}">
+	    <tr>
+	        <td><a class="reportiIdChk" data-value="${ReportList.member_id}" href="#">${ReportList.member_id}</a></td>
+	        <td>${ReportList.report_contents}</td>
+	        <td>
+	     	    <!-- 원하는 날짜형식으로 출력하기 위해 fmt태그 사용 -->
+	            <fmt:formatDate pattern="yyyy년MM월dd일  hh시mm분ss초" value="${ReportList.report_date}"/>
+	        </td>
+	        <td>${ReportList.reporter_Id}</td>
+	    </tr>    
+	   </c:forEach> 
+    </table>
+   </div>
    </c:if>
    
    <c:if test="${member.id ne 'tkdfladldi'}">

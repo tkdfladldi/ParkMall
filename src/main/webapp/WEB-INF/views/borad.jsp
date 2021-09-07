@@ -99,7 +99,7 @@ border: 30px;
 		      <option value="tc"<c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>제목+내용</option>
 		    </select>
 		
-		    <input type="text" name="keyword" id="keywordInput" value="${scri.keyword}"/>
+		    <input type="text" name="keyword" id="keywordInput" value="${searchCriteria.keyword}"/>
 		    <button id="searchBtn" type="button">검색</button> <br>
 		     <button style="background-color: white; font-size: 15;" onclick="location.href='/mainPage'">나가기</button>
 		   

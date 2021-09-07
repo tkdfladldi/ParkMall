@@ -42,8 +42,6 @@ public class BoradController {
 		int index_no = (int) ((p-1)*5) ;
 		
 		model.addAttribute("borad_list",boardService.selectBoradlimit(index_no));
-		
-//		boardService.BoradList();
 		return "borad";
 	}
 // 글쓰기 버튼 클릭시 

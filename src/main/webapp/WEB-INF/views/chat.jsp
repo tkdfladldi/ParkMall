@@ -63,8 +63,8 @@ body {color: blue;}
                 <li class="sidebar-nav-item"><a href="/mainPage">Home</a></li>
                 <li class="sidebar-nav-item"><a href="/borad?p=1&">자유게시판</a></li>
                 <li class="sidebar-nav-item"><a href="/shopping">쇼핑하기</a></li>
-                <li class="sidebar-nav-item"><a href="#portfolio">Portfolio</a></li>
-                <li class="sidebar-nav-item"><a href="#contact">Contact</a></li>
+                <li class="sidebar-nav-item"><a href="/crawling">날씨 정보</a></li>
+                <li class="sidebar-nav-item"><a href="#">고객문의</a></li>
             </ul>
         </nav>
 		        <h2> 채팅방</h2>

@@ -1,29 +1,24 @@
 package com.park.mall.controller;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
-import org.junit.runners.Parameterized.Parameter;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.park.mall.model.CartVO;
 import com.park.mall.model.MemberVO;
 import com.park.mall.model.Tbl_ProductVO;
-import com.park.mall.service.CartService;
 import com.park.mall.service.Tbl_ProductService;
 
 @Controller
 public class CartController {
 
 	@Inject Tbl_ProductService tbl_ProductService;
-	@Inject CartService cartService;
 	
 	@RequestMapping(value = "/cartDelet/{Status.index}" ,method = RequestMethod.GET)
 		public String cartDelet(@PathVariable ("Status.index") int index, HttpSession session) throws Exception {
