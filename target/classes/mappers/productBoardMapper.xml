@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+
+    PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">    
+	
+	<mapper namespace="com.park.mall.productBoard">
+		<insert id="insertproductBoard">
+			INSERT INTO productboard(productBoard_id,
+									 productBoard_contents,
+									 productBoard_date,
+									 productBoard_hit,
+									 productBoard_name)
+									 VALUES(
+												  #{productBoard_id, jdbcType=NUMERIC}
+												, #{productBoard_contents}
+												, now()
+												, #{productBoard_hit , jdbcType=NUMERIC}
+												, #{productBoard_name}
+											)
+									 
+		</insert>
+		
+			<select id="getBoardList" resultType="com.park.mall.model.ProductBoardVO">
+					SELECT
+									 productBoard_id,
+									 productBoard_contents,
+									 productBoard_date,
+									 productBoard_hit,
+									 productBoard_name
+					FROM
+						productboard
+						ORDER BY productboard_id DESC
+					LIMIT #{startList}, #{listSize}
+			</select>
+			<select id="getBoardListCnt" resultType="int">
+					SELECT
+						count(*) as listCnt
+					FROM
+						productboard
+
+			</select>
+		
+	</mapper>
