@@ -15,7 +15,7 @@ public class Pagination {
 
 	private int startPage; //시작번호
 
-	private int startList;
+	private int startList;	//디비 리스트조회 인덱스  
 
 	private int endPage; // 끝번호
 
@@ -122,8 +122,6 @@ public class Pagination {
 		this.page = page;
 
 		this.range = range;
-
-		this.listCnt = listCnt;
 		
 		this.pageCnt = (int) Math.ceil((double)ListCnt/listSize);
 		
