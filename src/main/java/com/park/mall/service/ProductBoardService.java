@@ -9,7 +9,7 @@ public interface ProductBoardService {
 	
 	public void insertproductBoard(ProductBoardVO productBoardVO);
 	
-	public int getBoardListCnt() throws Exception;
+	public int getBoardListCnt(int product_id) throws Exception;
 	
 	public List<ProductBoardVO> getBoardList(Pagination pagination);
 	

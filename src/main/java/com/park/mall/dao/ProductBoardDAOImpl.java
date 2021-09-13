@@ -22,8 +22,8 @@ public class ProductBoardDAOImpl implements ProductBoardDAO{
 	}
 
 	@Override
-	public int getBoardListCnt() throws Exception {
-		return sqlSession.selectOne("com.park.mall.productBoard.getBoardListCnt");
+	public int getBoardListCnt(int product_id) throws Exception {
+		return sqlSession.selectOne("com.park.mall.productBoard.getBoardListCnt" ,product_id);
 	}
 
 	@Override

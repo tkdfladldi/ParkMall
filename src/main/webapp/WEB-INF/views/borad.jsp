@@ -92,7 +92,8 @@ border: 30px;
   
 			
 		<div class="search">
-		    <select name="searchType">
+		    <select name="searchType" >
+		     <option>---</option>
 		      <option value="t"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
 		      <option value="c"<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
 		      <option value="w"<c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
