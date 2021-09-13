@@ -58,7 +58,6 @@
     		<div>
     		 <label >내용   : </label>
     			<input style="height: 60px; width: 300px;" name="productBoard_contents">
-    			<input type="hidden" name="product_id" value="${vo.product_id}">
     		</div>
     			<button type="button" id="insert">리뷰 완료</button>
     	</form>

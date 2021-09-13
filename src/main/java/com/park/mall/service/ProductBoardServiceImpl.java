@@ -22,8 +22,8 @@ public class ProductBoardServiceImpl implements ProductBoardService{
 	}
 
 	@Override
-	public int getBoardListCnt(int product_id) throws Exception {
-		return productBoardDAO.getBoardListCnt(product_id);
+	public int getBoardListCnt() throws Exception {
+		return productBoardDAO.getBoardListCnt();
 		}
 
 	@Override

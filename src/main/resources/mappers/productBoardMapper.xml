@@ -11,25 +11,26 @@
 									 productBoard_contents,
 									 productBoard_date,
 									 productBoard_hit,
-									 productBoard_name,
-									 product_id
-									 )
+									 productBoard_name)
 									 VALUES(
 												  #{productBoard_id, jdbcType=NUMERIC}
 												, #{productBoard_contents}
 												, now()
 												, #{productBoard_hit , jdbcType=NUMERIC}
 												, #{productBoard_name}
-												, #{product_id}
 											)
 									 
 		</insert>
 		
 			<select id="getBoardList" resultType="com.park.mall.model.ProductBoardVO">
 					SELECT
-									*	
+									 productBoard_id,
+									 productBoard_contents,
+									 productBoard_date,
+									 productBoard_hit,
+									 productBoard_name
 					FROM
-						productboard where product_id = #{product_id}
+						productboard
 						ORDER BY productboard_id DESC
 					LIMIT #{startList}, #{listSize}
 			</select>
@@ -37,7 +38,7 @@
 					SELECT
 						count(*) as listCnt
 					FROM
-						productboard where product_id = #{product_id} 
+						productboard
 
 			</select>
 		

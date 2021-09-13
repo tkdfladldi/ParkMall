@@ -28,7 +28,7 @@ public class BoradController {
 	@RequestMapping(value = "/borad", method = RequestMethod.GET)
 	public String borad(@RequestParam Long p,Model model,String searchType ,String keyword,SearchCriteria searchCriteria) throws Exception {
 		// 서칭 값이 들어 갈경우 서칭값 조회
-		if(keyword != null &&searchType != null && searchType.length() != 0 && keyword.length() != 0) {
+		if(keyword != null &&searchType != null &&searchType.length() != 0 && keyword.length() != 0) {
 			searchCriteria.setKeyword(keyword);
 			searchCriteria.setSearchType(searchType);
 			model.addAttribute("searchCriteria",searchCriteria);

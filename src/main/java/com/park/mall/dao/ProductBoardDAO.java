@@ -8,7 +8,7 @@ import com.park.mall.model.ProductBoardVO;
 public interface ProductBoardDAO {
 	
 	public void insertProductBoard(ProductBoardVO productBoardVO);
-	public int getBoardListCnt(int product_id) throws Exception;
+	public int getBoardListCnt() throws Exception;
 	
 	public List<ProductBoardVO> getBoardList(Pagination pagination);
 

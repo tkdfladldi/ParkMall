@@ -16,8 +16,8 @@ import com.park.mall.service.Tbl_ProductServiceImpl;
 
 @Controller
 public class MainController {
-	
-	@Inject	Tbl_ProductServiceImpl tbl_ProductService;
+	@Inject
+	Tbl_ProductServiceImpl tbl_ProductService;
 	@Inject ProductBoardService productBoardService;
 	
 	@RequestMapping(value = "/mainPage", method = RequestMethod.GET)
@@ -48,11 +48,10 @@ public class MainController {
 		mav.setViewName("nike_shoesChk");
 		mav.addObject("vo",  tbl_ProductService.Tbl_ProductIdCall(product_id));
 		
-		int ListCnt = productBoardService.getBoardListCnt(product_id);
+		int ListCnt = productBoardService.getBoardListCnt();
 		Pagination pagination = new Pagination();
 		model.addAttribute("pagination", pagination);
 		 pagination.pageInfo(page, range, ListCnt);
-		 pagination.setProduct_id(product_id);
 		model.addAttribute("productBoardList", productBoardService.getBoardList(pagination));
 		
 		
