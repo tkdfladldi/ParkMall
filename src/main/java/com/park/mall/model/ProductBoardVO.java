@@ -8,6 +8,7 @@ public class ProductBoardVO {
 	Date productBoard_date;
 	int productBoard_hit;
 	String productBoard_name;
+	int product_id;
 	
 	
 	public int getProductBoard_id() {
@@ -40,12 +41,20 @@ public class ProductBoardVO {
 	public void setProductBoard_name(String productBoard_name) {
 		this.productBoard_name = productBoard_name;
 	}
+	
+	public int getProduct_id() {
+		return product_id;
+	}
+	public void setProduct_id(int product_id) {
+		this.product_id = product_id;
+	}
 	@Override
 	public String toString() {
 		return "ProductBoardVO [productBoard_id=" + productBoard_id + ", productBoard_contents=" + productBoard_contents
 				+ ", productBoard_date=" + productBoard_date + ", productBoard_hit=" + productBoard_hit
-				+ ", productBoard_name=" + productBoard_name + "]";
+				+ ", productBoard_name=" + productBoard_name + ", product_id=" + product_id + "]";
 	}
+	
 	
 	
 }
