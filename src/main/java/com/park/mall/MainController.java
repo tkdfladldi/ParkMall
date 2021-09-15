@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.park.mall.model.Pagination;
+import com.park.mall.model.Search;
 import com.park.mall.service.ProductBoardService;
 import com.park.mall.service.Tbl_ProductServiceImpl;
 
@@ -39,21 +40,28 @@ public class MainController {
 		return  mav;
 	}
 	// 상품 상세 목록 조회
+	// 상품 리뷰 목록 조회 및 검색 기능
 	@ResponseBody
 	@RequestMapping(value = "/nike_shoesChk/{product_id}", method =RequestMethod.GET)
 	public ModelAndView nike_shoesChk(@PathVariable("product_id") int product_id,ModelAndView mav ,Model model, @RequestParam(required = false, defaultValue = "1") int page ,
-			@RequestParam(required = false, defaultValue = "1") int range
+			@RequestParam(required = false, defaultValue = "1") int range,
+			@RequestParam(required = false) String searchType,@RequestParam(required = false)String keyword
 			) throws Exception {
 
 		mav.setViewName("nike_shoesChk");
+		
 		mav.addObject("vo",  tbl_ProductService.Tbl_ProductIdCall(product_id));
 		
-		int ListCnt = productBoardService.getBoardListCnt(product_id);
-		Pagination pagination = new Pagination();
-		model.addAttribute("pagination", pagination);
-		 pagination.pageInfo(page, range, ListCnt);
-		 pagination.setProduct_id(product_id);
-		model.addAttribute("productBoardList", productBoardService.getBoardList(pagination));
+		Search search = new Search();
+		search.setProduct_id(product_id);
+		search.setSearchType(searchType);
+		search.setKeyword(keyword);
+		
+		int ListCnt = productBoardService.getBoardListCnt(search);
+		model.addAttribute("pagination", search);
+		search.pageInfo(page, range, ListCnt);
+		search.setProduct_id(product_id);
+		model.addAttribute("productBoardList", productBoardService.getBoardList(search));
 		
 		
 

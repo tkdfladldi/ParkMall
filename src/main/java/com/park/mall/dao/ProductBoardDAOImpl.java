@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.park.mall.model.Pagination;
 import com.park.mall.model.ProductBoardVO;
+import com.park.mall.model.Search;
 
 @Repository
 public class ProductBoardDAOImpl implements ProductBoardDAO{
@@ -22,8 +23,8 @@ public class ProductBoardDAOImpl implements ProductBoardDAO{
 	}
 
 	@Override
-	public int getBoardListCnt(int product_id) throws Exception {
-		return sqlSession.selectOne("com.park.mall.productBoard.getBoardListCnt" ,product_id);
+	public int getBoardListCnt(Search search) throws Exception {
+		return sqlSession.selectOne("com.park.mall.productBoard.getBoardListCnt" ,search);
 	}
 
 	@Override

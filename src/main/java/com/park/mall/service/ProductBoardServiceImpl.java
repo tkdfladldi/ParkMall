@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.park.mall.dao.ProductBoardDAO;
 import com.park.mall.model.Pagination;
 import com.park.mall.model.ProductBoardVO;
+import com.park.mall.model.Search;
 
 @Service
 public class ProductBoardServiceImpl implements ProductBoardService{
@@ -22,8 +23,8 @@ public class ProductBoardServiceImpl implements ProductBoardService{
 	}
 
 	@Override
-	public int getBoardListCnt(int product_id) throws Exception {
-		return productBoardDAO.getBoardListCnt(product_id);
+	public int getBoardListCnt(Search search) throws Exception {
+		return productBoardDAO.getBoardListCnt(search);
 		}
 
 	@Override

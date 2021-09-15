@@ -122,8 +122,6 @@ public class Pagination {
 		this.product_id = product_id;
 	}
 
-	
-	
 	@Override
 	public String toString() {
 		return "Pagination [listSize=" + listSize + ", rangeSize=" + rangeSize + ", page=" + page + ", range=" + range

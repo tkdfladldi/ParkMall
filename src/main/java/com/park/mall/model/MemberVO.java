@@ -1,12 +1,13 @@
 package com.park.mall.model;
 
 public class MemberVO {
-	String id;
-	String pw;
-	String name;
-	String phone;
-	String email;
-	String indate;
+	private String id;
+	private String pw;
+	private String name;
+	private String phone;
+	private String email;
+	private String indate;
+	private String blacklist;
 	public String getId() {
 		return id;
 	}
@@ -43,10 +44,18 @@ public class MemberVO {
 	public void setDate(String indate) {
 		this.indate = indate;
 	}
+	
+	public String getBlacklist() {
+		return blacklist;
+	}
+	public void setBlacklist(String blacklist) {
+		this.blacklist = blacklist;
+	}
 	@Override
 	public String toString() {
 		return "MemberVO [id=" + id + ", pw=" + pw + ", name=" + name + ", phone=" + phone + ", email=" + email
-				+ ", indate=" + indate + "]";
-	}	
+				+ ", indate=" + indate + ", blacklist=" + blacklist + "]";
+	}
+	
 	
 }

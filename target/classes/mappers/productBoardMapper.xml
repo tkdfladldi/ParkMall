@@ -30,15 +30,31 @@
 									*	
 					FROM
 						productboard where product_id = #{product_id}
+							<include refid="search"></include>
 						ORDER BY productboard_id DESC
 					LIMIT #{startList}, #{listSize}
+					
+					
 			</select>
 			<select id="getBoardListCnt" resultType="int">
 					SELECT
 						count(*) as listCnt
 					FROM
-						productboard where product_id = #{product_id} 
-
+						productboard 
+						where product_id = #{product_id}
+					<include refid="search"></include>	
 			</select>
-		
+			<sql id="search">
+				 <if test="keyword != null and keyword != ''">
+						<if test="searchType=='a'.toString()">
+							AND productBoard_contents like CONCAT('%', #{keyword}, '%')
+						</if>
+						<if test="searchType=='b'.toString()">
+							AND productBoard_name like CONCAT('%', #{keyword}, '%')
+						</if>
+						<if test="searchType=='c'.toString()">
+							AND productBoard_contents LIKE CONCAT('%', #{keyword}, '%') OR productBoard_name LIKE CONCAT('%', #{keyword}, '%')
+						</if>
+			      </if>
+			</sql>
 	</mapper>

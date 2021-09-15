@@ -25,5 +25,28 @@
 		where member_id= #{reportiIdChk}
 	</select>
 	
+	<select id="" resultType="com.park.mall.model.BoradVO">
+		
+	</select>
+	
+	<select id="selProductBoard" resultType="com.park.mall.model.ProductBoardVO">
+			SELECT *
+			FROM productboard
+			where productboard_name= #{id}
+	</select>
+	<select id="selBoard" resultType="com.park.mall.model.BoradVO">
+			SELECT *
+			FROM borad
+			where borad_name= #{id}
+	</select>
+	<select id="selreply" resultType="com.park.mall.model.ReplyVO">
+			SELECT *
+			FROM reply
+			where reg_name = #{id}
+	</select>
+	
+	
+	
+	
 	
 </mapper>

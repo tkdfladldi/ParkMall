@@ -92,48 +92,75 @@
    	 			
    	 			<c:if test="${pagination.prev}">
 
-				<li><a class="page-link" href="#" onClick="fn_prev(	${vo.product_id},'${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')">Previous</a></li>
+				<li><a class="page-link" href="#" onClick="fn_prev(	${vo.product_id},'${pagination.page}', '${pagination.range}', '${pagination.rangeSize}','${pagination.searchType}','${pagination.keyword}')">Previous</a></li>
 
 				</c:if>
    	 			<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx">
    	 					<a href="#"onClick="fn_pagination(
-   	 								${vo.product_id},'${idx}', '${pagination.range}', '${pagination.rangeSize}')">${idx}</a>
+   	 								${vo.product_id},'${idx}', '${pagination.range}', '${pagination.rangeSize}','${pagination.searchType}','${pagination.keyword}')">${idx}</a>
    	 			</c:forEach>
    	 			
    	 			<c:if test="${pagination.next}">
    	 			<li>
    	 				<a class="page-link" href="#" onClick="fn_next(
-   	 								${vo.product_id},'${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')"> Next</a>
+   	 								${vo.product_id},'${pagination.page}', '${pagination.range}', '${pagination.rangeSize}','${pagination.searchType}','${pagination.keyword}')"> Next</a>
    	 			</li>
    	 			</c:if>
    	 		</ul>
  		</div>
+ 		<div>
+ 			<select id="selectType">
+ 				<option>---</option>
+ 				<option value="a">내용</option>
+ 				<option value="b">작성자</option>
+ 				<option value="c">내용+작성자</option>
+ 			</select>
+ 			<input type="text" name="keyword" id="keywordInput" value="${pagination.keyword}"/>
+ 			<button type="button" data-value="${vo.product_id}" id="searchBtn">검색</button>
+ 		</div>
+ 		
+ 		
    			
     
 </body>
 
 <script type="text/javascript">
-		function fn_prev(product_id,page, range, rangeSize) {
+		$(function() {
+			$('#searchBtn').click(function() {
+				var  product_id =   $(this).attr('data-value');
+				self.location = "${pageContext.request.contextPath}/nike_shoesChk/"+product_id+"?searchType=" + $("#selectType").val() +"&keyword=" + encodeURIComponent($('#keywordInput').val());
+				
+			})
+			
+		})
+
+		function fn_prev(product_id,page, range, rangeSize,searchType,keyword) {
 			var page = ((range - 1) * rangeSize);
 			var range = range - 1;
 			var url = "${pageContext.request.contextPath}/nike_shoesChk/"+product_id;
 			url = url + "?page=" + page;
 
 			url = url + "&range=" + range;
+			url = url + "&searchType="+searchType;
+			url = url + "&keyword="+keyword;
 			location.href = url;	
 			
 		}
 
-		function fn_pagination(product_id,page, range, rangeSize) {
+		function fn_pagination(product_id,page, range, rangeSize,searchType,keyword) {
 					
 			var url = "${pageContext.request.contextPath}/nike_shoesChk/"+product_id;
 			url = url + "?page=" + page;
 
 			url = url + "&range=" + range;
+			
+			url = url + "&searchType="+searchType;
+			url = url + "&keyword="+keyword;
+			
 			location.href = url;	
 		}
 		
-		function fn_next(product_id,page, range, rangeSize) {
+		function fn_next(product_id,page, range, rangeSize,searchType,keyword) {
 			
 			var page = parseInt((range * rangeSize)) + 1;
 			var range = parseInt(range) + 1;
@@ -142,6 +169,10 @@
 			url = url + "?page=" + page;
 
 			url = url + "&range=" + range;
+			
+			url = url + "&searchType="+searchType;
+			
+			url = url + "&keyword="+keyword;
 			location.href = url;		
 		}
 

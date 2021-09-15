@@ -7,6 +7,9 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.park.mall.model.BoradVO;
+import com.park.mall.model.ProductBoardVO;
+import com.park.mall.model.ReplyVO;
 import com.park.mall.model.ReportVO;
 
 
@@ -29,5 +32,20 @@ public class ReportDAOImpl implements ReportDAO{
 	public int reportiIdChk(String reportiIdChk) throws Exception {
 		
 		return sqlSession.selectOne("com.park.mall.report.reportiIdChk", reportiIdChk);
+	}
+
+	@Override
+	public List<ProductBoardVO> selProductBoard(String id) {
+		return sqlSession.selectList("com.park.mall.report.selProductBoard", id);
+	}
+
+	@Override
+	public List<BoradVO> selBoard(String id) { 
+		return sqlSession.selectList("com.park.mall.report.selBoard", id);
+	}
+
+	@Override
+	public List<ReplyVO> selreply(String id) {
+		return sqlSession.selectList("com.park.mall.report.selreply", id);
 	}
 }
