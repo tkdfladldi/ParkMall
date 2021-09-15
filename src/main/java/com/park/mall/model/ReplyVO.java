@@ -3,11 +3,11 @@ package com.park.mall.model;
 import java.util.Date;
 
 public class ReplyVO {
-		int reg_id;
-		String reg_name;
-		Date reg_date;
-		String reg_content;
-	    int borad_id;
+		private int reg_id;
+		private String reg_name;
+		private Date reg_date;
+		private String reg_content;
+		private int borad_id;
 	    
 	    
 		public int getReg_id() {

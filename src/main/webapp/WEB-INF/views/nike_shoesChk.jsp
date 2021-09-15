@@ -12,6 +12,9 @@
 <head profile="http://www.w3.org/2005/10/profile">
 <link rel="icon" type="image/png" href="http://example.com/myicon.png"> 
 </head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 <body>
     <h2>상품 상세정보</h2>
     <table border="1">
@@ -63,7 +66,7 @@
     			<button type="button" id="insert">리뷰 완료</button>
     	</form>
    	</div>
-   	 <table border="1" style="height: 50px; width: 600px;">
+   	  <table class="table table-striped table-hover">
    	 			 <tr>
 			        <th>no</th>
 			        <th>내용</th>

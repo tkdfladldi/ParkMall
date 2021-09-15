@@ -25,9 +25,9 @@ body {
 }
 
 .board_title {
-	font-weight : 700;
+	font-weight : 600;
 	font-size : 22pt;
-	margin : 10pt;
+	margin : 5pt;
 }
 
 .board_info_box {
@@ -36,12 +36,12 @@ body {
 }
 
 .board_author {
-	font-size : 10pt;
+	font-size : 15pt;
 	margin-right : 10pt;
 }
 
 .board_date {
-	font-size : 10pt;
+	font-size : 15pt;
 }
 
 .board_content {
@@ -114,8 +114,6 @@ function editReply(reg_id,borad_id,reg_content,memberId,replyName){
 			<div class="bg-white rounded shadow-sm">
 
 				<div class="board_title"><c:out value="제목 :${boradContent.borad_title}"/></div>
-				
-            <fmt:formatDate pattern="yyyy년MM월dd일  hh시mm분ss초" value="${boradContent.borad_time}"/>
 
 				<div class="board_info_box">
 
@@ -123,18 +121,20 @@ function editReply(reg_id,borad_id,reg_content,memberId,replyName){
 
 				</div>
 
-				<div class="board_content">내용 :${boradContent.borad_contents}</div>
+				<div class="board_content">내용 : ${boradContent.borad_contents}</div>
 				 
           
 
 			</div>
+			작성날짜 : 
+            <fmt:formatDate pattern="yyyy년MM월dd일  hh시mm분ss초" value="${boradContent.borad_time}"/>
 			
 			<div style="margin-top : 20px">
-
+				<c:if test="${member.id eq boradContent.borad_name}">
 				<button type="button" class="btn btn-sm btn-primary" id="btnUpdate" onclick="location.href='/boradUpdate/${boradContent.borad_id}'">수정</button>
 
 				<button type="button" class="btn btn-sm btn-primary" id="btnDelete" onclick="location.href='/boradDelete/${boradContent.borad_id}'">삭제</button>
-
+				</c:if>
 				<button type="button" class="btn btn-sm btn-primary" id="btnList" onclick="location.href='/borad?p=1&'">목록</button>
 
 			</div>

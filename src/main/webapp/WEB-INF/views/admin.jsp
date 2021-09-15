@@ -14,12 +14,15 @@ text-decoration:none;
 <meta charset="UTF-8">
 <title>박사장몰</title>
 </head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 <body>
 	<c:if test="${member.id eq 'tkdfladldi'}">
-   <h1> 관리자 페이지</h1>
-   <h2> 신고 목록</h2>
+   <h3> 관리자 페이지</h3>
+   <h4> 신고 목록</h4>
    <div style="width:40%; height:200px; overflow:auto">
-    <table border="1">
+    <table class="table table-striped table-hover">
     	
 	    <tr>
 	        <th>신고 대상자</th>
@@ -45,13 +48,13 @@ text-decoration:none;
    
    <c:if test="${member.id eq 'tkdfladldi'}">
    <div>
-	   <h2>회원 정보 검색</h2>
+	   <h4>회원 정보 검색</h4>
 	   <input type="text" id="memberSel" placeholder="아이디 입력"></input>
 	   
-	   <button id="selectAdminPage" type="button">검색</button>
+	   <button id="selectAdminPage" type="button">검색</button><br>
 	 		<c:if test="${selectmember.id != null}">
-	  			<h2>회원 정보</h2><br>
-	  		<table border="1">
+	  			<br><h4>회원 정보</h4>
+	  		<table class="table table-striped table-hover">
 			   <tr>
 				   	<th>
 				   		아이디
@@ -95,8 +98,8 @@ text-decoration:none;
 			   </tr>
 	   		</table>
 	   		<div style="width:40%; height:800px; overflow:auto">
-	   			<h2>회원 자유게시판 목록</h2>
-	   			<table border="1">
+	   			<h4>회원 자유게시판 목록</h4>
+	   			<table class="table table-striped table-hover">
 				   <tr>
 					   	<th>
 					   		제목
@@ -123,9 +126,9 @@ text-decoration:none;
 				   </c:forEach>
 	   			</table>
 	   			</div>
-	   			<h2>회원 리뷰 목록</h2>
+	   			<h4>회원 리뷰 목록</h4>
 	   			<div style="width:40%; height:800px; overflow:auto">
-	   			<table border="1">
+	   			<table class="table table-striped table-hover">
 				   <tr>
 					   	<th>
 					   		내용
@@ -152,9 +155,10 @@ text-decoration:none;
 				   </c:forEach>
 	   			</table>
 	   			</div>
-	   			<h2>회원 댓글 목록</h2>
+	   			<br>
+	   			<h4>회원 댓글 목록</h4><br>
 	   			<div style="width:40%; height:800px; overflow:auto">
-	   			<table border="1">
+	   			<table class="table table-striped table-hover">
 				   <tr>
 					   	<th>
 					   		내용

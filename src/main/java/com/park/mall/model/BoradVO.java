@@ -5,11 +5,11 @@ import java.util.Date;
 
 
 public class BoradVO {
-	int borad_id;
-	String borad_title;
-	String borad_contents;
-	String borad_name;
-	Date borad_time;
+	private int borad_id;
+	private String borad_title;
+	private String borad_contents;
+	private String borad_name;
+	private Date borad_time;
 	public int getBorad_id() {
 		return borad_id;
 	}

@@ -11,9 +11,6 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
 <title>자유게시판</title>
-<script>
-	
-</script>
 <style>
 body {
 	padding-top: 70px;
@@ -47,5 +44,14 @@ body {
 			</form>
 		</div>
 	</article>
+	<script type="text/javascript">
+$("#btnSave").on("click", function(){
+	if($("#title").val()==""){
+		alert("제목을 입력해주세요.");
+		$("#title").focus();
+		return false;
+	}
+});
+</script>
 </body>
 </html>

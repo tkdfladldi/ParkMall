@@ -3,12 +3,12 @@ package com.park.mall.model;
 import java.util.Date;
 
 public class ProductBoardVO {
-	int productBoard_id;
-	String productBoard_contents;
-	Date productBoard_date;
-	int productBoard_hit;
-	String productBoard_name;
-	int product_id;
+	private int productBoard_id;
+	private String productBoard_contents;
+	private Date productBoard_date;
+	private  int productBoard_hit;
+	private String productBoard_name;
+	private int product_id;
 	
 	
 	public int getProductBoard_id() {

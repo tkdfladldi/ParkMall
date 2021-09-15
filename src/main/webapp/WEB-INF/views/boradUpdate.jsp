@@ -31,7 +31,7 @@ body {
 				<input type="hidden" name="borad_id" value="${boradContent.borad_id}"/>
 				<div class="mb-3">
 					<label for="title">제목</label>
-					<input type="text" class="form-control" name="borad_title" id="title" value="${boradContent.borad_title}">
+					<input type="text" class="form-control" name="borad_title" id="title" value="${boradContent.borad_title}" required="">
 				</div>
 				<div class="mb-3">
 					<label for="content">내용</label>
