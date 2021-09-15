@@ -45,6 +45,15 @@
 			where reg_name = #{id}
 	</select>
 	
+	<update id="blacklistset">
+	update memberuser set blacklist = #{blacklist}
+			where id = #{id}
+	</update>
+	<update id="blacklistDel">
+	update memberuser set blacklist = #{blacklist}
+			where id = #{id}
+	</update>
+	
 	
 	
 	

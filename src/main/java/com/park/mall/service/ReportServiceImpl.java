@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.park.mall.dao.ReportDAO;
 import com.park.mall.model.BoradVO;
+import com.park.mall.model.MemberVO;
 import com.park.mall.model.ProductBoardVO;
 import com.park.mall.model.ReplyVO;
 import com.park.mall.model.ReportVO;
@@ -46,5 +47,17 @@ public class ReportServiceImpl implements ReportService{
 	@Override
 	public List<ReplyVO> selreply(String id) {
 		return reportDAO.selreply(id);
+	}
+
+	@Override
+	public void blacklistSet(MemberVO memberVo) {
+		reportDAO.blacklistSet(memberVo);
+		
+	}
+
+	@Override
+	public void blacklistDel(MemberVO memberVo) {
+		reportDAO.blacklistDel(memberVo);
+		
 	}
 }

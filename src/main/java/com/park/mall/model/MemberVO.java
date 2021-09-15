@@ -1,5 +1,7 @@
 package com.park.mall.model;
 
+import java.util.Date;
+
 public class MemberVO {
 	private String id;
 	private String pw;
@@ -8,6 +10,8 @@ public class MemberVO {
 	private String email;
 	private String indate;
 	private String blacklist;
+	private Date blacklist_date;
+	
 	public String getId() {
 		return id;
 	}
@@ -51,11 +55,18 @@ public class MemberVO {
 	public void setBlacklist(String blacklist) {
 		this.blacklist = blacklist;
 	}
+	public Date getBlacklist_date() {
+		return blacklist_date;
+	}
+	public void setBlacklist_date(Date blacklist_date) {
+		this.blacklist_date = blacklist_date;
+	}
 	@Override
 	public String toString() {
 		return "MemberVO [id=" + id + ", pw=" + pw + ", name=" + name + ", phone=" + phone + ", email=" + email
-				+ ", indate=" + indate + ", blacklist=" + blacklist + "]";
+				+ ", indate=" + indate + ", blacklist=" + blacklist + ", blacklist_date=" + blacklist_date + "]";
 	}
+	
 	
 	
 }

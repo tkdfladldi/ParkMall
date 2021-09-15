@@ -54,8 +54,15 @@ public class MemberController {
 			out.println("<script>alert('아이디 비밀번호가 맞지 않습니다.');</script>");	 
 			out.flush();
 			return "login";
-		}else if(loginVo != null &&  pwdEncoder.matches(memberVo.getPw(), loginVo.getPw())){
-			
+		}
+		else if(loginVo != null &&  pwdEncoder.matches(memberVo.getPw(), loginVo.getPw())){
+			//로그인을 했을때 블랙리스트 확인
+			if(loginVo.getBlacklist().equals("Y")) {
+				PrintWriter out = response.getWriter();	
+				out.println("<script>alert('이 계정은 블랙리스트 상태입니다 관리자에게 문의하세요.');</script>");	 
+				out.flush();
+				return "mainPage";
+			}
 			session.setAttribute("member", loginVo);
 			return "redirect:/mainPage";
 		}else {

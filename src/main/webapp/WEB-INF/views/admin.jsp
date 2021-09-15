@@ -83,9 +83,12 @@ text-decoration:none;
 			   			<h4>${selectmember.email}</h4>
 			   		</td>
 			   		<td>
-			   			<c:if test="${selectmember.blacklist ne 'y'}">
+			   			<c:if test="${selectmember.blacklist ne 'Y'}">
 			   			<br>
-			   			<button type="button">블랙리스트 추가</button>
+			   			<button type="button" id="blackList" data-value="${selectmember.id}">블랙리스트 추가</button>
+			   			</c:if>
+			   			<c:if test="${selectmember.blacklist eq 'Y'}">
+			   			<button type="button" id="blackListDel" data-value="${selectmember.id}">블랙리스트 해제</button>
 			   			</c:if>
 			   			<h4>${selectmember.blacklist}</h4>
 			   		</td>
@@ -187,6 +190,42 @@ text-decoration:none;
    </c:if>
 </body>
 <script type="text/javascript">
+$(function(){
+	   $('#blackListDel').on("click",function () {
+		   var id = $('#blackListDel').attr('data-value');
+		 $.ajax({
+				type: "get",
+				url : "${pageContext.request.contextPath}/admin/blacklist?id="+id+"&blacklist=N",
+				success : function(n) {
+					if(n==0){
+						location.reload();
+						 alert("블랙리스트 해제완료..")
+					}else if(n==1){
+						alert("오류.")
+					}
+		         }
+			})
+			}
+		)});
+		
+$(function(){
+	   $('#blackList').on("click",function () {
+		 var id = $('#blackList').attr('data-value');
+		 $.ajax({
+				type: "get",
+				url : "${pageContext.request.contextPath}/admin/blacklist?id="+id+"&blacklist=Y",
+				success : function(n) {
+					if(n==0){
+						location.reload();
+						 alert("블랙리스트 등록완료.")
+					}else if(n==1){
+						alert("오류.")
+					}
+		         }
+			})
+			}
+		)});
+
 $(function(){
 	   $('#selectAdminPage').on("click",function () {
 		 var id = $('#memberSel').val();

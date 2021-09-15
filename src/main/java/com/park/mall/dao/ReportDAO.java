@@ -3,6 +3,7 @@ package com.park.mall.dao;
 import java.util.List;
 
 import com.park.mall.model.BoradVO;
+import com.park.mall.model.MemberVO;
 import com.park.mall.model.ProductBoardVO;
 import com.park.mall.model.ReplyVO;
 import com.park.mall.model.ReportVO;
@@ -20,5 +21,9 @@ public interface ReportDAO {
 	 public List<BoradVO> selBoard(String id);
 
 	 public List<ReplyVO> selreply(String id);
+	 
+	 public void blacklistSet(MemberVO memberVo);
+	 
+	 public void blacklistDel(MemberVO memberVo);
 	
 }

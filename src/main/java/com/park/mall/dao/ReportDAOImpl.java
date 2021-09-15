@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.park.mall.model.BoradVO;
+import com.park.mall.model.MemberVO;
 import com.park.mall.model.ProductBoardVO;
 import com.park.mall.model.ReplyVO;
 import com.park.mall.model.ReportVO;
@@ -47,5 +48,17 @@ public class ReportDAOImpl implements ReportDAO{
 	@Override
 	public List<ReplyVO> selreply(String id) {
 		return sqlSession.selectList("com.park.mall.report.selreply", id);
+	}
+
+	@Override
+	public void blacklistSet(MemberVO memberVo) {
+			sqlSession.update("com.park.mall.report.blacklistset", memberVo);
+		
+	}
+
+	@Override
+	public void blacklistDel(MemberVO memberVo) {
+		sqlSession.update("com.park.mall.report.blacklistDel", memberVo);
+		
 	}
 }

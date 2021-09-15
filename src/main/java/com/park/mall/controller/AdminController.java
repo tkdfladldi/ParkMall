@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -49,5 +50,22 @@ public class AdminController {
 		 
 			return "admin";
 		}
+		// 블랙리스트 추가 및 해제
+	 	 @ResponseBody
+		 @RequestMapping(value = "/admin/blacklist", method = RequestMethod.GET)
+			public int blacklist(MemberVO memberVo,Model model) throws Exception{
+			 if(memberVo.getBlacklist().equals("Y")) {
+				 reportService.blacklistSet(memberVo);
+				 int n = 0;
+				 return n;
+			 }else if(memberVo.getBlacklist().equals("N")) {
+				 reportService.blacklistDel(memberVo);
+				 int n = 0;
+				 return n;
+			 }
+				 int n = 1;
+				 return n;
 		
+		 }
 }
+
