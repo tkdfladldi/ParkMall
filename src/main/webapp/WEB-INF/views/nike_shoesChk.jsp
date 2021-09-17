@@ -60,7 +60,7 @@
     	<form id="form"  method="post">
     		<div>
     		 <label >내용   : </label>
-    			<input style="height: 60px; width: 300px;" name="productBoard_contents">
+    			<input id="reView" style="height: 60px; width: 300px;" name="productBoard_contents">
     			<input type="hidden" name="product_id" value="${vo.product_id}">
     		</div>
     			<button type="button" id="insert">리뷰 완료</button>
@@ -182,6 +182,12 @@
 
 
 $('#insert').on("click",function () {
+	if($("#reView").val()==""){
+		alert("내용을 입력해주세요");
+		$("#reView").focus();
+		return false;
+	}
+
     var form = $("#form").serialize();
     $.ajax({
 		type: "post",

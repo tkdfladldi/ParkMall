@@ -3,45 +3,58 @@
     
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-    
 <!DOCTYPE html>
-
 <html>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>자유게시판</title>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-
-<script>
-</script>
 <style type="text/css">
+
 ul li {list-style-type: none; float: left;
 margin: 5px;
 }
-a{
-text-decoration : none;
+a {
+	text-decoration: none;
 }
-.aClass{
-position: fixed;
-margin: 10px;
-border: 10px;
-top: 270px;
-}
-div{
-margin: 30px;
-border: 30px;
-}
-
 </style>
-</head>
-<body>
-
-<h2>자유게시판</h2><br>
-<button type="button" id="btnWrite" onclick="location.href='/boradForm'">글쓰기</button>
-<table class="table table-striped table-hover">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>박사장몰</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="${pageContext.request.contextPath}/resources/bo_css/styles.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+            <div class="container px-4">
+                <a class="navbar-brand" href="/mainPage">박사장몰</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                   		<c:if test="${member.id == null}">
+                        <li class="nav-item"><a class="nav-link" href="/login">로그인</a></li>
+                        </c:if>
+                        <c:if test="${member.id != null}">
+                        <li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
+                        </c:if>
+                        <li class="nav-item"><a class="nav-link" href="/shopping">쇼핑하기</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/echo/chat">채팅방</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Header-->
+        <header class="bg-primary bg-gradient text-white">
+            <div class="container px-4 text-center">
+                <h1 class="fw-bolder">자유게시판</h1>
+                <a class="btn btn-lg btn-light" href="/boradForm">글쓰기</a>
+            </div>
+        </header>
+        <!-- About section-->
+ <table class="table table-striped table-hover">
     <tr>
         <th>번호</th>
         <th>제목</th>
@@ -77,11 +90,11 @@ border: 30px;
      </c:if> 
      
 </table>
-	<c:set var="page" value="${(param.p == null)?1:param.p}"/>
-	<c:set var="startNum" value="${page-(page-1)%5}" />
+		<c:set var="page" value="${(param.p == null)?1:param.p}"/>
+		<c:set var="startNum" value="${page-(page-1)%5}" />
 	
 			<c:if test="${startNum > 5}">
-       		<a data-value="${startNum-1}" class= "previousPage" href="#">이전</a>
+       			<a data-value="${startNum-1}" class= "previousPage" href="#">이전</a>
        		</c:if>
 		<ul>
 		
@@ -91,12 +104,15 @@ border: 30px;
        	</ul>
        		
       	 	 <c:if test="${not empty borad_list}">	
-       		<a data-value="${startNum+5}" class= "nextPage" href="#">다음</a>
+       			<a data-value="${startNum+5}" class= "nextPage" href="#">다음</a>
        		</c:if>
-  
-			
-		<div class="search">
-		    <select name="searchType" >
+ 
+        <!-- Services section-->
+        <section class="bg-light" id="services">
+            <div class="container px-4">
+                <div class="row gx-4 justify-content-center">
+                    <div class="col-lg-8">
+                    <select name="searchType" >
 		     <option>---</option>
 		      <option value="t"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
 		      <option value="c"<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
@@ -135,6 +151,18 @@ border: 30px;
 		        });
 		      });   
 		    </script>
-		  </div>
-</body>
+                        </div>
+                </div>
+            </div>
+        </section>
+        <!-- Contact section-->
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container px-4"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="/resources/bo_js/scripts.js"></script>
+    </body>
 </html>

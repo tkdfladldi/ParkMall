@@ -110,12 +110,11 @@ public class BoradController {
 				}
 			}
 			@RequestMapping(value="/boradUpdate", method= RequestMethod.POST)
-			public String boradUpdate(BoradVO vo,HttpServletResponse response)throws Exception{
+			public void boradUpdate(BoradVO vo,HttpServletResponse response)throws Exception{
 				 boardService.boradUpdate(vo);
 				 PrintWriter out = response.getWriter();		
-				out.println("<script>alert('수정완료');window.location.href='http://localhost:8080/borad?p=1&';</script>");	
+				 out.println("<script>alert('수정완료.');window.location.href='http://localhost:8080/borad?p=1&';</script>");	
 				out.flush();
-				 return "";
 			}
 			// 댓글 작성 기능
 			// ResponseBody 리턴되는 값은 View 를 통해서 출력되지 않고 HTTP Response Body 에 직접 쓰여지게 됨. 

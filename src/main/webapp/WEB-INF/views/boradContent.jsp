@@ -107,22 +107,24 @@ function editReply(reg_id,borad_id,reg_content,memberId,replyName){
 
 <body>
 	<article>
-
 		<div class="container" role="main">
 
-			<h2>글 상세 페이지</h2>
+			<h2>게시글</h2>
 			<div class="bg-white rounded shadow-sm">
 
-				<div class="board_title"><c:out value="제목 :${boradContent.borad_title}"/></div>
-
-				<div class="board_info_box">
-
-					<span class="board_author">작성자 :</span><span class="board_date"><c:out value="${boradContent.borad_name}"/></span>
-
+				<div class="mb-3">
+					<label for="title">제목</label>
+					<input type="text" class="form-control" name="borad_title" id="title" value="${boradContent.borad_title}" readonly>
+				</div>
+				<div class="mb-3">
+					<label for="reg_id">작성자</label>
+					<input type="text" name ="borad_name" class="form-control" value="${member.id}" readonly/>
 				</div>
 
-				<div class="board_content">내용 : ${boradContent.borad_contents}</div>
-				 
+				<div class="mb-3">
+					<label for="content">내용</label>
+					<textarea class="form-control" rows="5" name="borad_contents" id="content" readonly>${boradContent.borad_contents}</textarea>
+				</div>
           
 
 			</div>
@@ -136,23 +138,25 @@ function editReply(reg_id,borad_id,reg_content,memberId,replyName){
 				<button type="button" class="btn btn-sm btn-primary" id="btnDelete" onclick="location.href='/boradDelete/${boradContent.borad_id}'">삭제</button>
 				</c:if>
 				<button type="button" class="btn btn-sm btn-primary" id="btnList" onclick="location.href='/borad?p=1&'">목록</button>
-
+		
 			</div>
-
+			
 		</div>
+		
+			
 	</article>
-			<form style="width: 1100px; height: 70px; background-color: lightpink; margin-left: 200px; top: 350px;position: absolute; " 
+			
+			<br><form style="position: absolute; left: 200px; width: 1100px; height: 70px; background-color: lightpink;" 
 			id="form" method="post">
-			  <div>
-			  
-			   <input type="hidden"  name="borad_id" value="${boradContent.borad_id}"/>
-			    <label for="content">댓글 : </label><input style= "width : 800px;height : 35px;" type="text" id="content" name="reg_content" />
-			  </div>
-			  <div>
+				  
+				   
+			 <div>
+				  <input type="hidden"  name="borad_id" value="${boradContent.borad_id}"/>
+					    <label for="content">댓글 : </label><input style= "width : 800px;height : 35px;" type="text" id="content" name="reg_content" />
+				  
 			 	 <button type="button" id="submit" class="replyWriteBtn">작성</button>
 			  </div>
 			</form>
-			
 			
 			
 	<c:forEach var="replyList" items="${replyList}">

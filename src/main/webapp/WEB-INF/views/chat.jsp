@@ -90,6 +90,11 @@ body {color: blue;}
     <script type="text/javascript">
     
 	$("#sendBtn").click(function() {
+		if($("#message").val()==""){
+			alert("내용을 입력해주세요");
+			$("#message").focus();
+			return false;
+		}
 		sendMessage();
 		$('#message').val('')
 	});
