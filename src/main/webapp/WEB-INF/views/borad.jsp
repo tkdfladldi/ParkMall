@@ -9,12 +9,32 @@
 <head>
 <style type="text/css">
 
+#asd{
+position: relative;
+	bottom : 120px;
+	right: 20px;
+}
+#maindiv{
+ background-image: url("resources/chatImg/img/portfolio-1.jpg");
+}
+.page{padding-top:25px; }
+    .list_n_menu {padding:3px; MARGIN:30px;}
+    .list_n_menu A {padding:5px 8px 4px 8px; MARGIN: 2px; BORDER: #ccc 1px solid; COLOR: #999; TEXT-DECORATION: none;
+   }
 ul li {list-style-type: none; float: left;
 margin: 5px;
 }
+    .list_n_menu A:hover {BORDER:#999 1px solid; COLOR: #666;}
+    .list_n_menu A:active {BORDER:#999 1px solid; COLOR: #666;}
 a {
 	text-decoration: none;
 }
+.previousPage{
+	position: relative;
+	top: 40px;
+	right: 20px;
+}
+
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="utf-8" />
@@ -28,11 +48,11 @@ a {
     </head>
     <body id="page-top">
         <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-            <div class="container px-4">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <div class="container px-4" >
                 <a class="navbar-brand" href="/mainPage">박사장몰</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
+                <div class="collapse navbar-collapse" id="navbarResponsive" >
                     <ul class="navbar-nav ms-auto">
                    		<c:if test="${member.id == null}">
                         <li class="nav-item"><a class="nav-link" href="/login">로그인</a></li>
@@ -47,9 +67,9 @@ a {
             </div>
         </nav>
         <!-- Header-->
-        <header class="bg-primary bg-gradient text-white">
-            <div class="container px-4 text-center">
-                <h1 class="fw-bolder">자유게시판</h1>
+        <header class="bg-primary bg-gradient text-white" id="maindiv2">
+            <div class="container px-4 text-center" id="maindiv">
+                <h1 class="fw-bolder" >자유게시판</h1>
                 <a class="btn btn-lg btn-light" href="/boradForm">글쓰기</a>
             </div>
         </header>
@@ -85,6 +105,7 @@ a {
             <!-- 원하는 날짜형식으로 출력하기 위해 fmt태그 사용 -->
             <fmt:formatDate pattern="yyyy년MM월dd일  hh시mm분ss초" value="${searchList.borad_time}"/>
         </td>
+        
     </tr>    
     </c:forEach> 
      </c:if> 
@@ -92,7 +113,8 @@ a {
 </table>
 		<c:set var="page" value="${(param.p == null)?1:param.p}"/>
 		<c:set var="startNum" value="${page-(page-1)%5}" />
-	
+	<div id="page">
+	 <div class="list_n_menu">
 			<c:if test="${startNum > 5}">
        			<a data-value="${startNum-1}" class= "previousPage" href="#">이전</a>
        		</c:if>
@@ -106,10 +128,11 @@ a {
       	 	 <c:if test="${not empty borad_list}">	
        			<a data-value="${startNum+5}" class= "nextPage" href="#">다음</a>
        		</c:if>
- 
+     </div>
+ 	</div>
         <!-- Services section-->
         <section class="bg-light" id="services">
-            <div class="container px-4">
+            <div class="container px-4" id="asd">
                 <div class="row gx-4 justify-content-center">
                     <div class="col-lg-8">
                     <select name="searchType" >
@@ -121,8 +144,7 @@ a {
 		    </select>
 		
 		    <input type="text" name="keyword" id="keywordInput" value="${searchCriteria.keyword}"/>
-		    <button id="searchBtn" type="button">검색</button> <br>
-		     <button style="background-color: white; font-size: 15;" onclick="location.href='/mainPage'">나가기</button>
+		    <button class="btn btn-primary" id="searchBtn" type="button">검색</button>
 		   
 		    <script>
 		    $(function(){

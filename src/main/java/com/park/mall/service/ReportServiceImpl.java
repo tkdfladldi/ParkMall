@@ -60,4 +60,24 @@ public class ReportServiceImpl implements ReportService{
 		reportDAO.blacklistDel(memberVo);
 		
 	}
+
+	@Override
+	public int reportlistChk(String id) {
+		return reportDAO.reportlistChk(id);
+	}
+
+	@Override
+	public int reportlistChk2(String id) {
+		return reportDAO.reportlistChk2(id);
+	}
+
+	@Override
+	public int reportlistChk3(String id) {
+		return reportDAO.reportlistChk3(id);
+	}
+
+	@Override
+	public int reportlistChk4(String id) {
+		return reportDAO.reportlistChk4(id);
+	}
 }

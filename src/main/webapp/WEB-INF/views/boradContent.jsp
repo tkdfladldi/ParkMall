@@ -19,6 +19,13 @@
 
 
 <style>
+h2{
+text-align: center;
+}
+#label{
+ font-size: 20px;
+}
+
 body {
 	padding-top: 70px;
 	padding-bottom: 30px;
@@ -78,7 +85,6 @@ body {
 </style>
 <meta charset="UTF-8">
 
-<title>자유게시판</title>
 </head>
 <script>
 
@@ -104,7 +110,31 @@ function editReply(reg_id,borad_id,reg_content,memberId,replyName){
 
 
 </script>
-
+<title>박사장몰</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="${pageContext.request.contextPath}/resources/bo_css/styles.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+            <div class="container px-4">
+                <a class="navbar-brand" href="/mainPage">박사장몰</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                   		<c:if test="${member.id == null}">
+                        <li class="nav-item"><a class="nav-link" href="/login">로그인</a></li>
+                        </c:if>
+                        <c:if test="${member.id != null}">
+                        <li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
+                        </c:if>
+                        <li class="nav-item"><a class="nav-link" href="/shopping">쇼핑하기</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/echo/chat">채팅방</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
 <body>
 	<article>
 		<div class="container" role="main">
@@ -146,13 +176,13 @@ function editReply(reg_id,borad_id,reg_content,memberId,replyName){
 			
 	</article>
 			
-			<br><form style="position: absolute; left: 200px; width: 1100px; height: 70px; background-color: lightpink;" 
+			<br><form style="position: absolute; left: 200px; width: 1100px; height: 70px;" 
 			id="form" method="post">
 				  
 				   
 			 <div>
 				  <input type="hidden"  name="borad_id" value="${boradContent.borad_id}"/>
-					    <label for="content">댓글 : </label><input style= "width : 800px;height : 35px;" type="text" id="content" name="reg_content" />
+					    <label id="label" for="content">댓글 </label><input style= "width : 800px;height : 50px;" type="text" id="content" name="reg_content" />
 				  
 			 	 <button type="button" id="submit" class="replyWriteBtn">작성</button>
 			  </div>

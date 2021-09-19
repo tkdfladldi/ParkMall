@@ -61,4 +61,24 @@ public class ReportDAOImpl implements ReportDAO{
 		sqlSession.update("com.park.mall.report.blacklistDel", memberVo);
 		
 	}
+
+	@Override
+	public int reportlistChk(String id) {
+		return sqlSession.selectOne("com.park.mall.report.reportlistChk", id);
+	}
+
+	@Override
+	public int reportlistChk2(String id) {
+		return sqlSession.selectOne("com.park.mall.report.reportlistChk2", id);
+	}
+
+	@Override
+	public int reportlistChk3(String id) {
+		return sqlSession.selectOne("com.park.mall.report.reportlistChk3", id);
+	}
+
+	@Override
+	public int reportlistChk4(String id) {
+		return sqlSession.selectOne("com.park.mall.report.reportlistChk4", id);
+	}
 }

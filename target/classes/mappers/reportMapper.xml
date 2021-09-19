@@ -25,9 +25,6 @@
 		where member_id= #{reportiIdChk}
 	</select>
 	
-	<select id="" resultType="com.park.mall.model.BoradVO">
-		
-	</select>
 	
 	<select id="selProductBoard" resultType="com.park.mall.model.ProductBoardVO">
 			SELECT *
@@ -55,6 +52,29 @@
 	</update>
 	
 	
+	<select id="reportlistChk" resultType="int">
+		SELECT COUNT(member_id)
+			FROM report
+		where member_id= #{id}
+	</select>
+	
+	<select id="reportlistChk2" resultType="int">
+		SELECT COUNT(*)
+			FROM borad
+		where borad_name= #{id}
+	</select>
+	
+	<select id="reportlistChk3" resultType="int">
+			SELECT COUNT(*)
+			FROM productboard
+		where productBoard_name= #{id}
+	</select>
+	
+	<select id="reportlistChk4" resultType="int">
+		SELECT COUNT(*)
+			FROM reply
+		where reg_name= #{id}
+	</select>
 	
 	
 	

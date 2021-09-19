@@ -21,12 +21,6 @@ public class MainController {
 	@Inject	Tbl_ProductServiceImpl tbl_ProductService;
 	@Inject ProductBoardService productBoardService;
 	
-	@RequestMapping(value = "/mainPage", method = RequestMethod.GET)
-	public String home() {
-		
-		return "mainPage";
-	}
-	
 	@RequestMapping(value = "/shopping", method = RequestMethod.GET)
 	public String shopping() {
 		return "shopping";

@@ -47,6 +47,13 @@ public class AdminController {
 		 model.addAttribute("memberBoard", reportService.selBoard(id));
 		 model.addAttribute("memberReply", reportService.selreply(id));
 		 	
+		 model.addAttribute("reportlistChk", reportService.reportlistChk(id));
+		 model.addAttribute("reportlistChk2", reportService.reportlistChk2(id));
+		 model.addAttribute("reportlistChk3", reportService.reportlistChk3(id));
+		 model.addAttribute("reportlistChk4", reportService.reportlistChk4(id));
+		 
+		 
+		 
 		 
 			return "admin";
 		}

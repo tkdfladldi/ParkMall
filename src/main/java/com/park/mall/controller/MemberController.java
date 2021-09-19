@@ -18,9 +18,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.park.mall.model.MemberVO;
 import com.park.mall.service.MemberService;
+import com.park.mall.service.Tbl_ProductServiceImpl;
 
 @Controller
 public class MemberController {
+	@Inject	Tbl_ProductServiceImpl tbl_ProductService;
 	@Inject
 	BCryptPasswordEncoder pwdEncoder;
 	@Inject
@@ -61,10 +63,10 @@ public class MemberController {
 				PrintWriter out = response.getWriter();	
 				out.println("<script>alert('이 계정은 블랙리스트 상태입니다 관리자에게 문의하세요.');</script>");	 
 				out.flush();
-				return "mainPage";
+				return "redirect:/";
 			}
 			session.setAttribute("member", loginVo);
-			return "redirect:/mainPage";
+			return "redirect:/";
 		}else {
 			PrintWriter out = response.getWriter();	
 			out.println("<script>alert('아이디 비밀번호가 맞지 않습니다.');</script>");	 
@@ -76,12 +78,12 @@ public class MemberController {
 	@RequestMapping(value = "logout", method = RequestMethod.GET)
 	public String logout(HttpSession session, HttpServletRequest request) throws Exception {
 			session.invalidate();
-		return "mainPage"; 
+		return "redirect:/"; 
 		
 	}
 	//회원가입
 	@RequestMapping(value = "/insertMember", method = RequestMethod.POST)
-	public String memberPost(MemberVO memberVo,HttpServletResponse response) throws Exception {		
+	public String memberPost(MemberVO memberVo,HttpServletResponse response,Model model) throws Exception {		
 		int result = memberService.idchk(memberVo);
 		if(result == 1) {		 
 			PrintWriter out = response.getWriter();			 
@@ -96,8 +98,10 @@ public class MemberController {
 			memberVo.setPw(pwd);
 		memberService.insertMember(memberVo);		 
 		PrintWriter out = response.getWriter();	
+		model.addAttribute("list", tbl_ProductService.listTbl_Product());
 		out.println("<script>alert('회원가입 완료');</script>");
 		out.flush();
+		return "mainPage";
 		}
 		return "mainPage";
 		
@@ -118,10 +122,19 @@ public class MemberController {
 	
 	// 비밀번호 변경 
 	@RequestMapping(value="/memberPassChange",method= RequestMethod.POST)
-	public String memberPassChange(MemberVO memberVo,HttpSession session,HttpServletResponse response) throws Exception{
+	public String memberPassChange(MemberVO memberVo,HttpSession session,HttpServletResponse response,Model model) throws Exception{
 		MemberVO dbpass = (MemberVO)session.getAttribute("member");
 		 boolean incoding = pwdEncoder.matches(memberVo.getPw(), dbpass.getPw());
-		if(incoding == true && memberVo.getEmail().equals(memberVo.getPhone())) {
+		 
+		 if(memberVo.getEmail() == null || memberVo.getEmail() == null) {
+			model.addAttribute("list", tbl_ProductService.listTbl_Product());
+			 PrintWriter out = response.getWriter();	
+				out.println("<script>alert('비밀번호가 맞지 않습니다.');</script>");
+				out.flush();
+			 return "mainPage";
+			 
+		 }
+		 else if(incoding == true && memberVo.getEmail().equals(memberVo.getPhone())) {
 			memberVo.setId(dbpass.getId());
 				// 비밀번호 시크릿
 				String inputPass = memberVo.getEmail();
@@ -130,11 +143,13 @@ public class MemberController {
 			memberService.UpdatePass(memberVo);
 //	필터있어서 가능		response.setContentType("text/html; charset=UTF-8");			 
 			PrintWriter out = response.getWriter();	
+			model.addAttribute("list", tbl_ProductService.listTbl_Product());
 			out.println("<script>alert('비밀번호 변경 완료');</script>");
 			out.flush();
-			return "member";
+			return "login";
 			
 		}else {
+			model.addAttribute("list", tbl_ProductService.listTbl_Product());
 			PrintWriter out = response.getWriter();	
 			out.println("<script>alert('비밀번호가 맞지 않습니다.');</script>");
 			out.flush();

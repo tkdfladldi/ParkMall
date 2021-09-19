@@ -25,5 +25,10 @@ public interface ReportDAO {
 	 public void blacklistSet(MemberVO memberVo);
 	 
 	 public void blacklistDel(MemberVO memberVo);
+	 
+	 public int reportlistChk(String id);
+	 public int reportlistChk2(String id);
+	 public int reportlistChk3(String id);
+	 public int reportlistChk4(String id);
 	
 }

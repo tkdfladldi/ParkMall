@@ -1,30 +1,106 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-  
-<!DOCTYPE html>
-<html>
-<head>
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>상품 상세정보</title>
-<head profile="http://www.w3.org/2005/10/profile">
-<link rel="icon" type="image/png" href="http://example.com/myicon.png"> 
-</head>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<body>
-    <h2>상품 상세정보</h2>
-    <table border="1">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>박사장몰</title>
+        
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <!-- Google fonts-->
+        <link href="${pageContext.request.contextPath}/resources/review_css/styles.css" rel="stylesheet" type="text/css" />
+        <link href="${pageContext.request.contextPath}/resources/review_css/styles.css" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="${pageContext.request.contextPath}/resources/review_css/styles.css" rel="stylesheet" />
+    </head>
+    <style>
+    .page{padding-top:25px; }
+    .list_n_menu {padding:3px; MARGIN:30px;}
+    .list_n_menu A {padding:5px 8px 4px 8px; MARGIN: 2px; BORDER: #ccc 1px solid; COLOR: #999; TEXT-DECORATION: none;
+   }
+    #portfolio{
+     padding: 10px;
+    }
+    #div{
+    padding: 10px;
+    }
+   table {
+    width: 100%;
+  }
+  th, td {
+  }
+  ul li {list-style-type: none; }
+  .page-prev{
+  float: left;
+  }
+  .page-next{position: relative;
+  left:360px;
+  top : 1px;
+  bottom: 31px;
+  }
+  .page-next2{bottom: 30px;
+  }
+  #insert{
+  position: relative;
+  left: 350px;
+  bottom: 40px;
+  }
+  
+  
+    </style>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand" href="/mainPage">박사장몰</a>
+                <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                    <c:if test="${member == null}">
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/login">로그인</a></li>
+                    </c:if>
+                    <c:if test="${member != null}">
+                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/logout">로그아웃</a></li>
+                     </c:if>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/borad?p=1">자유게시판</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/shopping">쇼핑하기</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Masthead-->
+        <header class="masthead bg-primary text-white text-center">
+            <div class="container d-flex align-items-center flex-column">
+                <!-- Masthead Avatar Image-->
+                <!-- Masthead Heading-->
+                <!-- Icon Divider-->
+               
+                <!-- Masthead Subheading-->
+                <p class="masthead-subheading font-weight-light mb-0" id="p">상품</p>
+                <table>
         <tr>
             <td>
             <td> 
-				<img src="../resources/assets/img/portfolio/${vo.product_url}" width="120ox" height="110px">
+				<img src="../resources/assets/img/portfolio/${vo.product_url}" width="300px" height="300px">
             </td>
             <td>
-                <table border="1" style="height: 300px; width: 400px;">
+                <table style="height: 500px; width: 500px;">
                     <tr align="center">
                         <td>상품명</td>
                         <td>${vo.product_name}</td>
@@ -48,15 +124,22 @@
                                 </select>&nbsp;개
                                 <input type="submit" value="장바구니에 담기">
                             </form>
-                            <a href="${pageContext.request.contextPath}/nike_shoes">상품목록</a>
                         </td>
                     </tr>
                 </table>
             </td>
         </tr>
       </table>
-    <h3>Review</h3>
-    <div>
+                
+            </div>
+        </header>
+        <!-- Portfolio Section-->
+        <section class="page-section portfolio" id="portfolio">
+            <div class="container" id="div">
+                <!-- Portfolio Section Heading-->
+                <!-- Icon Divider-->
+             
+                <div>
     	<form id="form"  method="post">
     		<div>
     		 <label >내용   : </label>
@@ -64,6 +147,7 @@
     			<input type="hidden" name="product_id" value="${vo.product_id}">
     		</div>
     			<button type="button" id="insert">리뷰 완료</button>
+    		
     	</form>
    	</div>
    	  <table class="table table-striped table-hover">
@@ -90,22 +174,22 @@
    	 				
 			   	
    	 </table>
-   	 	<div>
+   	 	<div class="list_n_menu">
    	 		<ul>
    	 			
    	 			<c:if test="${pagination.prev}">
 
-				<li><a class="page-link" href="#" onClick="fn_prev(	${vo.product_id},'${pagination.page}', '${pagination.range}', '${pagination.rangeSize}','${pagination.searchType}','${pagination.keyword}')">Previous</a></li>
+				<li><a class="page-prev" href="#hh" onClick="fn_prev(	${vo.product_id},'${pagination.page}', '${pagination.range}', '${pagination.rangeSize}','${pagination.searchType}','${pagination.keyword}')">Previous</a></li>
 
 				</c:if>
    	 			<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx">
-   	 					<a href="#"onClick="fn_pagination(
-   	 								${vo.product_id},'${idx}', '${pagination.range}', '${pagination.rangeSize}','${pagination.searchType}','${pagination.keyword}')">${idx}</a>
+   	 					<a class="page" href="#hh" onClick="fn_pagination(
+   	 								${vo.product_id},'${idx}', '${pagination.range}', '${pagination.rangeSize}','${pagination.searchType}','${pagination.keyword}')" >${idx}</a>
    	 			</c:forEach>
    	 			
    	 			<c:if test="${pagination.next}">
-   	 			<li>
-   	 				<a class="page-link" href="#" onClick="fn_next(
+   	 			<li class="page-next2">
+   	 				<a class="page-next" href="#hh" onClick="fn_next(
    	 								${vo.product_id},'${pagination.page}', '${pagination.range}', '${pagination.rangeSize}','${pagination.searchType}','${pagination.keyword}')"> Next</a>
    	 			</li>
    	 			</c:if>
@@ -121,18 +205,18 @@
  			<input type="text" name="keyword" id="keywordInput" value="${pagination.keyword}"/>
  			<button type="button" data-value="${vo.product_id}" id="searchBtn">검색</button>
  		</div>
- 		
- 		
-   			
+            </div>
+        </section>
+       
+    </body>
     
-</body>
-
 <script type="text/javascript">
+
 		$(function() {
 			$('#searchBtn').click(function() {
 				var  product_id =   $(this).attr('data-value');
 				self.location = "${pageContext.request.contextPath}/nike_shoesChk/"+product_id+"?searchType=" + $("#selectType").val() +"&keyword=" + encodeURIComponent($('#keywordInput').val());
-				
+			
 			})
 			
 		})
@@ -159,9 +243,10 @@
 			
 			url = url + "&searchType="+searchType;
 			url = url + "&keyword="+keyword;
-			
 			location.href = url;	
 		}
+			
+		
 		
 		function fn_next(product_id,page, range, rangeSize,searchType,keyword) {
 			
@@ -176,7 +261,8 @@
 			url = url + "&searchType="+searchType;
 			
 			url = url + "&keyword="+keyword;
-			location.href = url;		
+			
+			location.href = url;	
 		}
 
 
