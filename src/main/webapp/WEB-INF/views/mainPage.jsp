@@ -144,7 +144,13 @@
                     <i class="fas fa-fw fa-table"></i>
                     <span>자유게시판</span></a>
             </li>
-
+			<c:if test="${member.id eq 'tkdfladldi'}">
+			    <li class="nav-item">
+                <a class="nav-link" href="/admin">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>현재 계정은 관리자 입니다.</span></a>
+            </li>
+		    </c:if>
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -365,8 +371,8 @@
                        
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">${member.id}님 반갑습니다.</span>
-                            </a>
+                        <span style="font-size: 12px" class="m-0 font-weight-bold text-primary" >${member.id}님 반갑습니다.</span>
+                           </a>
                         
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -395,7 +401,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">인기 상품</h1>
+                        <h4 class="m-0 font-weight-bold text-primary">인기 상품</h4>
                         <a href="/cart" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> 장바구니</a>
                     </div>
@@ -523,7 +529,88 @@
                             </div>
                         </div>
                     </div>
-
+<!-- Portfolio Grid-->
+        <section class="page-section bg-light" id="portfolio">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="m-0 font-weight-bold text-primary">세계적인 브랜드</h2><br>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-sm-6 mb-4">
+                        <!-- Portfolio item 1-->
+                        <div class="portfolio-item">
+                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
+                                <img class="img-fluid" src="resources/assets/img/portfolio/1.jpg" alt="..." />
+                            </a>
+                            <div class="portfolio-caption">
+                                <div class="m-0 font-weight-bold text-primary">Threads</div>
+                                <div class="m-0 font-weight-bold text-primary">Illustration</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 mb-4">
+                        <!-- Portfolio item 2-->
+                        <div class="portfolio-item">
+                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal2">
+                                <img class="img-fluid" src="resources/assets/img/portfolio/2.jpg" alt="..." />
+                            </a>
+                            <div class="portfolio-caption">
+                                <div class="m-0 font-weight-bold text-primary">Explore</div>
+                                <div class="m-0 font-weight-bold text-primary">Graphic Design</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 mb-4">
+                        <!-- Portfolio item 3-->
+                        <div class="portfolio-item">
+                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal3">
+                                <img class="img-fluid" src="resources/assets/img/portfolio/3.jpg" alt="..." />
+                            </a>
+                            <div class="portfolio-caption">
+                                <div class="m-0 font-weight-bold text-primary">Finish</div>
+                                <div class="m-0 font-weight-bold text-primary">Identity</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
+                        <!-- Portfolio item 4-->
+                        <div class="portfolio-item">
+                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal4">
+                                <img class="img-fluid" src="resources/assets/img/portfolio/4.jpg" alt="..." />
+                            </a>
+                            <div class="portfolio-caption">
+                                <div class="m-0 font-weight-bold text-primary">Lines</div>
+                                <div class="m-0 font-weight-bold text-primary">Branding</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 mb-4 mb-sm-0">
+                        <!-- Portfolio item 5-->
+                        <div class="portfolio-item">
+                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal5">
+                                <img class="img-fluid" src="resources/assets/img/portfolio/5.jpg" alt="..." />
+                            </a>
+                            <div class="portfolio-caption">
+                                <div class="m-0 font-weight-bold text-primary">Southwest</div>
+                                <div class="m-0 font-weight-bold text-primary">Website Design</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <!-- Portfolio item 6-->
+                        <div class="portfolio-item">
+                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal6">
+                                <img class="img-fluid" src="resources/assets/img/portfolio/6.jpg" alt="..." />
+                            </a>
+                            <div class="portfolio-caption">
+                                <div class="m-0 font-weight-bold text-primary">Window</div>
+                                <div class="m-0 font-weight-bold text-primary">Photography</div><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
                     <!-- Content Row -->
                     <div class="row">
 

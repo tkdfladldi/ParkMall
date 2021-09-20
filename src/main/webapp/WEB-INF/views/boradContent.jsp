@@ -1,98 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 <!DOCTYPE html>
-
-<html>
-
-
-<head>
-<!-- jQuery -->
+<html lang="en">
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-
-
 <style>
-h2{
-text-align: center;
-}
-#label{
- font-size: 20px;
-}
-
-body {
-	padding-top: 70px;
-	padding-bottom: 30px;
-}
-
-.board_title {
-	font-weight : 600;
-	font-size : 22pt;
-	margin : 5pt;
-}
-
-.board_info_box {
-	color : #6B6B6B;
-	margin : 10pt;
-}
-
-.board_author {
-	font-size : 15pt;
-	margin-right : 10pt;
-}
-
-.board_date {
-	font-size : 15pt;
-}
-
-.board_content {
-	color : #444343;
-	font-size : 12pt;
-	margin : 10pt;
-}
-.replyUpdate{
-	padding: .25rem .5rem;
-    font-size: .875rem;
-    line-height: 1.5;
-    border-radius: .2rem;
-	color: #fff;
-    background-color: #007bff;
-    border-color: #007bff;
-
-}
-.replyDelet{
-	padding: .25rem .5rem;
-    font-size: .875rem;
-    line-height: 1.5;
-    border-radius: .2rem;
-	color: #fff;
-    background-color: #007bff;
-    border-color: #007bff;
-
-}
-.board_tag {
-	font-size : 11pt;
-	margin : 10pt;
-	padding-bottom : 10pt;
-}
-
 </style>
-<meta charset="UTF-8">
 
-</head>
 <script>
 
 function editReply(reg_id,borad_id,reg_content,memberId,replyName){
 	if(memberId==replyName){
 	$('.content'+reg_id).html(
 			"<textarea id ='edit_content"+reg_id+"'>"+reg_content+"</textarea>"
-	+"<style>#edit_content"+reg_id+"{width:740px; resize:none;}</style>"		
+	+"<style>#edit_content"+reg_id+"{width:580px; resize:none;}</style>"		
 	);
 	$('#idReplyUpdate'+reg_id).html(
 			"<a onclick='insertEditSave("+reg_id+','+borad_id+")' id='btnEdit'>완료</a>"
@@ -110,144 +33,589 @@ function editReply(reg_id,borad_id,reg_content,memberId,replyName){
 
 
 </script>
-<title>박사장몰</title>
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="${pageContext.request.contextPath}/resources/bo_css/styles.css" rel="stylesheet" />
-    </head>
-    <body id="page-top">
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-            <div class="container px-4">
-                <a class="navbar-brand" href="/mainPage">박사장몰</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto">
-                   		<c:if test="${member.id == null}">
-                        <li class="nav-item"><a class="nav-link" href="/login">로그인</a></li>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>박사장몰</title>
+
+    <!-- Custom fonts for this template -->
+    <link href="${pageContext.request.contextPath}/resources/admin_vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="${pageContext.request.contextPath}/resources/admin_css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this page -->
+    <link href="${pageContext.request.contextPath}/resources/admin_vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+</head>
+<style>
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #eee;
+}
+</style>
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+       <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">박사장몰</div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" href="/crawling">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>우리동네 날씨</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Interface
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>XXX</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Custom Components:</h6>
+                        <a class="collapse-item" href="buttons.html">Buttons</a>
+                        <a class="collapse-item" href="cards.html">Cards</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>XXX</span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Custom Utilities:</h6>
+                        <a class="collapse-item" href="utilities-color.html">Colors</a>
+                        <a class="collapse-item" href="utilities-border.html">Borders</a>
+                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
+                        <a class="collapse-item" href="utilities-other.html">Other</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Addons
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>회원관련</span>
+                </a>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                     <c:if test="${member.id == null}">
+                        <h6 class="collapse-header">로그인이 필요합니다</h6>
+                        <a class="collapse-item" href="#">xxx</a>
+                        <a class="collapse-item" href="#">xxx</a>
+                        <a class="collapse-item" href="#">xxx</a>
+                        <a class="collapse-item" href="#">xxx</a>
+                     </c:if>
+                      <c:if test="${member.id != null}">
+                       <h6 class="collapse-header">환영합니다 !</h6>
+                      	<a class="collapse-item" href="/logout">로그아웃</a>
+                      	<a class="collapse-item" href="/memberChk">내정보</a>
+                        <a class="collapse-item" href="/memberPassChange">비밀번호 변경</a>
+                      </c:if>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link" href="/nike_shoes">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>세일 상품</span></a>
+            </li>
+
+            <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link" href="/borad?p=1&">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>자유게시판</span></a>
+		    </li>
+					<c:if test="${member.id eq 'tkdfladldi'}">
+					    <li class="nav-item">
+		                <a class="nav-link" href="/admin">
+		                    <i class="fas fa-fw fa-table"></i>
+		                    <span>현재 계정은 관리자 입니다.</span></a>
+		            </li>
+				    </c:if>
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+            <!-- Sidebar Message -->
+            <div class="sidebar-card d-none d-lg-flex">
+                <p class="text-center mb-2">저희 박사장몰은 사람들과의 소통을 할 수 있는 채팅방이 있습니다.</p>
+                <a class="btn btn-success btn-sm" href="/echo/chat">채팅방 입장!</a>
+            </div>
+
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            
+            <div id="content">
+
+                <!-- Topbar -->
+                
+              <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                aria-labelledby="searchDropdown">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small"
+                                            placeholder="Search for..." aria-label="Search"
+                                            aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+
+                        <!-- Nav Item - Alerts -->
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-bell fa-fw"></i>
+                                <!-- Counter - Alerts -->
+                                <span class="badge badge-danger badge-counter"></span>
+                            </a>
+                            <!-- Dropdown - Alerts -->
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="alertsDropdown">
+                                <h6 class="dropdown-header">
+                                    Alerts Center
+                                </h6>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-primary">
+                                            <i class="fas fa-file-alt text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">December 12, 2019</div>
+                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-success">
+                                            <i class="fas fa-donate text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">December 7, 2019</div>
+                                        $290.29 has been deposited into your account!
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-warning">
+                                            <i class="fas fa-exclamation-triangle text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">December 2, 2019</div>
+                                        Spending Alert: We've noticed unusually high spending for your account.
+                                    </div>
+                                </a>
+                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                            </div>
+                        </li>
+
+                        <!-- Nav Item - Messages -->
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-envelope fa-fw"></i>
+                                <!-- Counter - Messages -->
+                                <span class="badge badge-danger badge-counter"></span>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="messagesDropdown">
+                                <h6 class="dropdown-header">
+                                    Message Center
+                                </h6>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="dropdown-list-image mr-3">
+                                        <div class="status-indicator bg-success"></div>
+                                    </div>
+                                    <div class="font-weight-bold">
+                                        <div class="text-truncate">Hi there! I am wondering if you can help me with a
+                                            problem I've been having.</div>
+                                        <div class="small text-gray-500">Emily Fowler Â· 58m</div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="dropdown-list-image mr-3">
+                                        <div class="status-indicator"></div>
+                                    </div>
+                                    <div>
+                                        <div class="text-truncate">I have the photos that you ordered last month, how
+                                            would you like them sent to you?</div>
+                                        <div class="small text-gray-500">Jae Chun Â· 1d</div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="dropdown-list-image mr-3">
+                                        <div class="status-indicator bg-warning"></div>
+                                    </div>
+                                    <div>
+                                        <div class="text-truncate">Last month's report looks great, I am very happy with
+                                            the progress so far, keep up the good work!</div>
+                                        <div class="small text-gray-500">Morgan Alvarez Â· 2d</div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="dropdown-list-image mr-3">
+                                        <div class="status-indicator bg-success"></div>
+                                    </div>
+                                    <div>
+                                        <div class="text-truncate">Am I a good boy? The reason I ask is because someone
+                                            told me that people say this to all dogs, even if they aren't good...</div>
+                                        <div class="small text-gray-500">Chicken the Dog Â· 2w</div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+                            </div>
+                        </li>
+					
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <c:if test="${member.id == null}">
+                        <li class="nav-item dropdown no-arrow">
+                       
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">비회원</span>
+                            </a>
+                        
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="/login">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    		로그인
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    		아이디 찾기
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    		비밀번호 찾기
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/member">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    		회원가입
+                                </a>
+                            </div>
+                        </li>
                         </c:if>
-                        <c:if test="${member.id != null}">
-                        <li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
+                         <c:if test="${member.id != null}">
+                        <li class="nav-item dropdown no-arrow">
+                       
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span style="font-size: 12px" class="m-0 font-weight-bold text-primary">${member.id}님 반갑습니다.</span>
+                            </a>
+                        
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="/memberChk">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    		내정보
+                                </a>
+                                <a class="dropdown-item" href="/memberPassChange">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    		비밀번호 변경
+                                </a>
+                                <a class="dropdown-item" href="/logout">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    		로그아웃
+                                </a>
+                            </div>
+                        </li>
                         </c:if>
-                        <li class="nav-item"><a class="nav-link" href="/shopping">쇼핑하기</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/echo/chat">채팅방</a></li>
                     </ul>
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <nav class="navbar navbar-expand navbar-light bg-light mb-4">
+                                         <h4 class="m-0 font-weight-bold text-primary">게시글</h4>
+                                        <ul class="navbar-nav ml-auto">
+                                            <li class="nav-item dropdown">
+                                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    	게시물 설정
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right animated--grow-in" aria-labelledby="navbarDropdown">
+                                                	<a class="dropdown-item" href="/boradForm">새 글 쓰기</a>
+                                                	<c:if test="${member.id eq boradContent.borad_name}">
+                                                    <a class="dropdown-item" href="#" id="btnUpdate" onclick="location.href='/boradUpdate/${boradContent.borad_id}'">수정</a>
+                                                    <a class="dropdown-item" href="#" id="btnDelete" onclick="location.href='/boradDelete/${boradContent.borad_id}'">삭제</a>
+                                                   	</c:if>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="/borad?p=1&">목록으로 이동</a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                   </nav>
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">작성자 : ${boradContent.borad_name} </h6>
+                            <h6 style="float: right;" class="m-0 font-weight-bold text-primary"> <fmt:formatDate pattern="yyyy년MM월dd일  hh시mm분ss초" value="${boradContent.borad_time}"/></h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                            	 <h5 class="m-0 font-weight-bold text-primary">제목 : ${boradContent.borad_title}</h5>
+                            <hr>
+                                <h6 class="m-0 font-weight-bold text-primary">${boradContent.borad_contents}</h6>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            		<form id="form" method="post"
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group" style=" border: 3px groove;
+   								  border-radius: 20px; position: relative; left: 250px">
+   								  <input type="hidden"  name="borad_id" value="${boradContent.borad_id}"/>
+                            <input style="width: 700px;" type="text" class="form-control bg-light border-0 small" name="reg_content" placeholder="댓글"
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                            
+                                <button class="btn btn-primary" id="submit"  type="button">
+                                		<h6 class="collapse-header">작성</h6>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+               <h6 style="position: relative; left: 600px"class="m-0 font-weight-bold text-primary"><br><br>댓글 목록</h6>
+                     <hr style="border:1px solid gray;">
+                     
+                     
+                     <c:forEach var="replyList" items="${replyList}">
+            			<div class="col-lg-6" style="position: relative; left: 300px;">
+
+                            <!-- Dropdown Card Example -->
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">댓글 작성자 : ${replyList.reg_name}</h6>
+                                    <div class="dropdown no-arrow">
+                                       		<c:if test="${member.id eq boradContent.borad_name}">
+                                            <a class="m-0 font-weight-bold text-primary" href="#" id="idReplyUpdate${replyList.reg_id}" onclick="editReply(${replyList.reg_id},${boradContent.borad_id},'${replyList.reg_content}','${member.id}','${replyList.reg_name}')">수정</a>
+                                            <a class="replyDelet m-0 font-weight-bold text-primary" href="#" id="idReplyDelet${replyList.reg_id}"data-value="${replyList.reg_id}" data-value2="${replyList.reg_name}">삭제</a>
+                        					</c:if>
+                                    </div>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="content${replyList.reg_id} card-body">
+                           			         ${replyList.reg_content}
+                                </div>
+                            </div>
+                        </div>
+           	 </c:forEach>
+            </div>
+            
+            	
+						    <script>
+						  
+						    
+						    
+						    
+						    </script>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2020</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">Ã</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
                 </div>
             </div>
-        </nav>
-<body>
-	<article>
-		<div class="container" role="main">
+        </div>
+    </div>
 
-			<h2>게시글</h2>
-			<div class="bg-white rounded shadow-sm">
+    <!-- Bootstrap core JavaScript-->
+    <script src="/resources/admin_vendor/jquery/jquery.min.js"></script>
+    <script src="/resources/admin_vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-				<div class="mb-3">
-					<label for="title">제목</label>
-					<input type="text" class="form-control" name="borad_title" id="title" value="${boradContent.borad_title}" readonly>
-				</div>
-				<div class="mb-3">
-					<label for="reg_id">작성자</label>
-					<input type="text" name ="borad_name" class="form-control" value="${member.id}" readonly/>
-				</div>
+    <!-- Core plugin JavaScript-->
+    <script src="/resources/admin_vendor/jquery-easing/jquery.easing.min.js"></script>
 
-				<div class="mb-3">
-					<label for="content">내용</label>
-					<textarea class="form-control" rows="5" name="borad_contents" id="content" readonly>${boradContent.borad_contents}</textarea>
-				</div>
-          
+    <!-- Custom scripts for all pages-->
+    <script src="/resources/admin_js/sb-admin-2.min.js"></script>
 
-			</div>
-			작성날짜 : 
-            <fmt:formatDate pattern="yyyy년MM월dd일  hh시mm분ss초" value="${boradContent.borad_time}"/>
-			
-			<div style="margin-top : 20px">
-				<c:if test="${member.id eq boradContent.borad_name}">
-				<button type="button" class="btn btn-sm btn-primary" id="btnUpdate" onclick="location.href='/boradUpdate/${boradContent.borad_id}'">수정</button>
+    <!-- Page level plugins -->
+    <script src="/resources/admin_vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="/resources/admin_vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-				<button type="button" class="btn btn-sm btn-primary" id="btnDelete" onclick="location.href='/boradDelete/${boradContent.borad_id}'">삭제</button>
-				</c:if>
-				<button type="button" class="btn btn-sm btn-primary" id="btnList" onclick="location.href='/borad?p=1&'">목록</button>
-		
-			</div>
-			
-		</div>
-		
-			
-	</article>
-			
-			<br><form style="position: absolute; left: 200px; width: 1100px; height: 70px;" 
-			id="form" method="post">
-				  
-				   
-			 <div>
-				  <input type="hidden"  name="borad_id" value="${boradContent.borad_id}"/>
-					    <label id="label" for="content">댓글 </label><input style= "width : 800px;height : 50px;" type="text" id="content" name="reg_content" />
-				  
-			 	 <button type="button" id="submit" class="replyWriteBtn">작성</button>
-			  </div>
-			</form>
-			
-			
-	<c:forEach var="replyList" items="${replyList}">
-			<div style="margin-top : 100px;margin-left: 200px;background-color: lightblue; width: 1100px; height: 70px;">
-			
-				
-			        <p>
-			     	   작성자 : ${replyList.reg_name}<br/>
-			        </p>
-			        
-				<div class="content${replyList.reg_id}">
-      				  <p>내용 : ${replyList.reg_content}</p>
-				</div>
-				
-				<button type="button" class="replyUpdate" id="idReplyUpdate${replyList.reg_id}" onclick="editReply(${replyList.reg_id},${boradContent.borad_id},'${replyList.reg_content}','${member.id}','${replyList.reg_name}')">수정</button>
-				
-				<button type="button" class="replyDelet" id="idReplyDelet${replyList.reg_id}"data-value="${replyList.reg_id}" data-value2="${replyList.reg_name}">삭제</button>
-			
-			</div>
-	</c:forEach>
+    <!-- Page level custom scripts -->
+   <script src="/resources/admin_js/demo/datatables-demo.js"></script>
+
 </body>
-<script>
 
-$(function(){
-    $('#submit').on("click",function () {
-        var form1 = $("#form").serialize();
-	$.ajax({
-		type: "post",
-		url : "/boradContent/replyInsert",
-		data : form1,
-		dataType: 'json',
-		success : function(n) {
-			if(n==0){
-				location.reload();
-				 alert("댓글 저장 완료.")
-			}else if(n==1){
-				alert("로그인이 필요합니다.")
+<script>
+		
+		$(function(){
+		    $('#submit').on("click",function () {
+		        var form1 = $("#form").serialize();
+			$.ajax({
+				type: "post",
+				url : "/boradContent/replyInsert",
+				data : form1,
+				dataType: 'json',
+				success : function(n) {
+					if(n==0){
+						location.reload();
+						 alert("댓글 저장 완료.")
+					}else if(n==1){
+						alert("로그인이 필요합니다.")
+					}
+		         }
+			})
 			}
-         }
-	})
-	}
-)});
-$(function(){
-    $('.replyDelet').on("click",function () {
-    	var value = $(this).attr('data-value');
-    	var value2 = $(this).attr('data-value2');
-	$.ajax({
-		type: "post",
-		url : "/boradContent/replyDelete",
-		data : {"reg_id" : value ,"reg_name":value2},
-		dataType: 'json',
-		success : function(n) {
-			if(n==1){
-				alert("본인이 작성한 댓글만 삭제 할 수 있습니다.")
-			}else if(n==2){
-				location.reload();
-				alert("댓글 삭제 완료")
+		)});
+
+		$(function(){
+		    $('.replyDelet').on("click",function () {
+		    	var value = $(this).attr('data-value');
+		    	var value2 = $(this).attr('data-value2');
+			$.ajax({
+				type: "post",
+				url : "/boradContent/replyDelete",
+				data : {"reg_id" : value ,"reg_name":value2},
+				dataType: 'json',
+				success : function(n) {
+					if(n==1){
+						alert("본인이 작성한 댓글만 삭제 할 수 있습니다.")
+					}else if(n==2){
+						location.reload();
+						alert("댓글 삭제 완료")
+					}
+				}
+			})
 			}
-		}
-	})
-	}
-)});
+		)});
 </script>
+
 </html>

@@ -22,7 +22,12 @@ import com.park.mall.service.ReportService;
 public class AdminController {
 	@Inject ReportService reportService;
 	@Inject MemberService memberService;
-	
+	// 관리자 페이지에 신고리스트 출력
+		 @RequestMapping(value = "/boradContent2", method = RequestMethod.GET)
+			public String mainPage2(HttpSession session) throws Exception {
+				return "boradContent2";
+				
+			}
 	// 관리자 페이지에 신고리스트 출력
 	 @RequestMapping(value = "/admin", method = RequestMethod.GET)
 		public String chat(HttpSession session) throws Exception {
