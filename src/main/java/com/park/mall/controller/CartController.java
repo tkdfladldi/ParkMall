@@ -1,6 +1,7 @@
 package com.park.mall.controller;
 import java.util.ArrayList;
-
+import java.util.Enumeration;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -14,16 +15,27 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.park.mall.model.MemberVO;
 import com.park.mall.model.Tbl_ProductVO;
 import com.park.mall.service.Tbl_ProductService;
-
+		
 @Controller
 public class CartController {
-
 	@Inject Tbl_ProductService tbl_ProductService;
-	
 	@RequestMapping(value = "/cartDelet/{Status.index}" ,method = RequestMethod.GET)
 		public String cartDelet(@PathVariable ("Status.index") int index, HttpSession session) throws Exception {
-		ArrayList<Tbl_ProductVO> arrProductVO = (ArrayList<Tbl_ProductVO>) session.getAttribute("cartList");
-		arrProductVO.remove(index);
+		ArrayList<Tbl_ProductVO> productVO = (ArrayList<Tbl_ProductVO>) session.getAttribute("cartList");
+		productVO.remove(index);
+		
+		int productPriceAdd = 0;
+		int	productPriceChk = 0;
+		// 장바구니 상품 총 가격 계산
+		for(int i = 0; i<productVO.size(); i++) {
+				if(productVO.get(i).getProduct_amount() > 1) {
+					productPriceChk = productVO.get(i).getProduct_price() * productVO.get(i).getProduct_amount();
+				}else{
+					productPriceChk += productVO.get(i).getProduct_price();
+				}
+				productPriceAdd += productPriceChk;
+		}
+		session.setAttribute("productPriceAdd", productPriceAdd);
 			return "redirect:/cart";
 	}
 		
@@ -36,8 +48,9 @@ public class CartController {
 	public String cartPost(@RequestParam("amount") int amount,int product_id,Tbl_ProductVO vo ,HttpSession session) throws Exception {
 		ArrayList<Tbl_ProductVO> productVO = null;
 		productVO = (ArrayList<Tbl_ProductVO>)session.getAttribute("cartList");
-		MemberVO loginVo = (MemberVO) session.getAttribute("member");
 		
+		MemberVO loginVo = (MemberVO) session.getAttribute("member");
+	
 		if(productVO == null) {
 			productVO = new ArrayList<Tbl_ProductVO>();
 		}
@@ -46,6 +59,21 @@ public class CartController {
 		vo.setProduct_amount(amount);
 		productVO.add(vo);
 		session.setAttribute("cartList", productVO);
+		
+		int productPriceAdd = 0;
+		int	productPriceChk = 0;
+		// 장바구니 상품 총 가격 계산
+		for(int i = 0; i<productVO.size(); i++) {
+				if(productVO.get(i).getProduct_amount() > 1) {
+					productPriceChk = productVO.get(i).getProduct_price() * productVO.get(i).getProduct_amount();
+				}else{
+					productPriceChk += productVO.get(i).getProduct_price();
+				}
+				productPriceAdd += productPriceChk;
+		}
+	
+		session.setAttribute("productPriceAdd", productPriceAdd);
+		
 		return "cart";
 	}
 }

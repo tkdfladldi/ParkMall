@@ -132,7 +132,6 @@ public class Pagination {
 
 	public void pageInfo(int page,int range ,int ListCnt) {
 		this.page = page;
-
 		this.range = range;
 		
 		this.pageCnt = (int) Math.ceil((double)ListCnt/listSize);
