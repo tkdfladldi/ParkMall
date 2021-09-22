@@ -2,6 +2,8 @@ package com.park.mall.model;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class ReplyVO {
 		private int reg_id;
 		private String reg_name;
@@ -40,12 +42,14 @@ public class ReplyVO {
 		public void setBorad_id(int borad_id) {
 			this.borad_id = borad_id;
 		}
-		
 		@Override
 		public String toString() {
 			return "ReplyVO [reg_id=" + reg_id + ", reg_name=" + reg_name + ", reg_date=" + reg_date + ", reg_content="
 					+ reg_content + ", borad_id=" + borad_id + "]";
 		}
+		
+
+		
 	    
 	    
 	

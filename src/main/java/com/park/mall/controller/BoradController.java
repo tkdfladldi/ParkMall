@@ -1,6 +1,8 @@
 package com.park.mall.controller;
 import java.io.PrintWriter;
 
+import java.util.ArrayList;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.park.mall.model.BoradVO;
 import com.park.mall.model.MemberVO;
@@ -73,15 +76,21 @@ public class BoradController {
 	}
 //	게시글 삭제 버튼 기능
 	@RequestMapping(value ="/boradDelete/{boradContent.borad_id}", method = RequestMethod.GET)
-	public String boradDelete(@PathVariable("boradContent.borad_id") int borad_id, HttpSession session, BoradVO vo,HttpServletResponse response)throws Exception{
+	public String boradDelete(@PathVariable("boradContent.borad_id") int borad_id, HttpSession session, BoradVO vo,HttpServletResponse response
+			,RedirectAttributes rttr)throws Exception{
 		vo = boardService.boradContent(borad_id);
 		String voName = vo.getBorad_name();
 		MemberVO sessionVo = (MemberVO)session.getAttribute("member");
-		
+		ArrayList<ReplyVO> replyVO= (ArrayList<ReplyVO>) replyService.selReply(borad_id);
 				if(sessionVo == null) {
+					
 				return "redirect:/borad?p=1&";
 			}
 		else if(sessionVo.getId().equals(voName)) {
+				if(replyVO.size() > 0){
+					rttr.addFlashAttribute("boardDelMsg", "x");
+					return "redirect:/boradContent/"+borad_id;
+				}
 				boardService.boradDelete(borad_id);
 				PrintWriter out = response.getWriter();			 
 				// location.href =/borad?p=1&'; 했을경우 뒤에 boradDelete주소가 따라붙어서 window. 을 이용하여 다른 url 풀경로로 지정 

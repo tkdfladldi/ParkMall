@@ -12,7 +12,9 @@
 									 productBoard_date,
 									 productBoard_hit,
 									 productBoard_name,
-									 product_id
+									 product_id,
+									 fileName,
+									 fileFakeName
 									 )
 									 VALUES(
 												  #{productBoard_id, jdbcType=NUMERIC}
@@ -21,6 +23,8 @@
 												, #{productBoard_hit , jdbcType=NUMERIC}
 												, #{productBoard_name}
 												, #{product_id}
+												, #{fileName}
+												, #{fileFakeName}
 											)
 									 
 		</insert>

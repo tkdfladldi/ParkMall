@@ -10,6 +10,11 @@
 </style>
 
 <script>
+// 댓글이 있는 게시물을 삭제 시도 했을 경우
+var boardDelMsg = '${boardDelMsg}';
+	if(boardDelMsg === 'x'){
+		alert('댓글이 존재하는 게시물은 삭제 할 수 없습니다..');
+	}
 
 function editReply(reg_id,borad_id,reg_content,memberId,replyName){
 	if(memberId==replyName){
@@ -490,7 +495,7 @@ hr {
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h6 class="m-0 font-weight-bold text-primary">댓글 작성자 : ${replyList.reg_name}</h6>
                                     <div class="dropdown no-arrow">
-                                       		<c:if test="${member.id eq boradContent.borad_name}">
+                                       		<c:if test="${member.id eq replyList.reg_name}">
                                             <a class="m-0 font-weight-bold text-primary" href="#" id="idReplyUpdate${replyList.reg_id}" onclick="editReply(${replyList.reg_id},${boradContent.borad_id},'${replyList.reg_content}','${member.id}','${replyList.reg_name}')">수정</a>
                                             <a class="replyDelet m-0 font-weight-bold text-primary" href="#" id="idReplyDelet${replyList.reg_id}"data-value="${replyList.reg_id}" data-value2="${replyList.reg_name}">삭제</a>
                         					</c:if>

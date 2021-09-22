@@ -280,23 +280,11 @@
                                     Message Center
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_1.svg"
-                                            alt="...">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div class="font-weight-bold">
-                                        <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                                            problem I've been having.</div>
-                                        <div class="small text-gray-500">Emily Fowler Â· 58m</div>
-                                    </div>
+                                   
+                                   
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg"
-                                            alt="...">
-                                        <div class="status-indicator"></div>
-                                    </div>
+                                    
                                     <div>
                                         <div class="text-truncate">I have the photos that you ordered last month, how
                                             would you like them sent to you?</div>
@@ -304,11 +292,6 @@
                                     </div>
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_3.svg"
-                                            alt="...">
-                                        <div class="status-indicator bg-warning"></div>
-                                    </div>
                                     <div>
                                         <div class="text-truncate">Last month's report looks great, I am very happy with
                                             the progress so far, keep up the good work!</div>
@@ -488,10 +471,11 @@
                             <div class="table-responsive">
                                 <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0">
 								            <tbody><tr>
-											        <th><h6 class="m-0 font-weight-bold text-primary">번호</h6></th>
-											        <th><h6 class="m-0 font-weight-bold text-primary">내용</h6></th>
-											        <th><h6 class="m-0 font-weight-bold text-primary">작성자</h6></th>
-											        <th><h6 class="m-0 font-weight-bold text-primary">작성날짜</h6></th>
+											        <th><h6 align="center" class="m-0 font-weight-bold text-primary">번호</h6></th>
+											        <th><h6 align="center" class="m-0 font-weight-bold text-primary">내용</h6></th>
+											        <th><h6 align="center" class="m-0 font-weight-bold text-primary">작성자</h6></th>
+											        <th><h6 align="center" class="m-0 font-weight-bold text-primary">작성날짜</h6></th>
+											        <th><h6 align="center" class="m-0 font-weight-bold text-primary">사진</h6></th>
 											    </tr>
 											 <c:forEach var="productBoardList" items="${productBoardList}">
 											    <tr>
@@ -502,6 +486,12 @@
 											             <!-- 원하는 날짜형식으로 출력하기 위해 fmt태그 사용 -->
 				      								      <fmt:formatDate pattern="yyyy년MM월dd일  hh시mm분ss초" value="${productBoardList.productBoard_date}"/>
 											        </td>
+											        <c:if test="${productBoardList.fileFakeName != null}">
+											         <td><img style="position:relative;left:25px; width: 230px; height: 120px;" src="../resources/uplodFile/${productBoardList.fileFakeName}"/></td>
+											  		</c:if>
+											  		 <c:if test="${productBoardList.fileFakeName == null}">
+											  		<td></td>
+											  		</c:if>
 											    </tr>    
 											  </c:forEach>
                                 </tbody></table>
@@ -509,7 +499,10 @@
                         </div>
                         
                     </div>
-                    <div class="col-sm-12 col-md-7" style="position: relative;left: 450px; bottom: 30px;">
+                    
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+            	<div class="col-sm-12 col-md-7" style="position: relative;left: 450px; bottom: 30px;">
 					 <div class="dataTables_paginate paging_simple_numbers">
 							
 						<ul class="pagination">
@@ -532,18 +525,17 @@
 				     </div>
 				     
 							    <div>
-							    	<form id="form" style="position: relative; left: 330px;"  method="post">
+							    	<form id="form" style="position: relative; left: 330px;"  method="post" enctype="multipart/form-data">
 							    		<div >
 							    		 <label >리뷰 작성   : </label>
 							    			<input id="reView" style="height: 60px; width: 300px;" name="productBoard_contents">
 							    			<input type="hidden" name="product_id" value="${vo.product_id}">
+							    			<input type="file" id="file" name="file" value="사진업로드">
 							    		</div>
 							    			<button class="btn btn-primary btn-user btn-block" style="position: relative;width: 60px; height: 31px; left: 381px; bottom: 43px;" type="button" id="insert">작성</button>
 							    	</form>
 							   	</div>
 				 	</div>
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>Copyright &copy; Your Website 2021</span>
@@ -656,12 +648,16 @@ $('#insert').on("click",function () {
 		$("#reView").focus();
 		return false;
 	}
-
-    var form = $("#form").serialize();
+	
+	var form = $('#form')[0]; 
+	 var data = new FormData(form);  
     $.ajax({
+    	enctype: 'multipart/form-data',
 		type: "post",
 		url : "/insertProductBorad",
-		data : form,
+		data : data,
+		processData: false,    
+        contentType: false, 
 		dataType: 'json',
 		success : function(n) {
 			if(n==0){
