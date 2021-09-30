@@ -28,6 +28,9 @@
 											)
 									 
 		</insert>
+			<delete id="productBoardDel">
+				delete from productboard where productBoard_id = #{productBoard_id};
+			</delete>
 		
 			<select id="getBoardList" resultType="com.park.mall.model.ProductBoardVO">
 					SELECT

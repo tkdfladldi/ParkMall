@@ -14,5 +14,5 @@ public interface ProductBoardService {
 	
 	public List<ProductBoardVO> getBoardList(Pagination pagination);
 	
-
+	public void productBoardDel(ProductBoardVO productBoardVO);
 }

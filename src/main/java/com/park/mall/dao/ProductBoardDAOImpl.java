@@ -33,4 +33,11 @@ public class ProductBoardDAOImpl implements ProductBoardDAO{
 		return sqlSession.selectList("com.park.mall.productBoard.getBoardList", pagination);
 	}
 
+	@Override
+	public void productBoardDel(ProductBoardVO productBoardVO) {
+		
+		 sqlSession.delete("com.park.mall.productBoard.productBoardDel", productBoardVO);
+		
+	}
+
 }

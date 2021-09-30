@@ -32,4 +32,10 @@ public class ProductBoardServiceImpl implements ProductBoardService{
 		return productBoardDAO.getBoardList(pagination);
 	}
 
+	@Override
+	public void productBoardDel(ProductBoardVO productBoardVO) {
+		productBoardDAO.productBoardDel(productBoardVO);
+		
+	}
+
 }

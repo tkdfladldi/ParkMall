@@ -35,7 +35,6 @@
     <link href="${pageContext.request.contextPath}/resources/admin_css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
-
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -430,6 +429,19 @@
                 <!-- /.container-fluid -->
 
             </div>
+            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" style="position: relative; top : 24px;">
+             					 <div>
+							    	<form id="form" style="position: relative; top : 3px; left: 350px;"  method="post" enctype="multipart/form-data">
+							    		<div>
+							    		 <br><label >리뷰 작성   : </label>
+							    			<input id="reView" style="height: 68px; width: 300px;" name="productBoard_contents">
+							    			<input type="hidden" name="product_id" value="${vo.product_id}">
+							    			<input style="position: relative; left: 70px;" type="file" id="file" name="file" value="사진업로드">
+							    		</div>
+							    			<button class="btn btn-primary btn-user btn-block" style="position: relative;width: 60px; height: 31px; left: 381px; bottom: 43px;" type="button" id="insert">작성</button>
+							    	</form>
+							   	</div>
+            </nav>
            
              <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
             					<!-- Topbar Search -->
@@ -479,7 +491,8 @@
 											    </tr>
 											 <c:forEach var="productBoardList" items="${productBoardList}">
 											    <tr>
-											        <td>${productBoardList.productBoard_id}</td>
+											        <td style="text-align: center; width: 75px;">${productBoardList.productBoard_id}
+											        		<c:if test="${productBoardList.productBoard_name eq member.id }"><button style="width: 70px" onclick="productBoardDel(${productBoardList.productBoard_id},'${productBoardList.productBoard_name}','${productBoardList.fileFakeName}');" class="btn btn-primary btn-user btn-block" type="button">삭제</button> </c:if></td>
 											        <td>${productBoardList.productBoard_contents}</td>
 											        <td>${productBoardList.productBoard_name}</td>
 											       <td>
@@ -523,18 +536,6 @@
 				       	</ul>
 				       		
 				     </div>
-				     
-							    <div>
-							    	<form id="form" style="position: relative; left: 330px;"  method="post" enctype="multipart/form-data">
-							    		<div >
-							    		 <label >리뷰 작성   : </label>
-							    			<input id="reView" style="height: 60px; width: 300px;" name="productBoard_contents">
-							    			<input type="hidden" name="product_id" value="${vo.product_id}">
-							    			<input type="file" id="file" name="file" value="사진업로드">
-							    		</div>
-							    			<button class="btn btn-primary btn-user btn-block" style="position: relative;width: 60px; height: 31px; left: 381px; bottom: 43px;" type="button" id="insert">작성</button>
-							    	</form>
-							   	</div>
 				 	</div>
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
@@ -587,6 +588,24 @@
 
 </body>
 <script type="text/javascript">
+		function productBoardDel(productBoard_id,productBoard_name,fileFakeName) {
+			$.ajax({
+				type: "post",
+				url : "/productBoardDel",
+				data : {"productBoard_id" : productBoard_id, "fileFakeName" : fileFakeName,"productBoard_name":productBoard_name},
+				dataType: 'json',
+				success : function(n) {
+					if(n==0){
+						location.reload();
+						 alert("삭제 완료.")
+					}else if(n==1){
+						alert("오류.")
+					}
+		         }
+			})
+			};
+		
+		
 
 		$(function() {
 			$('#searchBtn').click(function() {

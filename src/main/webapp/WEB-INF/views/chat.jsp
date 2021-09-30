@@ -521,10 +521,11 @@
 	//채팅 작성자 클릭 신고 페이지
 	function report(chatMember_id) {
 		var win = window.open("", "Win", "width=500,height=600");
+		win.document.write("<head><link href=${pageContext.request.contextPath}/resources/admin_vendor/fontawesome-free/css/all.min.css rel=stylesheet type=text/css>");
 		win.document.write("<h2>신고하기</h2><form method=post action=/echo/chat/report><label>아이디 :</label><input type=text  name=member_id value="+chatMember_id+"><br><label>신고 내용 입력란 </label><br><textarea name=report_contents placeholder=신고내용></textarea>"
 		);
 		win.document.write("<br><label>신고자 :</label><input type=text name=reporter_Id value=${member.id} readonly>");
-		win.document.write("<button type=submit id=btnSave>전송</button></from>");
+		win.document.write("<button class=btn btn-primary btn-user btn-block type=submit id=btnSave>전송</button></from>");
 	}
 	
 </script>

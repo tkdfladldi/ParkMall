@@ -13,5 +13,7 @@ public interface ProductBoardDAO {
 	public int getBoardListCnt(Search search) throws Exception;
 	
 	public List<ProductBoardVO> getBoardList(Pagination pagination);
+	
+	public void productBoardDel(ProductBoardVO productBoardVO);
 
 }

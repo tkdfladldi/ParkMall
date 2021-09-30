@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class CrawlingController {
-	
+	// 우리동네 날씨 정보 가져오기 
 	@RequestMapping(value = "/crawling", method = RequestMethod.GET)
 	public String member(Model model) throws IOException {
 		  String URL = "https://weather.naver.com/today";
