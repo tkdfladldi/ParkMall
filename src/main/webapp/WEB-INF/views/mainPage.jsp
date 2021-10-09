@@ -6,7 +6,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-
+<script>
+var Blacklist = '${Blacklist}';
+if(Blacklist === 'y'){
+	alert('이 계정은 블랙리스트 상태입니다 관리자에게 문의하세요.');
+}
+</script>
 <head>
 
     <meta charset="utf-8">

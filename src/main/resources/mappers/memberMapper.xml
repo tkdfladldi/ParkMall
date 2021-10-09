@@ -8,7 +8,7 @@
 <mapper namespace="com.park.mall.member">
 			<!-- 회원가입 -->
 		<insert id="insertMember" parameterType="com.park.mall.model.MemberVO">
-			INSERT INTO memberuser(ID,PW,NAME,PHONE,EMAIL,INDATE)
+			INSERT INTO memberuser(ID,PW,NAME,PHONE,EMAIL,INDATE,blacklist)
 			VALUES(
 				  #{id}
 				, #{pw}
@@ -16,6 +16,7 @@
 				, #{phone}
 				, #{email}
 				, now()
+				, #{blacklist}
 			)
 		</insert>	
 			<!-- 아이디 중복 체크 -->

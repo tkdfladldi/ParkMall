@@ -8,7 +8,7 @@
 <head>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <meta charset="UTF-8">
-<title>박사장몰 비트코인 정보</title>
+<title>박사장몰</title>
 </head>
 <body>
 <h4> 날씨 정보  </h4>

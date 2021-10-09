@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.park.mall.model.MemberVO;
 import com.park.mall.service.MemberService;
@@ -46,7 +47,7 @@ public class MemberController {
 	
 	//로그인
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(MemberVO memberVo,HttpServletRequest req, HttpServletResponse response,HttpSession session) throws Exception {
+	public String login(MemberVO memberVo,HttpServletRequest req, HttpServletResponse response,HttpSession session,RedirectAttributes rttr) throws Exception {
 		
 		session = req.getSession();
 		MemberVO loginVo = memberService.login(memberVo);
@@ -60,9 +61,7 @@ public class MemberController {
 		else if(loginVo != null &&  pwdEncoder.matches(memberVo.getPw(), loginVo.getPw())){
 			//로그인을 했을때 블랙리스트 확인
 			if(loginVo.getBlacklist().equals("Y")) {
-				PrintWriter out = response.getWriter();	
-				out.println("<script>alert('이 계정은 블랙리스트 상태입니다 관리자에게 문의하세요.');</script>");	 
-				out.flush();
+				 rttr.addFlashAttribute("Blacklist","y");
 				return "redirect:/";
 			}
 			session.setAttribute("member", loginVo);
@@ -84,6 +83,7 @@ public class MemberController {
 	//회원가입
 	@RequestMapping(value = "/insertMember", method = RequestMethod.POST)
 	public String memberPost(MemberVO memberVo,HttpServletResponse response,Model model) throws Exception {		
+		memberVo.setBlacklist("N");
 		int result = memberService.idchk(memberVo);
 		if(result == 1) {		 
 			PrintWriter out = response.getWriter();			 
@@ -103,6 +103,7 @@ public class MemberController {
 		out.flush();
 		return "mainPage";
 		}
+		
 		return "mainPage";
 		
 	}
@@ -131,6 +132,7 @@ public class MemberController {
 			 PrintWriter out = response.getWriter();	
 				out.println("<script>alert('비밀번호가 맞지 않습니다.');</script>");
 				out.flush();
+				
 			 return "mainPage";
 			 
 		 }
