@@ -5,8 +5,11 @@ https://youtu.be/ckELsdneIm8
 기술스택
 
 Front-End : html5, css, JavaScript(Jquery 라이브러리), bootstrap
+
 Back-End: Java, Spring Framework(MVC), mybatis , JSP , JSTL(라이브러리)
+
 DB: mysql
+
 형상관리: git
 
 프로젝트 주요기능
