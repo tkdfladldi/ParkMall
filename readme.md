@@ -2,7 +2,7 @@ https://youtu.be/ckELsdneIm8
 
 [![Video](http://img.youtube.com/vi/ckELsdneIm8/0.jpg)](https://youtu.be/ckELsdneIm8) 
 
-기술스택
+#기술스택
 
 Front-End : html5, css, JavaScript(Jquery 라이브러리), bootstrap
 
@@ -12,7 +12,7 @@ DB: mysql
 
 형상관리: git
 
-프로젝트 주요기능
+#프로젝트 주요기능
 
 메인페이지 : 상품 DB 정보 div를 상품개수 만큼 생성
 
