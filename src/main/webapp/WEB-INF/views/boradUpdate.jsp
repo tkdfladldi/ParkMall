@@ -177,6 +177,7 @@ hr {
                     <i class="fas fa-fw fa-table"></i>
                     <span>자유게시판</span></a>
             </li>
+            
 			<c:if test="${member.id eq 'tkdfladldi'}">
 			    <li class="nav-item">
                 <a class="nav-link" href="/admin">
@@ -197,7 +198,10 @@ hr {
                 <p class="text-center mb-2">저희 박사장몰은 사람들과의 소통을 할 수 있는 채팅방이 있습니다.</p>
                 <a class="btn btn-success btn-sm" href="/echo/chat">채팅방 입장!</a>
             </div>
-
+			<div class="sidebar-card d-none d-lg-flex">
+                <p class="text-center mb-2">박사장몰에서 신규 커뮤니티 사이트를 오픈 했습니다.</p>
+                <a class="btn btn-success btn-sm" href="/newhome">모아채팅 사이트 입장!</a>
+            </div>
         </ul>
         <!-- End of Sidebar -->
 

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.park.mall.dao.NewMapper">
+
+<insert id="insertSleep" parameterType="com.park.mall.model.SleepVO">
+	insert into sleep value( #{sleep} ,#{userId}); 
+</insert>
+
+
+<select id="selectSleep" parameterType="com.park.mall.model.SleepVO" resultType="com.park.mall.model.SleepVO">
+
+ select * from sleep where userId = #{userId};
+
+
+</select>
+<delete id="sleepDelete" parameterType="com.park.mall.model.SleepVO">
+
+	DELETE FROM sleep WHERE userId = #{userId};
+
+
+</delete>
+
+
+</mapper>

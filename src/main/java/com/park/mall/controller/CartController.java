@@ -4,9 +4,13 @@ import java.util.Enumeration;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -45,12 +49,12 @@ public class CartController {
 		return "cart";
 	}
 	@RequestMapping(value = "/cart", method = RequestMethod.POST)
-	public String cartPost(@RequestParam("amount") int amount,int product_id,Tbl_ProductVO vo ,HttpSession session) throws Exception {
+	public String cartPost(@CookieValue(name = "name", required =  false) String cookierequ,@RequestParam("amount") int amount,int product_id,Tbl_ProductVO vo ,HttpSession session,HttpServletRequest req,HttpServletResponse hsr) throws Exception {
+		
+		
 		ArrayList<Tbl_ProductVO> productVO = null;
 		productVO = (ArrayList<Tbl_ProductVO>)session.getAttribute("cartList");
 		
-		MemberVO loginVo = (MemberVO) session.getAttribute("member");
-	
 		if(productVO == null) {
 			productVO = new ArrayList<Tbl_ProductVO>();
 		}

@@ -31,6 +31,7 @@ public class AdminController {
 			return "admin";
 			
 		}
+	
 	 //회원 신고 누적 횟수 확인
 	 @ResponseBody
 	 @RequestMapping(value = "/admin/reportiIdChk", method = RequestMethod.POST)

@@ -1,5 +1,8 @@
 package com.park.mall;
 
+import java.util.HashMap;
+import java.util.List;
+
 import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.park.mall.model.Pagination;
 import com.park.mall.model.Search;
+import com.park.mall.model.Tbl_ProductVO;
 import com.park.mall.service.ProductBoardService;
 import com.park.mall.service.Tbl_ProductServiceImpl;
 
@@ -25,7 +28,7 @@ public class MainController {
 	public String shopping() {
 		return "shopping";
 	}
-	
+	 
 	  // 1. 신발 상품 전체 목록
 	@RequestMapping(value = "/nike_shoes", method = RequestMethod.GET)
 	public ModelAndView nike_shoes(ModelAndView mav) throws Exception {

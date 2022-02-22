@@ -29,7 +29,27 @@
 </head>
 <script type="text/javascript">
 
+function passChk(val) {
+	
+	if(val.length <= 6){
+	var html = "비밀번호 보안이 취약합니다.";
+	$('#passMSG').text(html);
+	}else{
+		html = "비밀번호가 양호합니다.";
+		$('#passMSG').text(html);
+	}
+	
+	
+}
+
 function fn_idChk(){
+	var valId = $('input[name=id]').val();
+	
+	if(valId == '' || valId == null){
+		alert("아이디가 올바르지 않습니다.");
+		return false
+	}
+	
 	$.ajax({
 		url : "/idchk",
 		type : "post",
@@ -45,6 +65,8 @@ function fn_idChk(){
 		}
 	})
 }
+
+
 </script>
 <body class="bg-gradient-primary">
 
@@ -73,10 +95,12 @@ function fn_idChk(){
                                         <input type="text" name="id" class="form-control form-control-user" id="exampleFirstName"
                                             placeholder="아이디" required=""> 
                                             <button class="btn btn-primary btn-user btn-block" type="button" id=idChk onclick="fn_idChk();" value="N">아이디 중복확인</button>
+                                  
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="password" name="pw" class="form-control form-control-user" id="exampleLastName"
-                                            placeholder="패스워드" required="">
+                                            placeholder="패스워드" required="" onchange="passChk(this.value);">
+                                            <p id="passMSG"></p>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -86,14 +110,14 @@ function fn_idChk(){
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="text" name="name"   class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="이름" required="">
+                                            id="exampleInputPassword" placeholder="이름" required="" >
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control form-control-user"
                                             id="exampleRepeatPassword" name="phone" placeholder="핸드폰 번호" required="">
                                     </div>
                                 </div>
-                                    	<button type="submit" class="btn btn-primary btn-user btn-block">회원가입 완료</button>
+                                    	<button type="submit" id="regiChk" class="btn btn-primary btn-user btn-block">회원가입 완료</button>
                             
                                
                             </form>
