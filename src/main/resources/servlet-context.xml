@@ -36,6 +36,15 @@
     
 	<beans:bean id="echoHandler" class="com.park.mall.controller.EchoHandler"></beans:bean>
 	
-	
+	 <websocket:handlers>
+		<websocket:mapping handler="ChatRoomHandler" path="/chatRoomHandler" />
+		<websocket:handshake-interceptors>
+		<beans:bean
+				class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor" />
+		</websocket:handshake-interceptors>
+		<websocket:sockjs />
+	</websocket:handlers>
+    
+	<beans:bean id="ChatRoomHandler" class="com.park.mall.controller.ChatRoomHandler"></beans:bean>
 	
 </beans:beans>

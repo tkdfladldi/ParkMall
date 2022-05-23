@@ -16,6 +16,7 @@
 
 
 </select>
+
 <delete id="sleepDelete" parameterType="com.park.mall.model.SleepVO">
 
 	DELETE FROM sleep WHERE userId = #{userId};

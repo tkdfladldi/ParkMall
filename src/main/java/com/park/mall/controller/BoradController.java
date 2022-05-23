@@ -94,7 +94,7 @@ public class BoradController {
 				boardService.boradDelete(borad_id);
 				PrintWriter out = response.getWriter();			 
 				// location.href =/borad?p=1&'; 했을경우 뒤에 boradDelete주소가 따라붙어서 window. 을 이용하여 다른 url 풀경로로 지정 
-				out.println("<script>alert('삭제완료.');window.location.href='http://localhost:8080/borad?p=1&';</script>");	
+				out.println("<script>alert('삭제완료.');window.location.href='/borad?p=1&';</script>");	
 				out.flush();
 				return "borad?p=1&";
 		}else {
@@ -122,7 +122,7 @@ public class BoradController {
 			public void boradUpdate(BoradVO vo,HttpServletResponse response)throws Exception{
 				 boardService.boradUpdate(vo);
 				 PrintWriter out = response.getWriter();		
-				 out.println("<script>alert('수정완료.');window.location.href='http://localhost:8080/borad?p=1&';</script>");	
+				 out.println("<script>alert('수정완료.');window.location.href='/borad?p=1&';</script>");	
 				out.flush();
 			}
 			// 댓글 작성 기능

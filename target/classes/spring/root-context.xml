@@ -13,7 +13,8 @@
 			  </bean>
 			  <!--  파일업로드 디렉토리 설정 -->
 			  <bean id="uploadPath" class="java.lang.String">
-			    <constructor-arg value="C:\Users\user\eclipse-workspace\Park\src\main\webapp\resources\uplodFile"/>
+			     <constructor-arg value="C:/Users/user/eclipse-workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/Park/resources/uplodFile"/> 
+			     
 			  </bean>
  
  

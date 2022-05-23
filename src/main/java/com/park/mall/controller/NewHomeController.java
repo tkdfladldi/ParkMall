@@ -82,8 +82,14 @@ public class NewHomeController {
 	public String newHome(HttpServletRequest req) {
 
 		req.setAttribute("content", "main.jsp");
-
+		
 		return "/new/home";
+	}
+	@RequestMapping(value = "/newChatRoom", method = RequestMethod.GET)
+	public String newChatRoom(HttpServletRequest req) {
+
+		
+		return "/new/newChatRoom";
 	}
 
 	@RequestMapping(value = "/newhome/sleep", method = RequestMethod.GET)

@@ -500,7 +500,7 @@
 		$('#message').val('')
 	});
 
-	let sock = new SockJS("http://localhost:8080/echo");
+	let sock = new SockJS("/echo");
 	sock.onmessage = onMessage;
 	sock.onclose = onClose;
 	sock.onopen = onOpen;

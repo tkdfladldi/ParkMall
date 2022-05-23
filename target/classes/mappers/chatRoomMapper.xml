@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+
+    PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">    
+
+<mapper namespace="com.park.mall.dao.ChatRoomMapper">
+
+
+<!-- mybatis 기능중 insert 후에 auto로 1증가 된 컬럼의 결과값을 바로 반환 해준다 -->
+<insert id="chatRoom" useGeneratedKeys="true"
+        keyProperty="chatRoom_num" keyColumn="chatRoom_num">
+
+	INSERT INTO chatRoom(
+						 chatRoom_Name,
+						 hostName,
+						 people, 
+						 realPeople,
+						 category,
+						 chatPassWord)
+	 VALUES(
+			     
+			      #{chatRoom_Name}
+				, #{hostName}
+				, #{people}
+				, #{realPeople}
+                , #{category}
+				, #{chatPassWord}
+			);
+	
+
+</insert>
+
+<select id="chatRoomGet" resultType="map">
+	
+	select * from chatRoom;
+
+</select>
+
+<select id="roomPassChk"  resultType="int" parameterType="com.park.mall.model.ChatRoomVO">
+		select count(*) from chatRoom
+					    where 
+					    chatPassWord = #{chatPassWord}
+					    
+					    and  
+					    chatRoom_num = #{chatRoom_num}
+					    
+</select>
+
+<select id="realPeopleChk" parameterType="int" resultType="int">
+
+		select count(*) from
+		 chatRoom 
+		 where people = realPeople 
+		 and 
+		 chatRoom_num = #{peopleChk}
+		 
+</select>
+
+<update id="realPeopleAdd" parameterType="int">
+
+	update chatRoom 
+	set 
+	realPeople = realPeople+1 
+	where 
+	chatRoom_num= #{chatRoom_num};
+	
+</update>
+<update id="realPeopleDelete" parameterType="int">
+	update chatRoom 
+	set 	
+	realPeople = realPeople-1 
+	where 
+	chatRoom_num= #{chatRoom_num};
+	
+</update>
+
+<select id="realPeopleZeroChk" parameterType="int" resultType="int">
+
+	select realPeople from chatRoom
+			 where chatRoom_num = #{chatRoom_num};
+			 
+</select>
+
+<delete id="delectChatRoom" parameterType="int">
+
+	DELETE FROM chatRoom WHERE chatRoom_Num = #{chatRoom_num};
+
+</delete>
+
+<insert id="chatRoomPeopleAdd" parameterType="com.park.mall.model.ChatRoomPeopleVO">
+
+	INSERT INTO chatRoomPeople(chatRoom_num,ChatPeopleName, websocketId)
+			VALUES(
+				#{chatRoom_num}
+			   ,#{ChatPeopleName}
+			   ,#{websocketId}
+			);
+
+</insert>
+
+
+<select id="chatRoomPeopleNameSel" resultType="int" parameterType="com.park.mall.model.ChatRoomPeopleVO">
+
+	select count(*) from chatRoomPeople where ChatPeopleName = #{chatPeopleName} and chatRoom_num = #{chatRoom_num};
+
+</select>
+
+<delete id="delectChatPeople" parameterType="int">
+
+	DELETE FROM chatRoomPeople WHERE chatRoom_num = #{chatRoom_num};
+
+</delete>
+
+<select id="webSocketIdSel" parameterType="String" resultType="com.park.mall.model.ChatRoomPeopleVO">
+
+select * from chatRoompeople WHERE websocketId = #{websocketId};
+
+</select>
+
+<select id="ListChatPeopleSel" parameterType="int" resultType="com.park.mall.model.ChatRoomPeopleVO">
+
+select * from chatRoompeople WHERE chatRoom_num = #{roomNum};
+
+</select>
+
+<delete id="ChatRoomPeopleDelete" parameterType="com.park.mall.model.ChatRoomPeopleVO">
+
+DELETE FROM chatRoompeople where chatRoom_num = #{chatRoom_num} and websocketId = #{websocketId};
+
+</delete>
+
+
+</mapper>
