@@ -1,9 +1,9 @@
-쇼핑몰 
+쇼핑몰 :
 https://youtu.be/ckELsdneIm8
 
 [![Video](http://img.youtube.com/vi/ckELsdneIm8/0.jpg)](https://youtu.be/ckELsdneIm8) 
 
-멀티 채팅방 및 컴퓨터 자동종료
+멀티 채팅방 및 컴퓨터 자동종료 :
 https://youtu.be/h2d-lHIqIGE
 
 [![Video](http://img.youtube.com/vi/h2d-lHIqIGE/0.jpg)](https://youtu.be/h2d-lHIqIGE) 
