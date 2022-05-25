@@ -2,6 +2,10 @@ https://youtu.be/ckELsdneIm8
 
 [![Video](http://img.youtube.com/vi/ckELsdneIm8/0.jpg)](https://youtu.be/ckELsdneIm8) 
 
+https://youtu.be/h2d-lHIqIGE
+
+[![Video](http://img.youtube.com/vi/h2d-lHIqIGE/0.jpg)](https://youtu.be/h2d-lHIqIGE) 
+
 # 기술스택
 
 Front-End : html5, css, JavaScript(Jquery 라이브러리), bootstrap
