@@ -1,4 +1,4 @@
-쇼핑몰
+쇼핑몰 
 https://youtu.be/ckELsdneIm8
 
 [![Video](http://img.youtube.com/vi/ckELsdneIm8/0.jpg)](https://youtu.be/ckELsdneIm8) 
@@ -6,13 +6,13 @@ https://youtu.be/ckELsdneIm8
 멀티 채팅방 및 컴퓨터 자동종료
 https://youtu.be/h2d-lHIqIGE
 
-[![Video](http://img.youtube.com/vi/h2d-lHIqIGE/1.jpg)](https://youtu.be/h2d-lHIqIGE) 
+[![Video](http://img.youtube.com/vi/h2d-lHIqIGE/0.jpg)](https://youtu.be/h2d-lHIqIGE) 
 
 # 기술스택
 
 Front-End : html5, css, JavaScript(Jquery 라이브러리), bootstrap
 
-Back-End: Java, Spring Framework(MVC), mybatis , JSP , JSTL(라이브러리)
+Back-End: Java, Spring Framework(MVC), mybatis , JSP , JSTL(라이브러리) , web socket
 
 DB: mysql
 
@@ -34,3 +34,7 @@ DB: mysql
 
 회원 : 내정보 , 로그인 , 회원가입(아이디 중복체크 및 비밀번호 암호화) , 비밀번호 변경
 
+멀티 채팅방 : 채팅방 목록 조회 , 채팅방 만들기 , 비밀번호 방 만들기 , 각 채팅방 입장 및 퇴장 알림 , 채팅방 인원에 따라 변경 및 제한 ,
+채팅방 인원이 없을 경우 채팅방 제거 , 각 채팅방 회원들과 소통  
+
+컴퓨터 자동종료 : 컴퓨터 자동종료 시간 예약 , 예약 취소 
